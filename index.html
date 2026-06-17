@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=1200, initial-scale=0.5, minimum-scale=0.25">
 <title>Students Dashboard</title>
 <style>
   :root {
@@ -61,11 +61,59 @@
   .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; font-size: 16px; }
 
   /* ── Autocomplete ── */
-  .ac-wrap { position: relative; z-index: 1000; }
+  .ac-wrap { position: relative; z-index: 90; }
   .ac-list { position: absolute; top: calc(100% + 2px); left: 0; right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; box-shadow: var(--shadow-md); z-index: 300; max-height: 220px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .ac-list div { padding: 11px 12px; font-size: 14px; cursor: pointer; border-bottom: 1px solid var(--border); }
   .ac-list div:last-child { border-bottom: none; }
   .ac-list div:active, .ac-list div.hl { background: var(--accent-light); color: var(--accent); }
+
+  /* Sticky Column for Slots */
+  .sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    box-shadow: 3px 0 6px rgba(15, 23, 42, 0.08);
+    border-right: 2px solid #cbd5e1 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+  .tt-grid-header.tt-time-col-header.sticky-col {
+    background: var(--surface2) !important;
+    z-index: 21;
+  }
+  .tt-time-cell.sticky-col {
+    background: var(--surface) !important;
+    z-index: 20;
+  }
+
+  /* Week Boundary Divider */
+  .week-boundary {
+    border-left: 2px solid var(--accent) !important;
+  }
+
+  /* Sunday Highlighting */
+  .tt-grid-header.sunday {
+    background: #fee2e2 !important;
+    color: #991b1b !important;
+    border-color: #fca5a5 !important;
+  }
+  .tt-grid-header.sunday span {
+    color: #7f1d1d !important;
+  }
+  .tt-grid-cell.sunday {
+    background: #fef2f2 !important;
+    border-color: #fecdd3 !important;
+  }
+
+  /* 8am Row Height Restriction */
+  .tt-time-cell.row-8am,
+  .tt-grid-cell.row-8am {
+    min-height: 30px !important;
+  }
+  .tt-time-cell.row-8am {
+    padding: 4px 8px !important;
+  }
 
   /* ── Tables ── */
   .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -170,19 +218,24 @@
   .tt-week-select { font-size: 13px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text-primary); min-height: 36px; font-weight: 500; }
   
   /* Calendar Grid View (Desktop) */
-  .tt-grid-container { overflow-x: auto; background: var(--surface2); border-radius: 8px; border: 1px solid var(--border); padding: 8px; margin-top: 10px; }
-  .tt-grid { display: grid; grid-template-columns: 90px repeat(7, minmax(120px, 1fr)); gap: 6px; min-width: 930px; }
+  .tt-grid-container { overflow-x: auto; overflow-y: hidden; background: var(--surface2); border-radius: 8px; border: 1px solid var(--border); padding: 8px 0; margin-top: 10px; scroll-snap-type: x proximity; scroll-padding-left: 90px; }
+  .tt-grid {
+    display: grid;
+    grid-template-columns: 90px repeat(78, calc((100% - 90px - 36px) / 7));
+    gap: 6px;
+  }
+
   
-  .tt-grid-header { background: var(--surface); padding: 10px 6px; text-align: center; font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; border-radius: 6px; border: 1px solid var(--border); }
+  .tt-grid-header { background: var(--surface); padding: 10px 6px; text-align: center; font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; border-radius: 6px; border: 1px solid var(--border); scroll-snap-align: start; }
   .tt-grid-header.today { background: var(--accent-light); color: var(--accent); border-color: rgba(37,99,235,0.3); }
   .tt-grid-header span { display: block; font-size: 13px; font-weight: 600; text-transform: none; margin-top: 2px; color: var(--text-primary); }
   .tt-grid-header.today span { color: var(--accent); }
 
-  .tt-time-col-header { background: transparent; border: none; }
+  .tt-time-col-header { background: transparent; border: none; color: #000000 !important; font-weight: 800 !important; }
 
-  .tt-time-cell { display: flex; flex-direction: column; justify-content: center; background: var(--surface); padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 11px; font-weight: 600; color: var(--text-secondary); min-height: 90px; height: auto; box-sizing: border-box; text-align: center; line-height: 1.3; }
+  .tt-time-cell { display: flex; flex-direction: column; justify-content: center; background: var(--surface); padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 11px; font-weight: 700; color: #000000; min-height: 80px; height: auto; box-sizing: border-box; text-align: center; line-height: 1.3; }
   
-  .tt-grid-cell { background: var(--surface); border: 1px dashed var(--border); border-radius: 6px; min-height: 90px; height: auto; box-sizing: border-box; position: relative; }
+  .tt-grid-cell { background: var(--surface); border: 1px dashed #cbd5e1; border-radius: 6px; min-height: 80px; height: auto; box-sizing: border-box; position: relative; }
   
   .tt-class-block { position: absolute; inset: 2px; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid transparent; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .tt-class-block:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 10; }
@@ -216,23 +269,61 @@
   .cc-RBS { background: #fdf2f8; color: #9d174d; border-color: #fbcfe8; }
   .cc-SGM { background: #f7fee7; color: #3f6212; border-color: #d9f99d; }
 
-  /* Mobile Agenda Switcher View */
-  .tt-mobile-view { display: none; margin-top: 10px; }
-  .tt-m-days-row { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
-  .tt-m-days-row::-webkit-scrollbar { display: none; }
-  .tt-m-day-tab { display: flex; flex-direction: column; align-items: center; padding: 8px 12px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); font-size: 11px; min-width: 54px; cursor: pointer; transition: all 0.15s ease; }
-  .tt-m-day-tab.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); font-weight: 600; }
-  .tt-m-day-tab.today { border-color: var(--accent); }
-  .tt-m-day-tab span { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  /* Sunday Highlighting */
+  .tt-grid-header.sunday {
+    background: #fee2e2 !important;
+    color: #991b1b !important;
+    border-color: #fca5a5 !important;
+  }
+  .tt-grid-header.sunday span {
+    color: #7f1d1d !important;
+  }
+  .tt-grid-cell.sunday {
+    background: #fef2f2 !important;
+    border-color: #fecdd3 !important;
+  }
 
-  .tt-m-timeline { display: flex; flex-direction: column; gap: 10px; }
-  .tt-m-card { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px; box-shadow: var(--shadow); position: relative; }
-  .tt-m-card.active { border-color: var(--accent); background: linear-gradient(90deg, var(--accent-light) 0%, var(--surface) 100%); }
-  .tt-m-time { flex-shrink: 0; width: 75px; font-size: 11px; font-weight: 700; color: var(--text-secondary); line-height: 1.3; display: flex; align-items: center; }
-  .tt-m-details { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-  .tt-m-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-  .tt-m-meta { display: flex; gap: 6px; font-size: 10px; color: var(--text-secondary); align-items: center; }
-  .tt-m-faculty { font-size: 10px; color: var(--text-muted); margin-top: 3px; border-top: 1px dashed var(--border); padding-top: 3px; }
+  /* 8am Row Height Restriction */
+  .tt-time-cell.row-8am,
+  .tt-grid-cell.row-8am {
+    min-height: 30px !important;
+  }
+  .tt-time-cell.row-8am {
+    padding: 4px 8px !important;
+  }
+
+  /* Weekly Scrollable Timeline */
+  .tt-weeks-scroll-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 6px;
+    scroll-behavior: smooth;
+  }
+  .tt-week-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .tt-week-header-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tt-week-header-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
 
   /* Premium Drawer Modal Overlay */
   .tt-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.45); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; transition: opacity 0.25s ease; opacity: 0; pointer-events: none; }
@@ -265,12 +356,6 @@
   
   .tt-calendar-btn-link { color: var(--accent); cursor: pointer; font-weight: 600; font-size: 12px; text-decoration: none; border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; background: var(--surface2); transition: all 0.15s ease; margin-left: 8px; display: inline-flex; align-items: center; gap: 3px; }
   .tt-calendar-btn-link:hover { background: var(--accent-light); border-color: var(--accent); text-decoration: none; }
-
-  /* Responsiveness */
-  @media (max-width: 768px) {
-    .tt-grid-container { display: none; }
-    .tt-mobile-view { display: block; }
-  }
 
   /* Print Styles */
   @page {
@@ -314,6 +399,83 @@
       print-color-adjust: exact !important;
     }
   }
+  /* ── Dark Theme Styles ── */
+  body.dark-theme {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface2: #0f172a;
+    --border: #334155;
+    --header-bg: #0f172a;
+    --accent: #3b82f6;
+    --accent-light: #1e3a8a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.4);
+  }
+  body.dark-theme .tt-grid-header.sunday {
+    background: #450a0a !important;
+    color: #fca5a5 !important;
+    border-color: #7f1d1d !important;
+  }
+  body.dark-theme .tt-grid-header.sunday span {
+    color: #fca5a5 !important;
+  }
+  body.dark-theme .tt-grid-cell.sunday {
+    background: #180505 !important;
+    border-color: #450a0a !important;
+  }
+  body.dark-theme .tt-time-cell,
+  body.dark-theme .tt-time-col-header {
+    color: var(--text-primary) !important;
+  }
+  body.dark-theme .term-4 { background: #78350f !important; color: #fef3c7 !important; }
+  body.dark-theme .term-5 { background: #1e3a8a !important; color: #dbeafe !important; }
+  body.dark-theme .term-6 { background: #065f46 !important; color: #d1fae5 !important; }
+  body.dark-theme .tt-notes-box { background: var(--surface2) !important; }
+  body.dark-theme .tt-notes-txt-view { background: #064e3b !important; color: #a7f3d0 !important; border-left-color: #10b981 !important; }
+  body.dark-theme .tt-notes-area:focus { background: var(--surface) !important; color: var(--text-primary) !important; }
+
+  /* Redefining course badge classes for cohesive dark theme */
+  body.dark-theme .cc-general { background: #334155; color: #f1f5f9; border-color: #475569; }
+  body.dark-theme .cc-BAV { background: #1e3a8a; color: #bfdbfe; border-color: #3b82f6; }
+  body.dark-theme .cc-CMN { background: #115e59; color: #99f6e4; border-color: #0d9488; }
+  body.dark-theme .cc-CNB { background: #14532d; color: #bbf7d0; border-color: #22c55e; }
+  body.dark-theme .cc-CSP { background: #064e3b; color: #a7f3d0; border-color: #10b981; }
+  body.dark-theme .cc-DGM { background: #581c87; color: #e9d5ff; border-color: #a855f7; }
+  body.dark-theme .cc-DMD { background: #881337; color: #fecdd3; border-color: #f43f5e; }
+  body.dark-theme .cc-DPCC { background: #312e81; color: #c7d2fe; border-color: #4f46e5; }
+  body.dark-theme .cc-INM { background: #4c1d95; color: #ddd6fe; border-color: #7c3aed; }
+  body.dark-theme .cc-LSC { background: #164e63; color: #bae6fd; border-color: #0284c7; }
+  body.dark-theme .cc-MABA { background: #78350f; color: #fde68a; border-color: #d97706; }
+  body.dark-theme .cc-PJM { background: #7c2d12; color: #fed7aa; border-color: #ea580c; }
+  body.dark-theme .cc-PMG { background: #78350f; color: #fde68a; border-color: #d97706; }
+  body.dark-theme .cc-PPBS { background: #1e293b; color: #cbd5e1; border-color: #475569; }
+  body.dark-theme .cc-QCAM { background: #881337; color: #fecdd3; border-color: #f43f5e; }
+  body.dark-theme .cc-RBS { background: #701a75; color: #fbcfe8; border-color: #d946ef; }
+  body.dark-theme .cc-SGM { background: #3f6212; color: #d9f99d; border-color: #84cc16; }
+
+  /* Theme Toggle Button styling */
+  .theme-toggle-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-left: auto;
+  }
+  .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
 
 </style>
 </head>
@@ -323,6 +485,7 @@
   <div>
     <div class="header-title">Students Dashboard</div>
   </div>
+  <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">🌙</button>
 </div>
 
 <div class="filterbar">
@@ -1213,6 +1376,41 @@ function getWeeksInTimetable() {
   return weeks;
 }
 
+// Generate all dates between June 15 and Aug 31, 2026
+function getAllDatesInTerm() {
+  const start = new Date(2026, 5, 15); // Jun 15, 2026 (Mon)
+  const end = new Date(2026, 7, 31);   // Aug 31, 2026 (Mon)
+  
+  const dates = [];
+  let current = new Date(start);
+  
+  while (current <= end) {
+    const next = new Date(current);
+    
+    // Format DD-MM-YYYY
+    const dStr = String(next.getDate()).padStart(2, '0');
+    const mStr = String(next.getMonth() + 1).padStart(2, '0');
+    const yStr = next.getFullYear();
+    
+    dates.push({
+      dateStr: `${dStr}-${mStr}-${yStr}`,
+      dateObj: next,
+      dayName: next.toLocaleDateString([], {weekday: 'short'}),
+      dayLabel: next.toLocaleDateString([], {day: 'numeric', month: 'short'})
+    });
+    
+    current.setDate(current.getDate() + 1);
+  }
+  return dates;
+}
+
+function formatDateToDDMMYYYY(date) {
+  const dStr = String(date.getDate()).padStart(2, '0');
+  const mStr = String(date.getMonth() + 1).padStart(2, '0');
+  const yStr = date.getFullYear();
+  return `${dStr}-${mStr}-${yStr}`;
+}
+
 // Heuristic time parser
 function timeToHours(timeStr) {
   let startH = 8, startM = 0, endH = 9, endM = 30;
@@ -1398,33 +1596,95 @@ function getDatesInWeek(mondayDate) {
   return dates;
 }
 
-// Weeks navigation
+// Weeks navigation and scrolling sync
+function adjustGridColumns() {
+  const container = document.querySelector('.tt-grid-container');
+  if (!container) return;
+  const slotsVisible = 7;
+  const stickyWidth = 90;
+  const gap = 6;
+  const totalGaps = (slotsVisible - 1) * gap;
+  
+  const containerWidth = container.clientWidth;
+  if (!containerWidth) return;
+  
+  const colWidth = (containerWidth - stickyWidth - totalGaps) / slotsVisible;
+  const ttGrid = container.querySelector('.tt-grid');
+  if (ttGrid) {
+    ttGrid.style.gridTemplateColumns = `${stickyWidth}px repeat(78, ${colWidth}px)`;
+    ttGrid.style.minWidth = `${stickyWidth + 78 * colWidth + 78 * gap}px`;
+  }
+}
+
 function changeWeek(diff) {
   const weeks = getWeeksInTimetable();
   const currentIdx = weeks.findIndex(w => w.start.getTime() === ttSelectedWeekStart.getTime());
+  const nextIdx = Math.max(0, Math.min(weeks.length - 1, currentIdx + diff));
   
-  if (currentIdx !== -1) {
-    const nextIdx = Math.max(0, Math.min(weeks.length - 1, currentIdx + diff));
-    ttSelectedWeekStart = weeks[nextIdx].start;
-    
-    // Default mobile active day to the Monday of the new week
-    const newDates = getDatesInWeek(ttSelectedWeekStart);
-    ttSelectedMobileDayStr = newDates[0].dateStr;
-    
-    renderTimetable();
-  }
+  selectWeekDropdown(weeks[nextIdx].start.getTime());
 }
 
 function selectWeekDropdown(val) {
   ttSelectedWeekStart = new Date(parseInt(val));
-  const newDates = getDatesInWeek(ttSelectedWeekStart);
-  ttSelectedMobileDayStr = newDates[0].dateStr;
-  renderTimetable();
+  const selectEl = document.getElementById('tt-week-select');
+  if (selectEl) selectEl.value = val;
+  
+  const mondayStr = formatDateToDDMMYYYY(ttSelectedWeekStart);
+  const colEl = document.getElementById(`hdr-col-${mondayStr}`);
+  const scrollContainer = document.querySelector('.tt-grid-container');
+  if (colEl && scrollContainer) {
+    const leftOffset = colEl.getBoundingClientRect().left - scrollContainer.getBoundingClientRect().left + scrollContainer.scrollLeft;
+    // Align to the right of the sticky column (90px)
+    scrollContainer.scrollTo({
+      left: leftOffset - 90,
+      behavior: 'smooth'
+    });
+  }
 }
 
-function selectMobileDay(dateStr) {
-  ttSelectedMobileDayStr = dateStr;
-  renderTimetable();
+function initScrollListener() {
+  const container = document.querySelector('.tt-grid-container');
+  const selectEl = document.getElementById('tt-week-select');
+  if (!container || !selectEl) return;
+
+  const weeks = getWeeksInTimetable();
+
+  container.addEventListener('scroll', () => {
+    const mondayHeaders = [];
+    weeks.forEach(w => {
+      const mondayStr = formatDateToDDMMYYYY(w.start);
+      const colEl = document.getElementById(`hdr-col-${mondayStr}`);
+      if (colEl) {
+        mondayHeaders.push({
+          weekStart: w.start,
+          element: colEl
+        });
+      }
+    });
+
+    const containerRect = container.getBoundingClientRect();
+    const targetLeft = containerRect.left + 100; // Check slightly to the right of the sticky Slots column (90px)
+
+    let activeWeekStart = null;
+    let minDiff = Infinity;
+
+    mondayHeaders.forEach(mh => {
+      const rect = mh.element.getBoundingClientRect();
+      const diff = Math.abs(rect.left - targetLeft);
+      if (diff < minDiff) {
+        minDiff = diff;
+        activeWeekStart = mh.weekStart;
+      }
+    });
+
+    if (activeWeekStart) {
+      const weekMs = activeWeekStart.getTime().toString();
+      if (selectEl.value !== weekMs) {
+        selectEl.value = weekMs;
+        ttSelectedWeekStart = activeWeekStart;
+      }
+    }
+  });
 }
 
 // Trigger calendar view from lookup tab
@@ -1698,6 +1958,17 @@ const STUDENT_CHIP_COLORS = [
   { bg: '#fdf4ff', text: '#a21caf', border: '#f5d0fe' }  // fuchsia
 ];
 
+const STUDENT_CHIP_COLORS_DARK = [
+  { bg: '#1e3a8a', text: '#bfdbfe', border: '#3b82f6' }, // blue
+  { bg: '#064e3b', text: '#bbf7d0', border: '#10b981' }, // green
+  { bg: '#581c87', text: '#e9d5ff', border: '#a855f7' }, // purple
+  { bg: '#7c2d12', text: '#fed7aa', border: '#f97316' }, // orange
+  { bg: '#164e63', text: '#a5f3fc', border: '#06b6d4' }, // cyan
+  { bg: '#881337', text: '#fecdd3', border: '#f43f5e' }, // rose
+  { bg: '#78350f', text: '#fde68a', border: '#f59e0b' }, // amber
+  { bg: '#701a75', text: '#f5d0fe', border: '#d946ef' }  // fuchsia
+];
+
 function renderSelectedStudentChips() {
   const container = document.getElementById('tt-chips-container');
   if (!container) return;
@@ -1707,10 +1978,13 @@ function renderSelectedStudentChips() {
     return;
   }
   
+  const isDark = typeof document !== 'undefined' && document.body && document.body.classList && document.body.classList.contains('dark-theme');
+  const chipColors = isDark ? STUDENT_CHIP_COLORS_DARK : STUDENT_CHIP_COLORS;
+  
   container.innerHTML = ttSIDs.map((sid, idx) => {
     const stu = studentMap[sid];
     if (!stu) return '';
-    const color = STUDENT_CHIP_COLORS[idx % STUDENT_CHIP_COLORS.length];
+    const color = chipColors[idx % chipColors.length];
     
     const term4Rec = stu.records.find(r => r.Term === '4');
     const secLetter = term4Rec && term4Rec.Section ? term4Rec.Section.replace('Section ', '') : 'None';
@@ -1852,10 +2126,11 @@ function exportCombinedICal() {
 
 // Render personalized timetable grid
 // Helper to generate the weekly grid HTML for print pages
-function getWeeklyGridHTML(weekStart) {
+function getWeeklyGridHTML(weekStart, isPrint = false) {
   const weekDates = getDatesInWeek(weekStart);
   const weekStartMS = weekStart.getTime();
   const weekEndMS = weekStartMS + 7 * 24 * 60 * 60 * 1000;
+  const todayStr = getTodayString();
 
   const weekSchedules = [];
   ttSIDs.forEach((sid, idx) => {
@@ -1881,18 +2156,26 @@ function getWeeklyGridHTML(weekStart) {
 
   let gridHeadersHtml = `<div class="tt-grid-header tt-time-col-header">Slots</div>`;
   weekDates.forEach(wd => {
+    const isToday = !isPrint && wd.dateStr === todayStr;
+    const isSunday = wd.dayName === 'Sunday';
+    const cellClass = `tt-grid-header ${isToday ? 'today' : ''} ${isSunday ? 'sunday' : ''}`;
+    
     gridHeadersHtml += `
-      <div class="tt-grid-header">
+      <div class="${cellClass}">
         ${wd.dayName} <span>${wd.dayLabel}</span>
       </div>`;
   });
 
   let gridRowsHtml = '';
   TIME_SLOTS.forEach((slotTime, rowIdx) => {
-    gridRowsHtml += `<div class="tt-time-cell">${slotTime.replace(' To ', '<br>to<br>').replace('AM',' AM').replace('PM',' PM')}</div>`;
+    const is8am = rowIdx === 0;
+    const rowClass = is8am ? 'row-8am' : '';
+    gridRowsHtml += `<div class="tt-time-cell ${rowClass}">${slotTime.replace(/ To /i, '<br>to<br>').replace('AM',' AM').replace('PM',' PM')}</div>`;
     
     weekDates.forEach((wd, colIdx) => {
       const cellSlots = weekSchedules.filter(s => s.date === wd.dateStr && s.slotIndex === rowIdx);
+      const isSunday = wd.dayName === 'Sunday';
+      const sundayClass = isSunday ? 'sunday' : '';
       
       if (cellSlots.length > 0) {
         const groups = [];
@@ -1916,17 +2199,25 @@ function getWeeklyGridHTML(weekStart) {
           }
         });
 
-        let cellHtml = `<div class="tt-grid-cell" style="display:flex; flex-direction:column; gap:4px; padding:2px">`;
+        let cellHtml = `<div class="tt-grid-cell ${sundayClass} ${rowClass}" style="display:flex; flex-direction:column; gap:4px; padding:2px">`;
         groups.forEach(cl => {
+          const isActive = !isPrint && isSlotActive(cl.date, cl.time);
           const noteKeySuffix = `${cl.date}_${cl.time}`;
           const hasNotes = cl.attendees.some(att => localStorage.getItem(`tt_note_${att.sid}_${noteKeySuffix}`)) ? '📝' : '';
           
+          const clJsonStr = encodeURIComponent(JSON.stringify({
+            ...cl,
+            attendeeSids: cl.attendees.map(a => a.sid)
+          }));
+          
           let attendeeTagsHtml = '';
           if (ttSIDs.length > 1) {
+            const isDark = typeof document !== 'undefined' && document.body && document.body.classList && document.body.classList.contains('dark-theme');
+            const chipColors = isDark ? STUDENT_CHIP_COLORS_DARK : STUDENT_CHIP_COLORS;
             attendeeTagsHtml = `
               <div style="display: flex; gap: 3px; flex-wrap: wrap; margin-top: 3px;">
                 ${cl.attendees.map(att => {
-                  const color = STUDENT_CHIP_COLORS[att.colorIdx % STUDENT_CHIP_COLORS.length];
+                  const color = chipColors[att.colorIdx % chipColors.length];
                   return `<span style="background: ${color.text}; color: #fff; font-size: 8px; font-weight: bold; padding: 1px 4px; border-radius: 4px; line-height: 1;" title="${att.name}">${att.shortName}</span>`;
                 }).join('')}
               </div>`;
@@ -1935,8 +2226,10 @@ function getWeeklyGridHTML(weekStart) {
           const blockPadding = groups.length > 1 ? 'padding: 4px 6px;' : 'padding: 8px;';
           const venueMargin = groups.length > 1 ? 'margin-top: 2px;' : 'margin-top: auto;';
           
+          const clickHandler = isPrint ? '' : `onclick="openClassDetails('${clJsonStr}')"`;
+          
           cellHtml += `
-            <div class="tt-class-block ${cl.colorClass}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}">
+            <div class="tt-class-block ${cl.colorClass} ${isActive ? 'active' : ''}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}" ${clickHandler}>
               <span class="tt-block-hasnotes" style="top:2px; right:2px;">${hasNotes}</span>
               <div>
                 <div class="tt-block-title" style="font-size:10px; line-height: 1.15;">${cl.courseName}</div>
@@ -1951,7 +2244,7 @@ function getWeeklyGridHTML(weekStart) {
         cellHtml += `</div>`;
         gridRowsHtml += cellHtml;
       } else {
-        gridRowsHtml += `<div class="tt-grid-cell"></div>`;
+        gridRowsHtml += `<div class="tt-grid-cell ${sundayClass} ${rowClass}"></div>`;
       }
     });
   });
@@ -1970,7 +2263,7 @@ function renderTimetable() {
   const container = document.getElementById('tt-dashboard-result');
   if (!container) return;
 
-  // Render selection chips whenever rendering timetable (handles tab-switching / syncs)
+  // Render selection chips whenever rendering timetable
   renderSelectedStudentChips();
 
   if (ttSIDs.length === 0) {
@@ -1981,9 +2274,8 @@ function renderTimetable() {
     return;
   }
 
-  // 1. Get weeks in timetable and handle empty state (preventing TypeErrors)
+  // 1. Get weeks in timetable
   const weeks = getWeeksInTimetable();
-  
   const primaryStu = studentMap[ttSIDs[0]];
   const namesTitle = ttSIDs.map(sid => studentMap[sid].Name).join(' & ');
   const titleText = ttSIDs.length > 1 ? `Comparison: ${namesTitle}` : `Timetable Calendar - ${primaryStu.Name}`;
@@ -2019,42 +2311,6 @@ function renderTimetable() {
     ttSelectedWeekStart = hasTodayWeek ? todayMon : weeks[0].start;
   }
 
-  if (!ttSelectedMobileDayStr) {
-    ttSelectedMobileDayStr = todayStr;
-    const datesInCurWeek = getDatesInWeek(ttSelectedWeekStart);
-    const inWeek = datesInCurWeek.find(d => d.dateStr === todayStr);
-    if (!inWeek) {
-      ttSelectedMobileDayStr = datesInCurWeek[0].dateStr;
-    }
-  }
-
-  // 2. Fetch all selected students' schedules
-  const weekDates = getDatesInWeek(ttSelectedWeekStart);
-  const weekStartMS = ttSelectedWeekStart.getTime();
-  const weekEndMS = weekStartMS + 7 * 24 * 60 * 60 * 1000;
-
-  const allSchedules = [];
-  ttSIDs.forEach((sid, idx) => {
-    const studentSlots = getStudentTimetable(sid);
-    const weekSlots = studentSlots.filter(slot => {
-      const slotTime = parseDate(slot.date).getTime();
-      return slotTime >= weekStartMS && slotTime < weekEndMS;
-    });
-    
-    const stu = studentMap[sid];
-    weekSlots.forEach(slot => {
-      allSchedules.push({
-        ...slot,
-        attendee: {
-          sid: sid,
-          name: stu.Name,
-          shortName: stu.Name.split(' ')[0],
-          colorIdx: idx
-        }
-      });
-    });
-  });
-
   // Check if any student has Term 4 courses
   let anyStudentHasTerm4 = false;
   ttSIDs.forEach(sid => {
@@ -2065,212 +2321,148 @@ function renderTimetable() {
     }
   });
 
-  // Build grid header HTML (Desktop)
-  let gridHeadersHtml = `<div class="tt-grid-header tt-time-col-header">Slots</div>`;
-  weekDates.forEach(wd => {
-    const isToday = wd.dateStr === todayStr;
-    gridHeadersHtml += `
-      <div class="tt-grid-header ${isToday ? 'today' : ''}">
-        ${wd.dayName} <span>${wd.dayLabel}</span>
-      </div>`;
-  });
-
-  // Build grid body HTML (Desktop)
-  let gridRowsHtml = '';
-  TIME_SLOTS.forEach((slotTime, rowIdx) => {
-    gridRowsHtml += `<div class="tt-time-cell">${slotTime.replace(' To ', '<br>to<br>').replace('AM',' AM').replace('PM',' PM')}</div>`;
-    
-    weekDates.forEach((wd, colIdx) => {
-      const cellSlots = allSchedules.filter(s => s.date === wd.dateStr && s.slotIndex === rowIdx);
-      
-      if (cellSlots.length > 0) {
-        const groups = [];
-        cellSlots.forEach(slot => {
-          let matchedGroup = null;
-          if (slot.isGeneral) {
-            matchedGroup = groups.find(g => g.isGeneral && g.text === slot.text);
-          } else {
-            matchedGroup = groups.find(g => !g.isGeneral && g.courseCodeFull === slot.courseCodeFull && g.section === slot.section && g.venue === slot.venue);
-          }
-          
-          if (matchedGroup) {
-            if (!matchedGroup.attendees.find(a => a.sid === slot.attendee.sid)) {
-              matchedGroup.attendees.push(slot.attendee);
-            }
-          } else {
-            groups.push({
-              ...slot,
-              attendees: [slot.attendee]
-            });
-          }
-        });
-
-        let cellHtml = `<div class="tt-grid-cell" style="display:flex; flex-direction:column; gap:4px; padding:2px">`;
-        groups.forEach(cl => {
-          const isActive = isSlotActive(cl.date, cl.time);
-          const noteKeySuffix = `${cl.date}_${cl.time}`;
-          const hasNotes = cl.attendees.some(att => localStorage.getItem(`tt_note_${att.sid}_${noteKeySuffix}`)) ? '📝' : '';
-          
-          const clJsonStr = encodeURIComponent(JSON.stringify({
-            ...cl,
-            attendeeSids: cl.attendees.map(a => a.sid)
-          }));
-          
-          let attendeeTagsHtml = '';
-          if (ttSIDs.length > 1) {
-            attendeeTagsHtml = `
-              <div style="display: flex; gap: 3px; flex-wrap: wrap; margin-top: 3px;">
-                ${cl.attendees.map(att => {
-                  const color = STUDENT_CHIP_COLORS[att.colorIdx % STUDENT_CHIP_COLORS.length];
-                  return `<span style="background: ${color.text}; color: #fff; font-size: 8px; font-weight: bold; padding: 1px 4px; border-radius: 4px; line-height: 1;" title="${att.name}">${att.shortName}</span>`;
-                }).join('')}
-              </div>`;
-          }
-          
-          const blockPadding = groups.length > 1 ? 'padding: 4px 6px;' : 'padding: 8px;';
-          const venueMargin = groups.length > 1 ? 'margin-top: 2px;' : 'margin-top: auto;';
-          
-          cellHtml += `
-            <div class="tt-class-block ${cl.colorClass} ${isActive ? 'active' : ''}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}" onclick="openClassDetails('${clJsonStr}')">
-              <span class="tt-block-hasnotes" style="top:2px; right:2px;">${hasNotes}</span>
-              <div>
-                <div class="tt-block-title" style="font-size:10px; line-height: 1.15;">${cl.courseName}</div>
-                ${attendeeTagsHtml}
-              </div>
-              <div class="tt-block-venue" style="font-size:8px; display:flex; justify-content:space-between; align-items:center; width:100%; ${venueMargin}">
-                ${cl.venue ? `<span>📍 ${cl.venue}</span>` : '<span></span>'}
-                ${cl.isGeneral ? '' : `<span style="font-weight:700; opacity:0.9;">Sec ${cl.section.replace('Section ', '')}</span>`}
-              </div>
-            </div>`;
-        });
-        cellHtml += `</div>`;
-        gridRowsHtml += cellHtml;
-      } else {
-        gridRowsHtml += `<div class="tt-grid-cell"></div>`;
-      }
-    });
-  });
-
-  // Build Mobile Agenda Tab Slider HTML
-  const mTabsHtml = weekDates.map(wd => {
-    const isToday = wd.dateStr === todayStr;
-    const isActive = wd.dateStr === ttSelectedMobileDayStr;
-    const labelChar = wd.dayName.substring(0, 3);
-    const dayVal = wd.dateStr.split('-')[0];
-    
-    return `
-      <div class="tt-m-day-tab ${isActive ? 'active' : ''} ${isToday ? 'today' : ''}" onclick="selectMobileDay('${wd.dateStr}')">
-        ${labelChar}<span>${dayVal}</span>
-      </div>`;
-  }).join('');
-
-  // Build Mobile Timeline Agenda HTML
-  const mDaySchedule = allSchedules.filter(s => s.date === ttSelectedMobileDayStr);
-  let mTimelineHtml = '';
-  
-  if (mDaySchedule.length === 0) {
-    mTimelineHtml = `<div class="no-results" style="padding:16px">No classes scheduled for this day.</div>`;
-  } else {
-    const mGroups = [];
-    mDaySchedule.forEach(slot => {
-      let matchedGroup = null;
-      if (slot.isGeneral) {
-        matchedGroup = mGroups.find(g => g.isGeneral && g.text === slot.text);
-      } else {
-        matchedGroup = mGroups.find(g => !g.isGeneral && g.courseCodeFull === slot.courseCodeFull && g.section === slot.section && g.venue === slot.venue);
-      }
-      
-      if (matchedGroup) {
-        if (!matchedGroup.attendees.find(a => a.sid === slot.attendee.sid)) {
-          matchedGroup.attendees.push(slot.attendee);
-        }
-      } else {
-        mGroups.push({
-          ...slot,
-          attendees: [slot.attendee]
-        });
-      }
-    });
-
-    mGroups.sort((a, b) => a.slotIndex - b.slotIndex);
-    
-    mTimelineHtml = mGroups.map(slot => {
-      const isActive = isSlotActive(slot.date, slot.time);
-      const noteKeySuffix = `${slot.date}_${slot.time}`;
-      const hasNotes = slot.attendees.some(att => localStorage.getItem(`tt_note_${att.sid}_${noteKeySuffix}`)) ? '📝' : '';
-      const slotJsonStr = encodeURIComponent(JSON.stringify({
-        ...slot,
-        attendeeSids: slot.attendees.map(a => a.sid)
-      }));
-      
-      let attendeeTagsHtml = '';
-      if (ttSIDs.length > 1) {
-        attendeeTagsHtml = `
-          <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px;">
-            ${slot.attendees.map(att => {
-              const color = STUDENT_CHIP_COLORS[att.colorIdx % STUDENT_CHIP_COLORS.length];
-              return `<span style="background: ${color.bg}; color: ${color.text}; border: 1px solid ${color.border}; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; line-height: 1;">${att.name}</span>`;
-            }).join('')}
-          </div>`;
-      }
-      
-      return `
-        <div class="tt-m-card ${isActive ? 'active' : ''}" onclick="openClassDetails('${slotJsonStr}')">
-          <div class="tt-m-time">${slot.time.replace(' To ', '<br>to<br>')}</div>
-          <div class="tt-m-details">
-            <div class="tt-m-name" style="display:flex; justify-content:space-between; align-items:center;">
-              <span>${slot.courseName}</span>
-              <span style="font-size:12px;">${hasNotes}</span>
-            </div>
-            ${slot.isGeneral ? (slot.venue ? `<div class="tt-m-meta"><span>📍 ${slot.venue}</span></div>` : '') : `
-            <div class="tt-m-meta">
-              <span>${slot.courseCodeFull}</span> · 
-              <span>Section ${slot.section.replace('Section ','')}</span> · 
-              <span>📍 ${slot.venue}</span>
-            </div>`}
-            ${attendeeTagsHtml}
-            ${!slot.isGeneral ? `<div class="tt-m-faculty">💼 ${slot.faculty}</div>` : ''}
-          </div>
-        </div>`;
-    }).join('');
-  }
-
-  const selectedWeek = weeks.find(w => w.start.getTime() === ttSelectedWeekStart.getTime());
-  const selectedWeekLabel = selectedWeek ? selectedWeek.label : '';
-
-  // Populate dynamic weeks select element options
+  // Populate weeks select dropdown options
   const weekOptionsHtml = weeks.map(w => {
     const isSelected = w.start.getTime() === ttSelectedWeekStart.getTime();
     return `<option value="${w.start.getTime()}" ${isSelected ? 'selected' : ''}>${w.label}</option>`;
   }).join('');
 
-  // Draw main dashboard container skeleton
-  let mainBodyHtml = '';
-  
-  if (!anyStudentHasTerm4) {
-    mainBodyHtml = `
-      <div class="no-results" style="padding: 40px; margin-top:20px; text-align:center;">
-        <p style="font-size:15px; font-weight:600">No Term IV classes available for the selected student(s).</p>
-        <span style="font-size:12px;color:var(--text-secondary)">Dynamic calendars are currently implemented for Term IV courses only.</span>
-      </div>`;
-  } else {
-    mainBodyHtml = `
-      <div class="tt-grid-container">
+  // Generate scrollable grid for all weeks on screen
+  let scrollWeeksHtml = '';
+  if (anyStudentHasTerm4) {
+    const termDates = getAllDatesInTerm();
+    
+    // Get all schedules for the term
+    const termSchedules = [];
+    ttSIDs.forEach((sid, idx) => {
+      const studentSlots = getStudentTimetable(sid);
+      const stu = studentMap[sid];
+      studentSlots.forEach(slot => {
+        termSchedules.push({
+          ...slot,
+          attendee: {
+            sid: sid,
+            name: stu.Name,
+            shortName: stu.Name.split(' ')[0],
+            colorIdx: idx
+          }
+        });
+      });
+    });
+
+    // Generate grid headers for term days
+    let gridHeadersHtml = `<div class="tt-grid-header tt-time-col-header sticky-col">Slots</div>`;
+    termDates.forEach(wd => {
+      const isToday = wd.dateStr === todayStr;
+      const isSunday = wd.dateObj.getDay() === 0;
+      const isMonday = wd.dateObj.getDay() === 1;
+      const cellClass = `tt-grid-header ${isToday ? 'today' : ''} ${isSunday ? 'sunday' : ''} ${isMonday ? 'week-boundary' : ''}`;
+      
+      gridHeadersHtml += `
+        <div class="${cellClass}" id="hdr-col-${wd.dateStr}" data-date="${wd.dateStr}">
+          ${wd.dayName} <span>${wd.dayLabel}</span>
+        </div>`;
+    });
+
+    // Generate rows for all 8 time slots
+    let gridRowsHtml = '';
+    TIME_SLOTS.forEach((slotTime, rowIdx) => {
+      const is8am = rowIdx === 0;
+      const rowClass = is8am ? 'row-8am' : '';
+      // First column: sticky time cell
+      gridRowsHtml += `<div class="tt-time-cell sticky-col ${rowClass}">${slotTime.replace(/ To /i, '<br>to<br>').replace('AM',' AM').replace('PM',' PM')}</div>`;
+      
+      termDates.forEach(wd => {
+        const cellSlots = termSchedules.filter(s => s.date === wd.dateStr && s.slotIndex === rowIdx);
+        const isSunday = wd.dateObj.getDay() === 0;
+        const isMonday = wd.dateObj.getDay() === 1;
+        const sundayClass = isSunday ? 'sunday' : '';
+        const mondayClass = isMonday ? 'week-boundary' : '';
+        const cellClass = `tt-grid-cell ${sundayClass} ${mondayClass}`;
+        
+        if (cellSlots.length > 0) {
+          const groups = [];
+          cellSlots.forEach(slot => {
+            let matchedGroup = null;
+            if (slot.isGeneral) {
+              matchedGroup = groups.find(g => g.isGeneral && g.text === slot.text);
+            } else {
+              matchedGroup = groups.find(g => !g.isGeneral && g.courseCodeFull === slot.courseCodeFull && g.section === slot.section && g.venue === slot.venue);
+            }
+            
+            if (matchedGroup) {
+              if (!matchedGroup.attendees.find(a => a.sid === slot.attendee.sid)) {
+                matchedGroup.attendees.push(slot.attendee);
+              }
+            } else {
+              groups.push({
+                ...slot,
+                attendees: [slot.attendee]
+              });
+            }
+          });
+
+          let cellHtml = `<div class="${cellClass} ${rowClass}" style="display:flex; flex-direction:column; gap:4px; padding:2px">`;
+          groups.forEach(cl => {
+            const isActive = isSlotActive(cl.date, cl.time);
+            const noteKeySuffix = `${cl.date}_${cl.time}`;
+            const hasNotes = cl.attendees.some(att => localStorage.getItem(`tt_note_${att.sid}_${noteKeySuffix}`)) ? '📝' : '';
+            
+            const clJsonStr = encodeURIComponent(JSON.stringify({
+              ...cl,
+              attendeeSids: cl.attendees.map(a => a.sid)
+            }));
+            
+            let attendeeTagsHtml = '';
+            if (ttSIDs.length > 1) {
+              const isDark = typeof document !== 'undefined' && document.body && document.body.classList && document.body.classList.contains('dark-theme');
+              const chipColors = isDark ? STUDENT_CHIP_COLORS_DARK : STUDENT_CHIP_COLORS;
+              attendeeTagsHtml = `
+                <div style="display: flex; gap: 3px; flex-wrap: wrap; margin-top: 3px;">
+                  ${cl.attendees.map(att => {
+                    const color = chipColors[att.colorIdx % chipColors.length];
+                    return `<span style="background: ${color.text}; color: #fff; font-size: 8px; font-weight: bold; padding: 1px 4px; border-radius: 4px; line-height: 1;" title="${att.name}">${att.shortName}</span>`;
+                  }).join('')}
+                </div>`;
+            }
+            
+            const blockPadding = groups.length > 1 ? 'padding: 4px 6px;' : 'padding: 8px;';
+            const venueMargin = groups.length > 1 ? 'margin-top: 2px;' : 'margin-top: auto;';
+            const clickHandler = `onclick="openClassDetails('${clJsonStr}')"`;
+            
+            cellHtml += `
+              <div class="tt-class-block ${cl.colorClass} ${isActive ? 'active' : ''}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}" ${clickHandler}>
+                <span class="tt-block-hasnotes" style="top:2px; right:2px;">${hasNotes}</span>
+                <div>
+                  <div class="tt-block-title" style="font-size:10px; line-height: 1.15;">${cl.courseName}</div>
+                  ${attendeeTagsHtml}
+                </div>
+                <div class="tt-block-venue" style="font-size:8px; display:flex; justify-content:space-between; align-items:center; width:100%; ${venueMargin}">
+                  ${cl.venue ? `<span>📍 ${cl.venue}</span>` : '<span></span>'}
+                  ${cl.isGeneral ? '' : `<span style="font-weight:700; opacity:0.9;">Sec ${cl.section.replace('Section ', '')}</span>`}
+                </div>
+              </div>`;
+          });
+          cellHtml += `</div>`;
+          gridRowsHtml += cellHtml;
+        } else {
+          gridRowsHtml += `<div class="${cellClass} ${rowClass}"></div>`;
+        }
+      });
+    });
+
+    scrollWeeksHtml = `
+      <div class="tt-grid-container" style="display:block !important; margin-top:10px; overflow-x: auto;">
         <div class="tt-grid">
           ${gridHeadersHtml}
           ${gridRowsHtml}
         </div>
-      </div>
-      
-      <div class="tt-mobile-view">
-        <div class="tt-m-tabs-slider">
-          <div class="tt-m-tabs-track">
-            ${mTabsHtml}
-          </div>
-        </div>
-        <div class="tt-m-timeline">
-          ${mTimelineHtml}
-        </div>
+      </div>`;
+  } else {
+    scrollWeeksHtml = `
+      <div class="no-results" style="padding: 40px; margin-top:20px; text-align:center;">
+        <p style="font-size:15px; font-weight:600">No Term IV classes available for the selected student(s).</p>
+        <span style="font-size:12px;color:var(--text-secondary)">Dynamic calendars are currently implemented for Term IV courses only.</span>
       </div>`;
   }
 
@@ -2281,9 +2473,12 @@ function renderTimetable() {
         <span style="font-size: 16px; font-weight: 700; color: var(--text-primary);">${titleText}</span>
         <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">${w.label}</span>
       </div>
-      ${getWeeklyGridHTML(w.start)}
+      ${getWeeklyGridHTML(w.start, true)}
     </div>
   `).join('');
+
+  const selectedWeek = weeks.find(w => w.start.getTime() === ttSelectedWeekStart.getTime());
+  const selectedWeekLabel = selectedWeek ? selectedWeek.label : '';
 
   container.innerHTML = `
     <div class="tt-card screen-only-timetable">
@@ -2295,7 +2490,7 @@ function renderTimetable() {
             <span id="tt-sync-text">Loading sync...</span>
           </div>
           <div class="tt-print-week-label" style="display: none; font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-top: 4px;">
-            	ext{ }${selectedWeekLabel}
+            ${selectedWeekLabel}
           </div>
         </div>
         <div class="tt-actions">
@@ -2308,25 +2503,37 @@ function renderTimetable() {
         </div>
       </div>
 
-      ${anyStudentHasTerm4 ? `
-      <div class="tt-controls">
-        <div class="tt-week-selector">
-          <button class="tt-btn" style="min-height:36px;padding:0 10px" onclick="changeWeek(-1)" title="Previous Week">◀</button>
-          <select class="tt-week-select" id="tt-week-select" onchange="selectWeekDropdown(this.value)">
-            ${weekOptionsHtml}
-          </select>
-          <button class="tt-btn" style="min-height:36px;padding:0 10px" onclick="changeWeek(1)" title="Next Week">▶</button>
-        </div>
-      </div>` : ''}
-
-      ${mainBodyHtml}
+      ${scrollWeeksHtml}
     </div>
     
     <div class="print-only-timetable" style="display: none;">
       ${printPagesHtml}
-    </div>`.replace(/\text\{\s*\}\s*/g, '');
+    </div>`;
 
   renderSyncStatusUI();
+
+  // Adjust column widths dynamically based on screen size
+  adjustGridColumns();
+
+  // Center timetable around today's date
+  setTimeout(() => {
+    adjustGridColumns();
+    const todayStr = getTodayString();
+    let colEl = document.getElementById(`hdr-col-${todayStr}`);
+    if (!colEl) {
+      const mondayStr = formatDateToDDMMYYYY(ttSelectedWeekStart);
+      colEl = document.getElementById(`hdr-col-${mondayStr}`);
+    }
+    const scrollContainer = document.querySelector('.tt-grid-container');
+    if (colEl && scrollContainer) {
+      const leftOffset = colEl.getBoundingClientRect().left - scrollContainer.getBoundingClientRect().left + scrollContainer.scrollLeft;
+      const stickyWidth = 90;
+      const viewportWidth = scrollContainer.clientWidth - stickyWidth;
+      const targetScroll = leftOffset - stickyWidth - (viewportWidth - colEl.clientWidth) / 2;
+      scrollContainer.scrollLeft = Math.max(0, targetScroll);
+    }
+    initScrollListener();
+  }, 50);
 }
 // Set autocomplete search for Timetable Tab
 makeAC('tt-inp', 'tt-list', sid => {
@@ -2353,8 +2560,39 @@ if (savedDefaultSid && studentMap[savedDefaultSid]) {
   ttSID = savedDefaultSid;
 }
 
+function initTheme() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (!toggleBtn) return;
+  
+  const savedTheme = localStorage.getItem('xlri_theme');
+  const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+  
+  if (typeof document !== 'undefined' && document.body && document.body.classList) {
+    if (shouldBeDark) {
+      document.body.classList.add('dark-theme');
+      toggleBtn.textContent = '☀️';
+    } else {
+      document.body.classList.remove('dark-theme');
+      toggleBtn.textContent = '🌙';
+    }
+  }
+  
+  toggleBtn.addEventListener('click', () => {
+    if (typeof document !== 'undefined' && document.body && document.body.classList) {
+      const isDark = document.body.classList.toggle('dark-theme');
+      localStorage.setItem('xlri_theme', isDark ? 'dark' : 'light');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
+      renderSelectedStudentChips();
+      if (ttSIDs.length) renderTimetable();
+    }
+  });
+}
+
+initTheme();
 syncTimetable();
 renderTimetable();
+if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') { window.addEventListener('resize', adjustGridColumns); }
 </script>
 </body>
 </html>
