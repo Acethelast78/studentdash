@@ -1028,7 +1028,7 @@ function renderRoster() {
   let html=`<div class="card" style="padding:0"><div style="padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-size:15px;font-weight:700">${recs[0]['Subject Name']}</span><span style="font-size:11px;color:var(--text-muted);font-family:monospace">${code}</span>${trmB(recs[0].Term)}<span style="margin-left:auto;font-size:13px;color:var(--text-secondary)">${recs.length} students</span></div>`;
   secOrd.forEach(sec=>{
     if(!grp[sec])return;
-    const g=grp[sec].sort((a,b)=>a.Name.localeCompare(b.Name));
+    const g=grp[sec].sort((a,b)=>a.SID.localeCompare(b.SID));
     html+=`<div class="sec-header">${sec==='No Section'?'No Section':sec}<span class="chip">${g.length}</span></div><table style="width:100%"><tbody>`;
     g.forEach((r,i)=>{html+=`<tr><td style="width:36px;color:var(--text-muted);font-size:11px;padding:8px 10px">${i+1}</td><td style="font-family:monospace;font-size:11px;color:var(--text-muted);width:76px;padding:8px 4px">${r.SID}</td><td style="padding:8px 10px">${r.Name}</td></tr>`;});
     html+=`</tbody></table>`;
@@ -1476,7 +1476,10 @@ function processTimetable(csvText) {
 
     // Read slots 2 to 9
     for (let c = 2; c <= 9; c++) {
-      const text = row[c] ? row[c].trim() : '';
+      let text = row[c] ? row[c].trim() : '';
+      if (text.toUpperCase() === 'PMG') {
+        text = '';
+      }
       if (text) {
         slots.push({
           day: currentDay,
@@ -1787,7 +1790,7 @@ function getStudentTimetable(sid) {
   if (!stu) return [];
 
   const term4Courses = stu.records.filter(r => r.Term === '4');
-  const coursePrefixes = ['BAV', 'CMN', 'CNB', 'CSP', 'DGM', 'DMD', 'DPCC', 'INM', 'LSC', 'LSCM', 'MABA', 'PJM', 'PMG', 'PPBS', 'QCAM', 'RBS', 'SGM', 'B2B'];
+  const coursePrefixes = ['BAV', 'CMN', 'CNB', 'CSP', 'DGM', 'DMD', 'DPCC', 'INM', 'LSC', 'LSCM', 'MABA', 'PJM', 'PMG', 'PGM', 'PPBS', 'QCAM', 'RBS', 'SGM', 'B2B'];
   
   const studentSlots = [];
 
@@ -1804,6 +1807,7 @@ function getStudentTimetable(sid) {
       
       const searchPrefixes = [prefix];
       if (prefix === 'LSC') searchPrefixes.push('LSCM');
+      if (prefix === 'PMG') searchPrefixes.push('PGM');
 
       let prefixMatch = false;
       for (const p of searchPrefixes) {
