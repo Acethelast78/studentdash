@@ -1826,16 +1826,19 @@ function getStudentTimetable(sid) {
     if (matchedCourse) {
       const meta = courseMetadata[matchedCourse['Subject Code Full']] || {};
       
-      // Resolve venue
-      let venue = 'MCR-07';
-      if (textUpper.includes('(LCR01)')) venue = 'LCR01';
-      else if (textUpper.includes('MCR-08') || textUpper.includes('SEC F')) venue = 'MCR-08';
-      else if (matchedCourse.Section === 'Section F') venue = 'MCR-08';
-
       // Check for academic alerts (quizzes / exams)
       const isQuiz = textUpper.includes('QUIZ');
       const isExam = textUpper.includes('MID-') || textUpper.includes('MID ') || textUpper.includes('MIDTERM') || textUpper.includes('EXAM') || textUpper.includes('TEST') || textUpper.includes('END-TERM') || textUpper.includes('ENDTERM') || textUpper.includes('EVALU') || textUpper.includes('VIVA') || textUpper.includes('PRESENTATION');
       const isSpecial = isQuiz || isExam;
+
+      // Resolve venue
+      let venue = '';
+      if (!isSpecial) {
+        venue = 'MCR-07';
+        if (textUpper.includes('(LCR01)')) venue = 'LCR01';
+        else if (textUpper.includes('MCR-08') || textUpper.includes('SEC F')) venue = 'MCR-08';
+        else if (matchedCourse.Section === 'Section F') venue = 'MCR-08';
+      }
 
       // Resolve color code
       let colorClass = 'cc-general';
@@ -1902,14 +1905,14 @@ function getStudentTimetable(sid) {
     // Calculate lecture numbers chronologically
   const totals = {};
   studentSlots.forEach(slot => {
-    if (!slot.isGeneral) {
+    if (!slot.isGeneral && !slot.isSpecial) {
       const code = slot.courseCode;
       totals[code] = (totals[code] || 0) + 1;
     }
   });
   const counts = {};
   studentSlots.forEach(slot => {
-    if (!slot.isGeneral) {
+    if (!slot.isGeneral && !slot.isSpecial) {
       const code = slot.courseCode;
       counts[code] = (counts[code] || 0) + 1;
       slot.lectureNumber = counts[code];
@@ -2120,7 +2123,7 @@ function openClassDetails(slotJsonOrObj) {
     </div>
     <div class="tt-md-row">
       <div class="tt-md-label">Venue</div>
-      <div class="tt-md-val">📍 <strong>${slot.venue || 'Batch-wide Event (No single venue)'}</strong></div>
+      <div class="tt-md-val">📍 <strong>${slot.isSpecial ? 'To Be Announced (Not in MCR)' : (slot.venue || 'Batch-wide Event (No single venue)')}</strong></div>
     </div>`;
 
   if (!slot.isGeneral) {
