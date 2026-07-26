@@ -1394,6 +1394,8 @@ let schedSID = null; // primary student SID for the group scheduler
 let ttSelectedWeekStart = null; // Date object representing Monday of selected week
 let ttSelectedMobileDayStr = null; // DD-MM-YYYY for active mobile day
 let currentModalClass = null; // currently opened class details
+let ttSelectedSubject = 'all';
+let ttShowAllSubjects = false;
 
 // Heuristic time slots headers (8 slots)
 const TIME_SLOTS = [
@@ -1544,7 +1546,7 @@ function syncTimetable(manual = false) {
       timetableSyncStatus = 'online';
       
       renderSyncStatusUI();
-      if (ttSIDs.length) renderTimetable();
+      renderTimetable();
     } catch (err) {
       handleSyncError(err, manual);
     } finally {
@@ -1587,7 +1589,7 @@ function handleSyncError(err, manual) {
     timetableSyncStatus = 'offline';
   }
   renderSyncStatusUI();
-  if (ttSIDs.length) renderTimetable();
+  renderTimetable();
   
   if (manual) {
     alert('Could not sync latest timetable (are you offline?). Using cached/fallback version.');
@@ -2041,6 +2043,8 @@ function initScrollListener() {
 function viewStudentCalendar(sid) {
   ttSIDs = [sid];
   ttSID = sid;
+  ttSelectedSubject = 'all';
+  ttShowAllSubjects = false;
   
   // Switch active tab visually
   const btns = document.querySelectorAll('.tab-btn');
@@ -2736,6 +2740,10 @@ function renderSelectedStudentChips() {
 function removeSelectedStudent(sid) {
   ttSIDs = ttSIDs.filter(s => s !== sid);
   ttSID = ttSIDs[0] || null;
+  if (ttSIDs.length === 0) {
+    ttSelectedSubject = 'all';
+    ttShowAllSubjects = false;
+  }
   renderSelectedStudentChips();
   renderTimetable();
 }
@@ -2862,27 +2870,145 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
   const weekEndMS = weekStartMS + 7 * 24 * 60 * 60 * 1000;
   const todayStr = getTodayString();
 
-  const weekSchedules = [];
-  ttSIDs.forEach((sid, idx) => {
-    const studentSlots = getStudentTimetable(sid);
-    const weekSlots = studentSlots.filter(slot => {
+  let weekSchedules = [];
+  if (ttSIDs.length > 0) {
+    ttSIDs.forEach((sid, idx) => {
+      const studentSlots = getStudentTimetable(sid);
+      const weekSlots = studentSlots.filter(slot => {
+        const slotTime = parseDate(slot.date).getTime();
+        return slotTime >= weekStartMS && slotTime < weekEndMS;
+      });
+      
+      const stu = studentMap[sid];
+      weekSlots.forEach(slot => {
+        weekSchedules.push({
+          ...slot,
+          attendee: {
+            sid: sid,
+            name: stu.Name,
+            shortName: stu.Name.split(' ')[0],
+            colorIdx: idx
+          }
+        });
+      });
+    });
+    // Filter by selected subject
+    if (ttSelectedSubject && ttSelectedSubject !== 'all') {
+      weekSchedules = weekSchedules.filter(s => s.courseCode === ttSelectedSubject);
+    }
+  } else if (ttShowAllSubjects) {
+    // Collect from master timetableData
+    const weekSlots = timetableData.filter(slot => {
       const slotTime = parseDate(slot.date).getTime();
       return slotTime >= weekStartMS && slotTime < weekEndMS;
     });
-    
-    const stu = studentMap[sid];
+
     weekSlots.forEach(slot => {
-      weekSchedules.push({
-        ...slot,
-        attendee: {
-          sid: sid,
-          name: stu.Name,
-          shortName: stu.Name.split(' ')[0],
-          colorIdx: idx
+      const textUpper = slot.text.toUpperCase();
+      
+      // Find matching subject from Term 4 courses
+      const allTermCourses = [];
+      const seenCodes = new Set();
+      RAW.forEach(r => {
+        if (r.Term === '4' && r['Subject Code'] && !seenCodes.has(r['Subject Code'])) {
+          seenCodes.add(r['Subject Code']);
+          allTermCourses.push(r);
         }
       });
+      
+      let matchedCourse = null;
+      
+      for (const course of allTermCourses) {
+        const code = course['Subject Code'];
+        let prefix = code;
+        if (code.endsWith('BD')) {
+          prefix = code.substring(0, code.length - 2);
+        }
+        
+        const searchPrefixes = [prefix];
+        if (prefix === 'LSC') searchPrefixes.push('LSCM');
+        if (prefix === 'PMG') searchPrefixes.push('PGM');
+        
+        let match = false;
+        for (const p of searchPrefixes) {
+          if (new RegExp('\\b' + p + '\\b', 'i').test(textUpper)) {
+            match = true;
+            break;
+          }
+        }
+        
+        if (match) {
+          matchedCourse = course;
+          break;
+        }
+      }
+      
+      if (matchedCourse) {
+        const code = matchedCourse['Subject Code'];
+        if (ttSelectedSubject !== 'all' && code !== ttSelectedSubject) {
+          return;
+        }
+        
+        // Resolve section
+        let sectionName = 'Common / General';
+        let colorIdx = 2;
+        if (textUpper.includes('SEC E')) {
+          sectionName = 'Section E';
+          colorIdx = 0;
+        } else if (textUpper.includes('SEC F')) {
+          sectionName = 'Section F';
+          colorIdx = 1;
+          } else if (textUpper.includes('SEC G')) {
+            sectionName = 'Section G';
+            colorIdx = 3;
+          }
+        
+        let venue = 'MCR-07';
+        if (textUpper.includes('(LCR01)')) venue = 'LCR01';
+        else if (textUpper.includes('MCR-08') || textUpper.includes('SEC F')) venue = 'MCR-08';
+        
+        const isQuiz = textUpper.includes('QUIZ');
+        const isExam = textUpper.includes('MID-') || textUpper.includes('MID ') || textUpper.includes('MIDTERM') || textUpper.includes('EXAM') || textUpper.includes('TEST') || textUpper.includes('END-TERM') || textUpper.includes('ENDTERM') || textUpper.includes('EVALU') || textUpper.includes('VIVA') || textUpper.includes('PRESENTATION');
+        const isSpecial = isQuiz || isExam;
+        
+        if (isSpecial) {
+          venue = '';
+        }
+        
+        let colorClass = 'cc-general';
+        if (isQuiz) {
+          colorClass = 'tt-quiz-event';
+        } else if (isExam) {
+          colorClass = 'tt-exam-event';
+        } else {
+          const cPrefix = code ? code.replace('BD','') : '';
+          if (cPrefix) colorClass = 'cc-' + cPrefix;
+        }
+        
+        weekSchedules.push({
+          ...slot,
+          isGeneral: false,
+          courseName: matchedCourse['Subject Name'],
+          courseCode: code,
+          courseCodeFull: matchedCourse['Subject Code Full'],
+          section: sectionName,
+          faculty: matchedCourse.Faculty || '',
+          ta: matchedCourse.TA || '',
+          venue: venue,
+          colorClass: colorClass,
+          isSpecial: isSpecial,
+          isQuiz: isQuiz,
+          isExam: isExam,
+          attendee: {
+            sid: sectionName,
+            name: sectionName,
+            shortName: sectionName.replace('Section ', 'Sec '),
+            colorIdx: colorIdx
+          }
+        });
+      }
     });
-  });
+  }
 
   let gridHeadersHtml = `<div class="tt-grid-header tt-time-col-header">Slots</div>`;
   weekDates.forEach(wd => {
@@ -2992,6 +3118,37 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
     </div>`;
 }
 
+// Subject filter helper functions
+function getSubjectName(code) {
+  const rec = RAW.find(r => r['Subject Code'] === code);
+  return rec ? rec['Subject Name'] : code;
+}
+
+function changeSubjectFilter(val) {
+  if (val === 'unlock-all-term') {
+    ttShowAllSubjects = true;
+    ttSelectedSubject = 'all';
+  } else if (val === 'lock-my-subjects') {
+    ttShowAllSubjects = false;
+    ttSelectedSubject = 'all';
+  } else {
+    ttSelectedSubject = val;
+  }
+  renderTimetable();
+}
+
+function unlockAllSubjects() {
+  ttShowAllSubjects = true;
+  ttSelectedSubject = 'all';
+  renderTimetable();
+}
+
+function lockAllSubjects() {
+  ttShowAllSubjects = false;
+  ttSelectedSubject = 'all';
+  renderTimetable();
+}
+
 // Render personalized timetable grid
 function renderTimetable() {
   const container = document.getElementById('tt-dashboard-result');
@@ -3004,19 +3161,31 @@ function renderTimetable() {
   // Render selection chips whenever rendering timetable
   renderSelectedStudentChips();
 
-  if (ttSIDs.length === 0) {
+  if (ttSIDs.length === 0 && !ttShowAllSubjects) {
     container.innerHTML = `<div class="empty-hint" style="padding: 40px 20px;">
       <div style="font-size: 32px; margin-bottom: 12px; color: var(--text-muted);">📅</div>
-      <div>Search and select a student above to load their calendar schedule.</div>
+      <div style="margin-bottom: 16px;">Search and select a student above to load their calendar schedule.</div>
+      <div>
+        <button class="tt-btn primary" onclick="unlockAllSubjects()" title="View master timetable for any subject">
+          🔍 View Master Timetable (All Subjects)
+        </button>
+      </div>
     </div>`;
     return;
   }
 
   // 1. Get weeks in timetable
   const weeks = getWeeksInTimetable();
-  const primaryStu = studentMap[ttSIDs[0]];
+  const primaryStu = ttSIDs.length > 0 ? studentMap[ttSIDs[0]] : null;
   const namesTitle = ttSIDs.map(sid => studentMap[sid].Name).join(' & ');
-  const titleText = ttSIDs.length > 1 ? `Comparison: ${namesTitle}` : `Timetable Calendar - ${primaryStu.Name}`;
+  let titleText = '';
+  if (ttSIDs.length > 0) {
+    titleText = ttSIDs.length > 1 ? `Comparison: ${namesTitle}` : `Timetable Calendar - ${primaryStu.Name}`;
+  } else {
+    titleText = ttSelectedSubject === 'all' 
+      ? 'Master Timetable - All Subjects' 
+      : `Master Timetable - ${ttSelectedSubject} (${getSubjectName(ttSelectedSubject)})`;
+  }
 
   if (weeks.length === 0) {
     container.innerHTML = `
@@ -3049,15 +3218,19 @@ function renderTimetable() {
     ttSelectedWeekStart = hasTodayWeek ? todayMon : weeks[0].start;
   }
 
-  // Check if any student has Term 4 courses
+  // Check if any student has Term 4 courses, or if we are in master timetable mode
   let anyStudentHasTerm4 = false;
-  ttSIDs.forEach(sid => {
-    const stu = studentMap[sid];
-    if (stu) {
-      const term4Courses = stu.records.filter(r => r.Term === '4');
-      if (term4Courses.length > 0) anyStudentHasTerm4 = true;
-    }
-  });
+  if (ttSIDs.length > 0) {
+    ttSIDs.forEach(sid => {
+      const stu = studentMap[sid];
+      if (stu) {
+        const term4Courses = stu.records.filter(r => r.Term === '4');
+        if (term4Courses.length > 0) anyStudentHasTerm4 = true;
+      }
+    });
+  } else if (ttShowAllSubjects) {
+    anyStudentHasTerm4 = true;
+  }
 
   // Populate weeks select dropdown options
   const weekOptionsHtml = weeks.map(w => {
@@ -3071,22 +3244,135 @@ function renderTimetable() {
     const termDates = getAllDatesInTerm();
     
     // Get all schedules for the term
-    const termSchedules = [];
-    ttSIDs.forEach((sid, idx) => {
-      const studentSlots = getStudentTimetable(sid);
-      const stu = studentMap[sid];
-      studentSlots.forEach(slot => {
-        termSchedules.push({
-          ...slot,
-          attendee: {
-            sid: sid,
-            name: stu.Name,
-            shortName: stu.Name.split(' ')[0],
-            colorIdx: idx
-          }
+    let termSchedules = [];
+    if (ttSIDs.length > 0) {
+      ttSIDs.forEach((sid, idx) => {
+        const studentSlots = getStudentTimetable(sid);
+        const stu = studentMap[sid];
+        studentSlots.forEach(slot => {
+          termSchedules.push({
+            ...slot,
+            attendee: {
+              sid: sid,
+              name: stu.Name,
+              shortName: stu.Name.split(' ')[0],
+              colorIdx: idx
+            }
+          });
         });
       });
-    });
+      // Filter by selected subject
+      if (ttSelectedSubject && ttSelectedSubject !== 'all') {
+        termSchedules = termSchedules.filter(s => s.courseCode === ttSelectedSubject);
+      }
+    } else if (ttShowAllSubjects) {
+      // Build master schedules from timetableData
+      timetableData.forEach(slot => {
+        const textUpper = slot.text.toUpperCase();
+        
+        // Find matching subject from Term 4 courses
+        const allTermCourses = [];
+        const seenCodes = new Set();
+        RAW.forEach(r => {
+          if (r.Term === '4' && r['Subject Code'] && !seenCodes.has(r['Subject Code'])) {
+            seenCodes.add(r['Subject Code']);
+            allTermCourses.push(r);
+          }
+        });
+        
+        let matchedCourse = null;
+        
+        for (const course of allTermCourses) {
+          const code = course['Subject Code'];
+          let prefix = code;
+          if (code.endsWith('BD')) {
+            prefix = code.substring(0, code.length - 2);
+          }
+          
+          const searchPrefixes = [prefix];
+          if (prefix === 'LSC') searchPrefixes.push('LSCM');
+          if (prefix === 'PMG') searchPrefixes.push('PGM');
+          
+          let match = false;
+          for (const p of searchPrefixes) {
+            if (new RegExp('\\b' + p + '\\b', 'i').test(textUpper)) {
+              match = true;
+              break;
+            }
+          }
+          
+          if (match) {
+            matchedCourse = course;
+            break;
+          }
+        }
+        
+        if (matchedCourse) {
+          const code = matchedCourse['Subject Code'];
+          if (ttSelectedSubject !== 'all' && code !== ttSelectedSubject) {
+            return; // skip if doesn't match the filtered subject
+          }
+          
+          // Resolve section
+          let sectionName = 'Common / General';
+          let colorIdx = 2; // general color
+          if (textUpper.includes('SEC E')) {
+            sectionName = 'Section E';
+            colorIdx = 0;
+          } else if (textUpper.includes('SEC F')) {
+            sectionName = 'Section F';
+            colorIdx = 1;
+          } else if (textUpper.includes('SEC G')) {
+            sectionName = 'Section G';
+            colorIdx = 3;
+          }
+          
+          let venue = 'MCR-07';
+          if (textUpper.includes('(LCR01)')) venue = 'LCR01';
+          else if (textUpper.includes('MCR-08') || textUpper.includes('SEC F')) venue = 'MCR-08';
+          
+          const isQuiz = textUpper.includes('QUIZ');
+          const isExam = textUpper.includes('MID-') || textUpper.includes('MID ') || textUpper.includes('MIDTERM') || textUpper.includes('EXAM') || textUpper.includes('TEST') || textUpper.includes('END-TERM') || textUpper.includes('ENDTERM') || textUpper.includes('EVALU') || textUpper.includes('VIVA') || textUpper.includes('PRESENTATION');
+          const isSpecial = isQuiz || isExam;
+          
+          if (isSpecial) {
+            venue = '';
+          }
+          
+          let colorClass = 'cc-general';
+          if (isQuiz) {
+            colorClass = 'tt-quiz-event';
+          } else if (isExam) {
+            colorClass = 'tt-exam-event';
+          } else {
+            const cPrefix = code ? code.replace('BD','') : '';
+            if (cPrefix) colorClass = 'cc-' + cPrefix;
+          }
+          
+          termSchedules.push({
+            ...slot,
+            isGeneral: false,
+            courseName: matchedCourse['Subject Name'],
+            courseCode: code,
+            courseCodeFull: matchedCourse['Subject Code Full'],
+            section: sectionName,
+            faculty: matchedCourse.Faculty || '',
+            ta: matchedCourse.TA || '',
+            venue: venue,
+            colorClass: colorClass,
+            isSpecial: isSpecial,
+            isQuiz: isQuiz,
+            isExam: isExam,
+            attendee: {
+              sid: sectionName,
+              name: sectionName,
+              shortName: sectionName.replace('Section ', 'Sec '),
+              colorIdx: colorIdx
+            }
+          });
+        }
+      });
+    }
 
     // Generate grid headers for term days
     let gridHeadersHtml = `<div class="tt-grid-header tt-time-col-header sticky-col">Slots</div>`;
@@ -3227,6 +3513,72 @@ function renderTimetable() {
 
   const warningBannerHtml = getAttendanceWarningsHtml();
 
+  // Generate subject options HTML
+  const enrolledSubjects = new Set();
+  ttSIDs.forEach(sid => {
+    const stu = studentMap[sid];
+    if (stu) {
+      stu.records.forEach(r => {
+        if (r.Term === '4' && r['Subject Code']) {
+          enrolledSubjects.add(r['Subject Code']);
+        }
+      });
+    }
+  });
+
+  let subjectList = [];
+  if (ttSIDs.length > 0) {
+    subjectList = Array.from(enrolledSubjects).map(code => ({
+      code: code,
+      name: getSubjectName(code)
+    })).sort((a, b) => a.code.localeCompare(b.code));
+  } else {
+    const allTermSubjects = new Set();
+    RAW.forEach(r => {
+      if (r.Term === '4' && r['Subject Code']) {
+        allTermSubjects.add(r['Subject Code']);
+      }
+    });
+    subjectList = Array.from(allTermSubjects).map(code => ({
+      code: code,
+      name: getSubjectName(code)
+    })).sort((a, b) => a.code.localeCompare(b.code));
+  }
+
+  let subjectOptionsHtml = '';
+  if (ttSIDs.length > 0) {
+    subjectOptionsHtml += `<option value="all" ${ttSelectedSubject === 'all' ? 'selected' : ''}>All My Subjects</option>`;
+    subjectOptionsHtml += subjectList.map(sub => {
+      return `<option value="${sub.code}" ${ttSelectedSubject === sub.code ? 'selected' : ''}>${sub.code} - ${sub.name}</option>`;
+    }).join('');
+  } else {
+    if (!ttShowAllSubjects) {
+      subjectOptionsHtml = `<option value="all">Select student to filter...</option>`;
+    } else {
+      subjectOptionsHtml += `<option value="all" ${ttSelectedSubject === 'all' ? 'selected' : ''}>All Subjects</option>`;
+      subjectOptionsHtml += subjectList.map(sub => {
+        return `<option value="${sub.code}" ${ttSelectedSubject === sub.code ? 'selected' : ''}>${sub.code} - ${sub.name}</option>`;
+      }).join('');
+    }
+  }
+
+  let subjectSelectHtml = '';
+  if (ttSIDs.length > 0 || ttShowAllSubjects) {
+    subjectSelectHtml = `
+      <div class="tt-subject-filter" style="display: inline-flex; align-items: center; gap: 6px;">
+        <label for="tt-subject-select" style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">Subject:</label>
+        <select class="tt-week-select" id="tt-subject-select" onchange="changeSubjectFilter(this.value)" style="min-width: 150px; padding: 6px 10px; font-size: 13px; border-radius: 8px;">
+          ${subjectOptionsHtml}
+        </select>
+      </div>`;
+    if (ttSIDs.length === 0 && ttShowAllSubjects) {
+      subjectSelectHtml += `
+        <button class="tt-btn" onclick="lockAllSubjects()" style="padding: 6px 10px; min-height: 36px; border-color: rgba(239, 68, 68, 0.2); color: #ef4444;" title="Exit master timetable mode">
+          ❌ Exit Master
+        </button>`;
+    }
+  }
+
   container.innerHTML = `
     <div class="tt-card screen-only-timetable">
       <div class="tt-hdr">
@@ -3241,6 +3593,7 @@ function renderTimetable() {
           </div>
         </div>
         <div class="tt-actions">
+          ${subjectSelectHtml}
           <button class="tt-btn" onclick="openAttendanceTracker()" title="Track absences and attendance percentages">
             📋 Track Attendance
           </button>
@@ -3307,6 +3660,8 @@ makeAC('tt-inp', 'tt-list', sid => {
   }
   ttSIDs.push(sid);
   ttSID = ttSIDs[0] || null;
+  ttSelectedSubject = 'all';
+  ttShowAllSubjects = false;
   renderTimetable();
   document.getElementById('tt-inp').value = '';
   renderSelectedStudentChips();
@@ -3364,7 +3719,7 @@ function initTheme() {
       toggleBtn.textContent = isDark ? '☀️' : '🌙';
       renderSelectedStudentChips();
       renderSchedulerStudentChips();
-      if (ttSIDs.length) renderTimetable();
+      renderTimetable();
       if (schedSIDs.length) renderGroupScheduler();
     }
   });
