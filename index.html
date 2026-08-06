@@ -221,7 +221,7 @@
   .tt-grid-container { overflow-x: auto; overflow-y: hidden; background: var(--surface2); border-radius: 8px; border: 1px solid var(--border); padding: 8px 0; margin-top: 10px; scroll-snap-type: x proximity; scroll-padding-left: 90px; }
   .tt-grid {
     display: grid;
-    grid-template-columns: 90px repeat(78, calc((100% - 90px - 36px) / 7));
+    grid-template-columns: 90px repeat(84, calc((100% - 90px - 36px) / 7));
     gap: 6px;
   }
 
@@ -743,7 +743,7 @@
   <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">🌙</button>
 </div>
 
-<div class="filterbar">
+<div class="filterbar" style="display:none !important;">
   <div class="filter-group">
     <label for="f-term">Term</label>
     <select id="f-term">
@@ -775,7 +775,6 @@
   <button class="tab-btn" onclick="switchTab('roster',this)">Roster</button>
   <button class="tab-btn" onclick="switchTab('common',this)">Common Subjects</button>
   <button class="tab-btn" onclick="switchTab('subjects',this)">Subjects</button>
-  <button class="tab-btn" onclick="switchTab('scheduler',this); renderGroupScheduler();">Group Scheduler</button>
 </div>
 
 <div class="main">
@@ -854,6 +853,7 @@
   </div>
 
   <!-- Tab 7: Group Scheduler -->
+  <div style="display:none !important;">
   <div id="tab-scheduler" class="tab-panel">
     <div class="card" id="sched-student-selector-card">
       <div class="card-title">Select Students for Group Scheduling</div>
@@ -875,6 +875,7 @@
       </div>
       <div id="scheduler-result"></div>
     </div>
+  </div>
   </div>
 
 </div>
@@ -1379,8 +1380,13 @@ Thursday,27-08-2026,,18 SGM Sec E,INM Sec F,INM Sec E,19 SGM Sec E,,,19 SGM Sec 
 Friday,28-08-2026,,20 SGM Sec E,,CMN sec E,CMN sec F,PPBS (Dr.Bhaskar),PPBS (Dr.Bhaskar),20 SGM Sec F,,,,,
 Saturday,29-08-2026,,PPBS (Dr.Bhaskar),PPBS (Dr.Bhaskar),,,,,,,,,,
 Sunday,30-08-2026,,,,,,,,,,,,,
-Monday,31-08-2026,,,,CMN sec E,CMN sec F,,,,,,,,`;
-
+Monday,31-08-2026,,,,CMN sec E,CMN sec F,,,,,,,,
+Tuesday,01-09-2026,,BAV EXAM (9:00 AM) sec E & F,,,PJM EXAM (2:00 PM) sec E & F,,INM EXAM (6:00 PM) sec E & F,,,,,,,
+Wednesday,02-09-2026,,PPBS EXAM (9:00 AM) sec E & F,,,,,RBS EXAM (6:00 PM) sec E & F,,,,,,,
+Thursday,03-09-2026,,DGM EXAM (9:00 AM) sec E & F,,,CNB EXAM (2:00 PM) sec E & F,,LSC EXAM (6:00 PM) sec E & F,,,,,,,
+Friday,04-09-2026,,,,QCAM EXAM (2:00 PM) sec E & F,,,DPCC EXAM (6:00 PM) sec E & F,,,,,,
+Saturday,05-09-2026,,PMG EXAM (9:00 AM) sec E & F,,,DMD EXAM (2:00 PM) sec E & F,,CSP EXAM (6:00 PM) sec E & F,,,,,,,
+Sunday,06-09-2026,,MABA EXAM (9:00 AM) sec E & F,,,SGM EXAM (2:00 PM) sec E & F,,CMN EXAM (6:00 PM) sec E & F,,,,,,,`;
 
 // ── Redesigned Timetable Dashboard Logic ────────────────────────────────────
 let timetableData = [];
@@ -1389,8 +1395,6 @@ let timetableSyncTime = null;
 let timetableSyncStatus = 'offline';
 let ttSIDs = []; // selected student IDs (up to 8)
 let ttSID = null; // first selected student for sync
-let schedSIDs = []; // selected student SIDs for the group scheduler
-let schedSID = null; // primary student SID for the group scheduler
 let ttSelectedWeekStart = null; // Date object representing Monday of selected week
 let ttSelectedMobileDayStr = null; // DD-MM-YYYY for active mobile day
 let currentModalClass = null; // currently opened class details
@@ -1491,9 +1495,34 @@ function processTimetable(csvText) {
     }
   }
 
-  timetableData = slots;
-  courseMetadata = metadata;
-}
+    timetableData = slots.filter(s => {
+      const isSepDate = s.date === "01-09-2026" || s.date === "02-09-2026" || s.date === "03-09-2026" || s.date === "04-09-2026" || s.date === "05-09-2026" || s.date === "06-09-2026";
+      return !isSepDate;
+    });
+
+    // Append hardcoded Term IV End-Term Exams (Sep 1 - Sep 6, 2026)
+    const hardcodedExams = [
+      { day: "Tuesday", date: "01-09-2026", time: TIME_SLOTS[1], slotIndex: 1, text: "BAV EXAM (9:00 AM) sec E & F" },
+      { day: "Tuesday", date: "01-09-2026", time: TIME_SLOTS[4], slotIndex: 4, text: "PJM EXAM (2:00 PM) sec E & F" },
+      { day: "Tuesday", date: "01-09-2026", time: TIME_SLOTS[6], slotIndex: 6, text: "INM EXAM (6:00 PM) sec E & F" },
+      { day: "Wednesday", date: "02-09-2026", time: TIME_SLOTS[1], slotIndex: 1, text: "PPBS EXAM (9:00 AM) sec E & F" },
+      { day: "Wednesday", date: "02-09-2026", time: TIME_SLOTS[6], slotIndex: 6, text: "RBS EXAM (6:00 PM) sec E & F" },
+      { day: "Thursday", date: "03-09-2026", time: TIME_SLOTS[1], slotIndex: 1, text: "DGM EXAM (9:00 AM) sec E & F" },
+      { day: "Thursday", date: "03-09-2026", time: TIME_SLOTS[4], slotIndex: 4, text: "CNB EXAM (2:00 PM) sec E & F" },
+      { day: "Thursday", date: "03-09-2026", time: TIME_SLOTS[6], slotIndex: 6, text: "LSC EXAM (6:00 PM) sec E & F" },
+      { day: "Friday", date: "04-09-2026", time: TIME_SLOTS[3], slotIndex: 3, text: "QCAM EXAM (2:00 PM) sec E & F" },
+      { day: "Friday", date: "04-09-2026", time: TIME_SLOTS[6], slotIndex: 6, text: "DPCC EXAM (6:00 PM) sec E & F" },
+      { day: "Saturday", date: "05-09-2026", time: TIME_SLOTS[1], slotIndex: 1, text: "PMG EXAM (9:00 AM) sec E & F" },
+      { day: "Saturday", date: "05-09-2026", time: TIME_SLOTS[4], slotIndex: 4, text: "DMD EXAM (2:00 PM) sec E & F" },
+      { day: "Saturday", date: "05-09-2026", time: TIME_SLOTS[6], slotIndex: 6, text: "CSP EXAM (6:00 PM) sec E & F" },
+      { day: "Sunday", date: "06-09-2026", time: TIME_SLOTS[1], slotIndex: 1, text: "MABA EXAM (9:00 AM) sec E & F" },
+      { day: "Sunday", date: "06-09-2026", time: TIME_SLOTS[4], slotIndex: 4, text: "SGM EXAM (2:00 PM) sec E & F" },
+      { day: "Sunday", date: "06-09-2026", time: TIME_SLOTS[6], slotIndex: 6, text: "CMN EXAM (6:00 PM) sec E & F" }
+    ];
+    timetableData.push(...hardcodedExams);
+
+    courseMetadata = metadata;
+  }
 
 // Helper: Convert Google Visualization JSON to CSV layout
 function convertGvizToCSV(data) {
@@ -1650,10 +1679,10 @@ function getMonday(d) {
   return new Date(date.setDate(diff));
 }
 
-// Generate list of weeks from June 15 to Aug 31, 2026
+// Generate list of weeks from June 15 to Sep 6, 2026
 function getWeeksInTimetable() {
   const start = new Date(2026, 5, 15); // Jun 15, 2026 (Mon)
-  const end = new Date(2026, 7, 31);   // Aug 31, 2026 (Mon)
+  const end = new Date(2026, 8, 6);   // Sep 6, 2026 (Sun)
   
   const weeks = [];
   let current = getMonday(start);
@@ -1678,10 +1707,10 @@ function getWeeksInTimetable() {
   return weeks;
 }
 
-// Generate all dates between June 15 and Aug 31, 2026
+// Generate all dates between June 15 and Sep 6, 2026
 function getAllDatesInTerm() {
   const start = new Date(2026, 5, 15); // Jun 15, 2026 (Mon)
-  const end = new Date(2026, 7, 31);   // Aug 31, 2026 (Mon)
+  const end = new Date(2026, 8, 6);   // Sep 6, 2026 (Sun)
   
   const dates = [];
   let current = new Date(start);
@@ -1743,7 +1772,7 @@ function timeToHours(timeStr) {
 function getTodayString() {
   const d = new Date();
   const start = new Date(2026, 5, 15);
-  const end = new Date(2026, 7, 31);
+  const end = new Date(2026, 8, 6);
   if (d >= start && d <= end) {
     const day = String(d.getDate()).padStart(2, '0');
     const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -1963,8 +1992,9 @@ function adjustGridColumns() {
   const colWidth = (containerWidth - stickyWidth - totalGaps) / slotsVisible;
   const ttGrid = container.querySelector('.tt-grid');
   if (ttGrid) {
-    ttGrid.style.gridTemplateColumns = `${stickyWidth}px repeat(78, ${colWidth}px)`;
-    ttGrid.style.minWidth = `${stickyWidth + 78 * colWidth + 78 * gap}px`;
+    const numDays = getAllDatesInTerm().length;
+    ttGrid.style.gridTemplateColumns = `${stickyWidth}px repeat(${numDays}, ${colWidth}px)`;
+    ttGrid.style.minWidth = `${stickyWidth + numDays * colWidth + numDays * gap}px`;
   }
 }
 
@@ -2429,159 +2459,7 @@ function getAttendanceWarningsHtml() {
   }).join('');
 }
 
-function renderGroupScheduler() {
-  const container = document.getElementById('scheduler-result');
-  if (!container) return;
 
-  if (schedSIDs.length === 0) {
-    container.innerHTML = `
-      <div class="empty-hint" style="padding: 40px 20px; text-align: center;">
-        <div style="font-size: 32px; margin-bottom: 12px; color: var(--text-muted);">👥</div>
-        <div>Please search and select students above to find mutual free slots.</div>
-      </div>`;
-    return;
-  }
-
-  const weeks = getWeeksInTimetable();
-  if (weeks.length === 0) {
-    container.innerHTML = `
-      <div style="padding: 20px; text-align: center;">No schedule data available for the selected student(s).</div>`;
-    return;
-  }
-
-  const schedules = {};
-  schedSIDs.forEach(sid => {
-    schedules[sid] = getStudentTimetable(sid);
-  });
-
-  let weeksHtml = '';
-  let totalFreeSlotsCount = 0;
-
-  weeks.forEach(w => {
-    const weekDates = getDatesInWeek(w.start);
-    const freeSlotsInWeek = [];
-
-    weekDates.forEach(wd => {
-      if (wd.dayName === 'Sun') return;
-
-      TIME_SLOTS.forEach((slotTime, rowIdx) => {
-        const busyStudents = [];
-        schedSIDs.forEach(sid => {
-          const hasClass = schedules[sid].some(s => s.date === wd.dateStr && s.slotIndex === rowIdx);
-          if (hasClass) {
-            busyStudents.push(sid);
-          }
-        });
-
-        if (busyStudents.length === 0) {
-          const isPast = isSlotInPast(wd.dateStr, slotTime);
-          if (!isPast) {
-            freeSlotsInWeek.push({
-              dateStr: wd.dateStr,
-              dateObj: wd.dateObj,
-              dayName: wd.dayName,
-              dayLabel: wd.dayLabel,
-              slotTime: slotTime,
-              slotIndex: rowIdx
-            });
-          }
-        }
-      });
-    });
-
-    if (freeSlotsInWeek.length > 0) {
-      totalFreeSlotsCount += freeSlotsInWeek.length;
-
-      const dayGroups = {};
-      freeSlotsInWeek.forEach(slot => {
-        const key = `${slot.dayName}, ${slot.dayLabel}`;
-        if (!dayGroups[key]) dayGroups[key] = [];
-        dayGroups[key].push(slot);
-      });
-
-      let daysHtml = '';
-      Object.keys(dayGroups).forEach(dayKey => {
-        const slots = dayGroups[dayKey];
-        const slotsHtml = slots.map(s => {
-          return `
-            <div class="tt-scheduler-slot-pill" title="Slot ${s.slotIndex + 1}">
-              <span>⏰ ${s.slotTime.replace(' To ', ' - ')}</span>
-            </div>`;
-        }).join('');
-
-        daysHtml += `
-          <div style="margin-bottom: 12px;">
-            <div style="font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-              <span style="display:inline-block; width:6px; height:6px; background:var(--accent); border-radius:50%"></span>
-              ${dayKey}
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-left: 12px;">
-              ${slotsHtml}
-            </div>
-          </div>`;
-      });
-
-      weeksHtml += `
-        <div class="tt-scheduler-week" style="margin-bottom: 16px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface);">
-          <div class="tt-scheduler-week-hdr" style="background: var(--surface2); padding: 10px 14px; font-weight: 700; font-size: 13px; color: var(--text-primary); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;">
-            <span>${w.label}</span>
-            <span style="font-size: 11px; color: var(--text-secondary); font-weight: 500;">${freeSlotsInWeek.length} free slots</span>
-          </div>
-          <div class="tt-scheduler-week-body" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;">
-            ${daysHtml}
-          </div>
-        </div>`;
-    }
-  });
-
-  if (totalFreeSlotsCount === 0) {
-    container.innerHTML = `
-      <div class="no-results" style="padding: 40px; text-align:center; border: 1px solid var(--border); border-radius: 8px; background: var(--surface);">
-        <p style="font-size:15px; font-weight:600">No mutual free slots found for the selected students.</p>
-        <span style="font-size:12px;color:var(--text-secondary)">All students have overlapping classes or exams during scheduled hours.</span>
-      </div>`;
-    return;
-  }
-
-  container.innerHTML = `
-    <div class="tt-scheduler-grid" style="display: flex; flex-direction: column; gap: 12px;">
-      ${weeksHtml}
-    </div>`;
-}
-
-function renderSchedulerStudentChips() {
-  const container = document.getElementById('sched-chips-container');
-  if (!container) return;
-
-  if (schedSIDs.length === 0) {
-    container.innerHTML = `<span style="font-size:12px; color:var(--text-muted); font-style:italic">No students selected. Search above to add.</span>`;
-    return;
-  }
-
-  const isDark = typeof document !== 'undefined' && document.body && document.body.classList && document.body.classList.contains('dark-theme');
-  const chipColors = isDark ? STUDENT_CHIP_COLORS_DARK : STUDENT_CHIP_COLORS;
-
-  container.innerHTML = schedSIDs.map((sid, idx) => {
-    const stu = studentMap[sid];
-    const color = chipColors[idx % chipColors.length];
-    return `
-      <div class="student-chip" style="background: ${color.bg}; color: ${color.text}; border: 1px solid ${color.border}; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">
-        <span>👤 ${stu.Name} (${sid})</span>
-        <button onclick="removeSchedulerStudent('${sid}')" style="background:none; border:none; color:inherit; font-size:14px; cursor:pointer; padding:0; display:inline-flex; align-items:center; justify-content:center; line-height:1; font-weight:bold;">&times;</button>
-      </div>`;
-  }).join('');
-}
-
-function removeSchedulerStudent(sid) {
-  schedSIDs = schedSIDs.filter(s => s !== sid);
-  if (schedSIDs.length) {
-    schedSID = schedSIDs[0];
-  } else {
-    schedSID = null;
-  }
-  renderSchedulerStudentChips();
-  renderGroupScheduler();
-}
 
 // ── Setup Modal Overlay in Document Body ──
 (function initTimetableModal() {
@@ -3667,31 +3545,10 @@ makeAC('tt-inp', 'tt-list', sid => {
   renderSelectedStudentChips();
 });
 
-// Set autocomplete search for Group Scheduler Tab
-makeAC('sched-inp', 'sched-list', sid => {
-  if (schedSIDs.includes(sid)) {
-    alert("Student is already selected.");
-    document.getElementById('sched-inp').value = '';
-    return;
-  }
-  if (schedSIDs.length >= 8) {
-    alert("You can select up to 8 students for group scheduling.");
-    document.getElementById('sched-inp').value = '';
-    return;
-  }
-  schedSIDs.push(sid);
-  schedSID = schedSIDs[0] || null;
-  document.getElementById('sched-inp').value = '';
-  renderSchedulerStudentChips();
-  renderGroupScheduler();
-});
-
 const savedDefaultSid = localStorage.getItem('xlri_default_student');
 if (savedDefaultSid && studentMap[savedDefaultSid]) {
   ttSIDs = [savedDefaultSid];
   ttSID = savedDefaultSid;
-  schedSIDs = [savedDefaultSid];
-  schedSID = savedDefaultSid;
 }
 
 function initTheme() {
@@ -3718,9 +3575,7 @@ function initTheme() {
       localStorage.setItem('xlri_theme', isDark ? 'dark' : 'light');
       toggleBtn.textContent = isDark ? '☀️' : '🌙';
       renderSelectedStudentChips();
-      renderSchedulerStudentChips();
       renderTimetable();
-      if (schedSIDs.length) renderGroupScheduler();
     }
   });
 }
@@ -3728,7 +3583,6 @@ function initTheme() {
 initTheme();
 syncTimetable();
 renderTimetable();
-renderSchedulerStudentChips();
 if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') { window.addEventListener('resize', adjustGridColumns); }
 </script>
 </body>
