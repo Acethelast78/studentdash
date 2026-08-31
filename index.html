@@ -679,6 +679,15 @@
     color: #991b1b;
     animation: flash-red 2s infinite;
   }
+  .tt-attendance-warning-banner.info {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #93c5fd;
+    color: #1e40af;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(30, 64, 175, 0.05);
+    font-size: 14px;
+    padding: 12px 18px;
+  }
   
   body.dark-theme .tt-attendance-warning-banner.warning {
     background: #451a03 !important;
@@ -689,6 +698,13 @@
     background: #4c0519 !important;
     border-color: #991b1b !important;
     color: #fca5a5 !important;
+  }
+  body.dark-theme .tt-attendance-warning-banner.info {
+    background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%) !important;
+    border-color: #1d4ed8 !important;
+    color: #bfdbfe !important;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   body.dark-theme .tt-attendance-pill.status-safe {
     background: #14532d;
@@ -2400,6 +2416,14 @@ function toggleAttendance(sidsStr, dateStr, slotIndex) {
 }
 
 function getAttendanceWarningsHtml() {
+  return `
+    <div class="tt-attendance-warning-banner info">
+      <span>✏️</span>
+      <span><strong>All the best for your exams!</strong></span>
+    </div>`;
+}
+
+function getAttendanceWarningsHtml_deprecated() {
   let warnings = [];
   ttSIDs.forEach(sid => {
     const stu = studentMap[sid];
@@ -3092,8 +3116,7 @@ function renderTimetable() {
   const todayMon = getMonday(todayObj);
 
   if (!ttSelectedWeekStart) {
-    const hasTodayWeek = weeks.find(w => w.start.getTime() === todayMon.getTime());
-    ttSelectedWeekStart = hasTodayWeek ? todayMon : weeks[0].start;
+    ttSelectedWeekStart = weeks[weeks.length - 1].start;
   }
 
   // Check if any student has Term 4 courses, or if we are in master timetable mode
@@ -3507,17 +3530,31 @@ function renderTimetable() {
         scrollContainer.scrollLeft = savedScrollLeft;
       } else {
         const todayStr = getTodayString();
-        let colEl = document.getElementById(`hdr-col-${todayStr}`);
-        if (!colEl) {
+        let colEl = null;
+        
+        // If we are looking at the final week (exam week), align Monday of that week to the left edge of the viewport
+        const isFinalWeek = (ttSelectedWeekStart && weeks.length > 0 && ttSelectedWeekStart.getTime() === weeks[weeks.length - 1].start.getTime());
+        if (isFinalWeek) {
           const mondayStr = formatDateToDDMMYYYY(ttSelectedWeekStart);
           colEl = document.getElementById(`hdr-col-${mondayStr}`);
+        } else {
+          colEl = document.getElementById(`hdr-col-${todayStr}`);
+          if (!colEl) {
+            const mondayStr = formatDateToDDMMYYYY(ttSelectedWeekStart);
+            colEl = document.getElementById(`hdr-col-${mondayStr}`);
+          }
         }
+        
         if (colEl) {
           const leftOffset = colEl.getBoundingClientRect().left - scrollContainer.getBoundingClientRect().left + scrollContainer.scrollLeft;
           const stickyWidth = 90;
-          const viewportWidth = scrollContainer.clientWidth - stickyWidth;
-          const targetScroll = leftOffset - stickyWidth - (viewportWidth - colEl.clientWidth) / 2;
-          scrollContainer.scrollLeft = Math.max(0, targetScroll);
+          if (isFinalWeek) {
+            scrollContainer.scrollLeft = leftOffset - stickyWidth;
+          } else {
+            const viewportWidth = scrollContainer.clientWidth - stickyWidth;
+            const targetScroll = leftOffset - stickyWidth - (viewportWidth - colEl.clientWidth) / 2;
+            scrollContainer.scrollLeft = Math.max(0, targetScroll);
+          }
         }
       }
     }
