@@ -34,7 +34,7 @@ LOGIN_URL = f"{API_BASE_URL}/auth/login"
 SCHEDULE_ENDPOINT = f"{API_BASE_URL}/schedule/my-schedule/student"
 
 DEFAULT_START_DATE = "2026-09-11"
-DEFAULT_END_DATE = "2026-12-31"
+DEFAULT_END_DATE = "2026-11-30"
 
 CSV_OUTPUT_NAME = "term5_timetable.csv"
 JSON_OUTPUT_NAME = "term5_schedule.json"
@@ -191,8 +191,17 @@ def deduplicate_sessions(sessions_list):
             unique_sessions.append(s)
             continue
             
-        c_code = s.get("course", {}).get("courseCode", "") or s.get("courseOfferCode", "")
-        sec = s.get("section", {}).get("sectionName", "")
+        c_obj = s.get("course") or {}
+        c_code = (
+            c_obj.get("courseCode", "") or 
+            s.get("courseOfferCode", "") or 
+            s.get("sessionName", "") or 
+            s.get("title", "") or 
+            s.get("eventName", "") or 
+            s.get("name", "")
+        )
+        sec_obj = s.get("section") or {}
+        sec = sec_obj.get("sectionName", "")
         comp_key = f"{s.get('classDate')}_{s.get('startTime')}_{c_code}_{sec}"
         if comp_key in seen_keys:
             continue
@@ -234,7 +243,7 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
         sessions_by_date[formatted_date].append(s)
 
     start_dt = date(2026, 9, 11)
-    end_dt = date(2026, 12, 31)
+    end_dt = date(2026, 11, 30)
     curr_dt = start_dt
 
     csv_rows = []
@@ -252,17 +261,34 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
         slots_bucket = {i: [] for i in range(8)}
         for s in day_sessions:
             slot_idx = match_time_to_slot_idx(s.get('startTime', ''))
-            course = s.get('course', {})
-            code = course.get('courseCode', '') or ''
-            sec_info = s.get('section', {}).get('sectionName', '') or ''
+            c_obj = s.get('course') or {}
+            
+            # Robustly extract course code or session/event title (e.g. 'Term V registration')
+            code = (
+                c_obj.get('courseCode', '') or 
+                s.get('courseCode', '') or 
+                s.get('sessionName', '') or 
+                s.get('title', '') or 
+                s.get('eventName', '') or 
+                s.get('activityName', '') or 
+                s.get('name', '') or 
+                c_obj.get('courseName', '') or 
+                s.get('description', '') or 
+                'Event'
+            ).strip()
+            
+            sec_obj = s.get('section') or {}
+            sec_info = sec_obj.get('sectionName', '') or ''
             if not sec_info and s.get('attendingSections'):
-                sec_info = "/".join(x.get('sectionName', '') for x in s['attendingSections'])
-            venue = s.get('venue', {}).get('code', '') or s.get('venue', {}).get('name', '') or ''
+                sec_info = "/".join(x.get('sectionName', '') for x in s['attendingSections'] if x.get('sectionName'))
+            
+            v_obj = s.get('venue') or {}
+            venue = v_obj.get('code', '') or v_obj.get('name', '') or ''
             
             slot_text = code
-            if sec_info:
+            if sec_info and sec_info.lower() not in slot_text.lower():
                 slot_text += f" Sec {sec_info}"
-            if venue:
+            if venue and venue.lower() not in slot_text.lower():
                 slot_text += f" ({venue})"
             slots_bucket[slot_idx].append(slot_text)
         
