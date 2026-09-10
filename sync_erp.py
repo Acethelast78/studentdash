@@ -11,7 +11,7 @@ Fetches complete Term 5 timetable data by authenticating the 5 designated studen
 Combines genuine ERP sessions from all students, deduplicates them, and exports to:
   - term5_schedule.json (raw API format)
   - term5_timetable.csv (Google Sheets layout format)
-  - index.html & xlri_enrollment_dashboard (2).html (embedded offline fallback)
+  - index.html (embedded offline fallback)
 """
 
 import sys
@@ -295,23 +295,29 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
     return True
 
 def update_embedded_html(csv_content):
-    """Update TERM5_DEFAULT_CSV constant in HTML files for offline file:/// support."""
-    for fn in ["index.html", "xlri_enrollment_dashboard (2).html"]:
-        if os.path.exists(fn):
-            try:
-                with open(fn, "r", encoding="utf-8") as f:
-                    content = f.read()
-                start_marker = "const TERM5_DEFAULT_CSV = "
-                end_marker = ";\n\nlet currentSelectedTerm"
-                start_idx = content.find(start_marker)
-                end_idx = content.find(end_marker, start_idx)
-                if start_idx != -1 and end_idx != -1:
-                    new_content = content[:start_idx + len(start_marker)] + json.dumps(csv_content) + content[end_idx:]
-                    with open(fn, "w", encoding="utf-8") as f:
-                        f.write(new_content)
-                    print(f"[OK] Updated embedded offline CSV in {fn}")
-            except Exception as e:
-                print(f"[WARN] Could not update {fn}: {e}")
+    """Update TERM5_DEFAULT_CSV and sync timestamp in index.html for offline & GitHub Pages support."""
+    fn = "index.html"
+    if os.path.exists(fn):
+        try:
+            with open(fn, "r", encoding="utf-8") as f:
+                content = f.read()
+            # 1. Update CSV
+            start_marker = "const TERM5_DEFAULT_CSV = "
+            end_marker = ";\n\nlet currentSelectedTerm"
+            start_idx = content.find(start_marker)
+            end_idx = content.find(end_marker, start_idx)
+            if start_idx != -1 and end_idx != -1:
+                content = content[:start_idx + len(start_marker)] + json.dumps(csv_content) + content[end_idx:]
+            
+            # 2. Update sync timestamp (IST)
+            now_ist = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%I:%M %p")
+            content = re.sub(r"let timetableSyncTime\s*=\s*['\"][^'\"]*['\"];", f"let timetableSyncTime = '{now_ist}';", content)
+            
+            with open(fn, "w", encoding="utf-8") as f:
+                f.write(content)
+            print(f"[OK] Updated embedded offline CSV and sync timestamp ({now_ist}) in {fn}")
+        except Exception as e:
+            print(f"[WARN] Could not update {fn}: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="XL ERP Timetable Multi-Student Sync Utility (5 Students)")
