@@ -16,6 +16,7 @@ Combines genuine ERP sessions from all students, deduplicates them, and exports 
 
 import sys
 import os
+import re
 try:
     sys.stdout.reconfigure(line_buffering=True)
 except Exception:
