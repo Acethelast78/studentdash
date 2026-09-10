@@ -406,8 +406,16 @@ def main():
     unique_sessions = deduplicate_sessions(all_sessions)
     print(f"\n[OK] Total combined unique class sessions: {len(unique_sessions)}")
     
+    now_ist = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%I:%M %p")
+    now_ist_full = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d-%b-%Y %I:%M %p IST")
+
     with open(JSON_OUTPUT_NAME, "w", encoding="utf-8") as f:
-        json.dump({"data": unique_sessions}, f, indent=2, ensure_ascii=False)
+        json.dump({
+            "last_synced_time": now_ist,
+            "last_synced_full": now_ist_full,
+            "total_sessions": len(unique_sessions),
+            "data": unique_sessions
+        }, f, indent=2, ensure_ascii=False)
         
     convert_sessions_to_csv(unique_sessions, args.csv)
     
