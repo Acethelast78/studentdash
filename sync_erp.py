@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
-XL ERP Timetable Dual-Section Sync Utility
-Fetches complete Term 5 timetable data by authenticating both Section E and Section F students.
-Combines genuine ERP sessions from both sections and exports to term5_timetable.csv (Google Sheets format).
+XL ERP Timetable Multi-Student Sync Utility (5 Students Coverage)
+Fetches complete Term 5 timetable data by authenticating the 5 designated student accounts:
+  1. Akhilesh K S   (B25344)
+  2. Akshat Jain     (B25381)
+  3. Pradeep Kumar Dey (B25420)
+  4. Anjali Jain     (B25324)
+  5. Dhruv Aggarwal  (B25362)
 
-Usage:
-    python sync_erp.py
-    python sync_erp.py --sec-e-email e@xlri.ac.in --sec-e-password pw_e --sec-f-email f@xlri.ac.in --sec-f-password pw_f
+Combines genuine ERP sessions from all students, deduplicates them, and exports to:
+  - term5_schedule.json (raw API format)
+  - term5_timetable.csv (Google Sheets layout format)
+  - index.html & xlri_enrollment_dashboard (2).html (embedded offline fallback)
 """
 
 import sys
@@ -43,6 +48,15 @@ TIME_SLOTS = [
     "04:30 To 6:00 PM",
     "06:15 To 7:45 PM",
     "08:00 To 9:30PM"
+]
+
+# Designated 5 Students Metadata
+STUDENTS_CONFIG = [
+    {"slot": 1, "name": "Akhilesh K S", "sid": "B25344", "key": "STUDENT_1"},
+    {"slot": 2, "name": "Akshat Jain", "sid": "B25381", "key": "STUDENT_2"},
+    {"slot": 3, "name": "Pradeep Kumar Dey", "sid": "B25420", "key": "STUDENT_3"},
+    {"slot": 4, "name": "Anjali Jain", "sid": "B25324", "key": "STUDENT_4"},
+    {"slot": 5, "name": "Dhruv Aggarwal", "sid": "B25362", "key": "STUDENT_5"},
 ]
 
 def match_time_to_slot_idx(time_str):
@@ -120,14 +134,14 @@ def login(email, password, label="User"):
                 print(f"[OK] Successfully authenticated ({label}: {email}) with XL ERP.")
                 return token
             else:
-                print(f"[WARN] Login succeeded for {email} but token was not found in response.")
+                print(f"[WARN] Login succeeded for ({label}: {email}) but token was not found in response.")
                 return None
     except urllib.error.HTTPError as e:
         err_msg = e.read().decode("utf-8")
         print(f"[ERROR] Login failed for ({label}: {email}) [HTTP {e.code}]: {err_msg}")
         return None
     except Exception as e:
-        print(f"[ERROR] Connection error for {email}: {e}")
+        print(f"[ERROR] Connection error for ({label}: {email}): {e}")
         return None
 
 def fetch_schedule(token, label="User", start_date=DEFAULT_START_DATE, end_date=DEFAULT_END_DATE):
@@ -162,7 +176,7 @@ def fetch_schedule(token, label="User", start_date=DEFAULT_START_DATE, end_date=
         return []
 
 def deduplicate_sessions(sessions_list):
-    """Deduplicate sessions from Section E and Section F fetches."""
+    """Deduplicate sessions across all students."""
     seen_keys = set()
     unique_sessions = []
     
@@ -280,7 +294,6 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
     print(f"[OK] Successfully exported {len(csv_rows)} rows to {out_csv_path}!")
     return True
 
-
 def update_embedded_html(csv_content):
     """Update TERM5_DEFAULT_CSV constant in HTML files for offline file:/// support."""
     for fn in ["index.html", "xlri_enrollment_dashboard (2).html"]:
@@ -301,14 +314,21 @@ def update_embedded_html(csv_content):
                 print(f"[WARN] Could not update {fn}: {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="XL ERP Timetable Dual-Section Sync Utility")
-    parser.add_argument("--sec-e-email", default=os.getenv("XL_ERP_SEC_E_EMAIL") or os.getenv("XL_ERP_EMAIL"), help="Section E Student Email")
-    parser.add_argument("--sec-e-password", default=os.getenv("XL_ERP_SEC_E_PASSWORD") or os.getenv("XL_ERP_PASSWORD"), help="Section E Password")
-    parser.add_argument("--sec-e-token", default=os.getenv("XL_ERP_SEC_E_TOKEN"), help="Section E Bearer Token")
+    parser = argparse.ArgumentParser(description="XL ERP Timetable Multi-Student Sync Utility (5 Students)")
     
-    parser.add_argument("--sec-f-email", default=os.getenv("XL_ERP_SEC_F_EMAIL"), help="Section F Student Email")
-    parser.add_argument("--sec-f-password", default=os.getenv("XL_ERP_SEC_F_PASSWORD"), help="Section F Password")
-    parser.add_argument("--sec-f-token", default=os.getenv("XL_ERP_SEC_F_TOKEN"), help="Section F Bearer Token")
+    # 5 Student credential arguments
+    for cfg in STUDENTS_CONFIG:
+        k = cfg["key"]
+        slug = k.lower().replace("_", "-")
+        parser.add_argument(f"--{slug}-email", default=os.getenv(f"{k}_EMAIL"), help=f"{cfg['name']} ({cfg['sid']}) Email")
+        parser.add_argument(f"--{slug}-password", default=os.getenv(f"{k}_PASSWORD"), help=f"{cfg['name']} ({cfg['sid']}) Password")
+        parser.add_argument(f"--{slug}-token", default=os.getenv(f"{k}_TOKEN"), help=f"{cfg['name']} ({cfg['sid']}) Bearer Token")
+        
+    # Backward compatibility for legacy dual-account args
+    parser.add_argument("--sec-e-email", default=os.getenv("XL_ERP_SEC_E_EMAIL"), help="Legacy Section E Email")
+    parser.add_argument("--sec-e-password", default=os.getenv("XL_ERP_SEC_E_PASSWORD"), help="Legacy Section E Password")
+    parser.add_argument("--sec-f-email", default=os.getenv("XL_ERP_SEC_F_EMAIL"), help="Legacy Section F Email")
+    parser.add_argument("--sec-f-password", default=os.getenv("XL_ERP_SEC_F_PASSWORD"), help="Legacy Section F Password")
     
     parser.add_argument("--start", default=DEFAULT_START_DATE, help=f"Start Date (YYYY-MM-DD), default: {DEFAULT_START_DATE}")
     parser.add_argument("--end", default=DEFAULT_END_DATE, help=f"End Date (YYYY-MM-DD), default: {DEFAULT_END_DATE}")
@@ -317,57 +337,78 @@ def main():
     args = parser.parse_args()
     
     all_sessions = []
+    successful_students = []
     
-    # ── 1. Authenticate Section E Student ──────────────────────────────────
-    print("====================================================")
-    print("  STEP 1: SECTION E STUDENT AUTHENTICATION")
-    print("====================================================")
-    token_e = args.sec_e_token
-    if not token_e:
-        email_e = args.sec_e_email or (input("Enter Section E Student Email: ").strip() if sys.stdin.isatty() else None)
-        pw_e = args.sec_e_password or (get_password_input("Enter Section E Password: ") if sys.stdin.isatty() else None)
-        if not email_e or not pw_e:
-            print("[ERROR] Section E Email and Password are required.")
-            sys.exit(1)
-        token_e = login(email_e, pw_e, label="Section E")
-        if not token_e:
-            sys.exit(1)
+    print("================================================================")
+    print("  XL ERP TIMETABLE SYNC — 5 DESIGNATED STUDENTS COVERAGE")
+    print("================================================================")
+    
+    for cfg in STUDENTS_CONFIG:
+        slot = cfg["slot"]
+        name = cfg["name"]
+        sid = cfg["sid"]
+        k = cfg["key"]
+        slug = k.lower()
+        
+        label = f"Student #{slot}: {name} ({sid})"
+        print(f"\n────────────────────────────────────────────────────────────────")
+        print(f"  {label}")
+        print(f"────────────────────────────────────────────────────────────────")
+        
+        token = getattr(args, f"{slug}_token", None)
+        email = getattr(args, f"{slug}_email", None)
+        password = getattr(args, f"{slug}_password", None)
+        
+        # Legacy fallback if slot 1/2 and legacy env vars are present
+        if slot == 1 and not email and args.sec_e_email:
+            email, password = args.sec_e_email, args.sec_e_password
+        elif slot == 2 and not email and args.sec_f_email:
+            email, password = args.sec_f_email, args.sec_f_password
             
-    sessions_e = fetch_schedule(token_e, label="Section E", start_date=args.start, end_date=args.end)
-    all_sessions.extend(sessions_e)
-    
-    # ── 2. Authenticate Section F Student ──────────────────────────────────
-    print("\n====================================================")
-    print("  STEP 2: SECTION F STUDENT AUTHENTICATION")
-    print("====================================================")
-    token_f = args.sec_f_token
-    if not token_f:
-        email_f = args.sec_f_email or (input("Enter Section F Student Email: ").strip() if sys.stdin.isatty() else None)
-        pw_f = args.sec_f_password or (get_password_input("Enter Section F Password: ") if sys.stdin.isatty() else None)
-        if not email_f or not pw_f:
-            print("[ERROR] Section F Email and Password are required.")
-            sys.exit(1)
-        token_f = login(email_f, pw_f, label="Section F")
-        if not token_f:
-            sys.exit(1)
-            
-    sessions_f = fetch_schedule(token_f, label="Section F", start_date=args.start, end_date=args.end)
-    all_sessions.extend(sessions_f)
-    
-    # ── 3. Deduplicate & Combine Full Term 5 Timetable ────────────────────
-    print("\n====================================================")
-    print("  STEP 3: MERGING & GENERATING COMPLETE CSV")
-    print("====================================================")
+        if not token:
+            if not email and sys.stdin.isatty():
+                email = input(f"Enter Email for {name} ({sid}) [or press Enter to skip]: ").strip()
+            if email and not password and sys.stdin.isatty():
+                password = get_password_input(f"Enter Password for {name} ({sid}): ")
+                
+            if email and password:
+                token = login(email, password, label=f"{name} ({sid})")
+            else:
+                print(f"[SKIP] No credentials provided for {label}. Skipping.")
+                continue
+                
+        if token:
+            sessions = fetch_schedule(token, label=f"{name} ({sid})", start_date=args.start, end_date=args.end)
+            if sessions:
+                all_sessions.extend(sessions)
+                successful_students.append(f"{name} ({sid}) - {len(sessions)} sessions")
+            else:
+                print(f"[WARN] 0 sessions returned for {label}.")
+                
+    # ── Final Merge & Processing ──────────────────────────────────────────
+    print("\n================================================================")
+    print("  TIMETABLE AGGREGATION & EXPORT")
+    print("================================================================")
+    print(f"Authenticated accounts with data: {len(successful_students)}/{len(STUDENTS_CONFIG)}")
+    for s in successful_students:
+        print(f"  ✓ {s}")
+        
+    if not all_sessions:
+        print("[ERROR] No schedule data was fetched from any student account. Timetable not modified.")
+        sys.exit(1)
+        
     unique_sessions = deduplicate_sessions(all_sessions)
-    print(f"[OK] Total combined unique sessions (Sec E + Sec F + Sec EF): {len(unique_sessions)}")
+    print(f"\n[OK] Total combined unique class sessions: {len(unique_sessions)}")
     
     with open(JSON_OUTPUT_NAME, "w", encoding="utf-8") as f:
         json.dump({"data": unique_sessions}, f, indent=2, ensure_ascii=False)
         
     convert_sessions_to_csv(unique_sessions, args.csv)
+    
     with open(args.csv, "r", encoding="utf-8") as f:
         update_embedded_html(f.read())
-    print(f"[OK] Complete batch timetable saved to {args.csv}!")
+        
+    print(f"\n[SUCCESS] Full Term 5 timetable successfully synced and saved to {args.csv}!")
 
 if __name__ == "__main__":
     main()
