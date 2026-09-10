@@ -22,13 +22,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Fetch Complete Term 5 Schedule from XL ERP (Sec E & Sec F)
+      - name: Fetch Complete Term 5 Schedule from XL ERP (5 Students)
         env:
           PYTHONUNBUFFERED: "1"
-          XL_ERP_SEC_E_EMAIL: ${{ secrets.XL_ERP_SEC_E_EMAIL }}
-          XL_ERP_SEC_E_PASSWORD: ${{ secrets.XL_ERP_SEC_E_PASSWORD }}
-          XL_ERP_SEC_F_EMAIL: ${{ secrets.XL_ERP_SEC_F_EMAIL }}
-          XL_ERP_SEC_F_PASSWORD: ${{ secrets.XL_ERP_SEC_F_PASSWORD }}
+          STUDENT_1_EMAIL: ${{ secrets.STUDENT_1_EMAIL }}
+          STUDENT_1_PASSWORD: ${{ secrets.STUDENT_1_PASSWORD }}
+          STUDENT_2_EMAIL: ${{ secrets.STUDENT_2_EMAIL }}
+          STUDENT_2_PASSWORD: ${{ secrets.STUDENT_2_PASSWORD }}
+          STUDENT_3_EMAIL: ${{ secrets.STUDENT_3_EMAIL }}
+          STUDENT_3_PASSWORD: ${{ secrets.STUDENT_3_PASSWORD }}
+          STUDENT_4_EMAIL: ${{ secrets.STUDENT_4_EMAIL }}
+          STUDENT_4_PASSWORD: ${{ secrets.STUDENT_4_PASSWORD }}
+          STUDENT_5_EMAIL: ${{ secrets.STUDENT_5_EMAIL }}
+          STUDENT_5_PASSWORD: ${{ secrets.STUDENT_5_PASSWORD }}
         run: |
           python sync_erp.py
 
@@ -40,6 +46,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No schedule changes detected."
           else
-            git commit -m "Auto-sync Term 5 timetable from XL ERP [skip ci]"
+            git commit -m "Auto-sync Term 5 timetable from XL ERP (5-Student Coverage) [skip ci]"
             git push
           fi
