@@ -27,7 +27,7 @@ import getpass
 import urllib.request
 import urllib.parse
 import urllib.error
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 
 API_BASE_URL = "https://xlerp.xlri.ac.in/api/v1"
 LOGIN_URL = f"{API_BASE_URL}/auth/login"
