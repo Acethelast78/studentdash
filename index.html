@@ -1913,19 +1913,24 @@ function initTermDatasets() {
   currentSelectedTerm = getDefaultTermByDate();
   loadTermData(currentSelectedTerm);
   
-  // Also attempt async fetch of latest CSV if running on web server (GitHub Pages)
+  // Also attempt async fetch of latest schedule from GitHub Pages
   if (typeof window !== 'undefined' && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
-    fetch('term5_timetable.csv')
-      .then(res => {
-        const lastMod = res.headers.get('Last-Modified');
-        if (lastMod) {
-          const d = new Date(lastMod);
-          if (!isNaN(d.getTime())) {
-            timetableSyncTime = d;
-          }
+    const cacheBuster = '?v=' + Date.now();
+    // 1. Fetch JSON sync metadata
+    fetch('term5_schedule.json' + cacheBuster)
+      .then(res => res.ok ? res.json() : null)
+      .then(jsonObj => {
+        if (jsonObj && jsonObj.last_synced_time) {
+          timetableSyncTime = jsonObj.last_synced_time;
+          timetableSyncStatus = 'online';
+          renderSyncStatusUI();
         }
-        return res.ok ? res.text() : null;
       })
+      .catch(() => {});
+
+    // 2. Fetch latest timetable CSV
+    fetch('term5_timetable.csv' + cacheBuster)
+      .then(res => res.ok ? res.text() : null)
       .then(csvText => {
         if (csvText && csvText.includes('TERM V')) {
           timetableSyncStatus = 'online';
