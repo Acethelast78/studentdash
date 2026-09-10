@@ -293,6 +293,12 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
                 slot_text += f" ({venue})"
             slots_bucket[slot_idx].append(slot_text)
         
+        # Guarantee mandatory institutional events if omitted by ERP student endpoint
+        if formatted_date == "11-09-2026":
+            has_reg = any("REGISTRATION" in str(x).upper() for x in slots_bucket[0])
+            if not has_reg:
+                slots_bucket[0].insert(0, "Term V registration (LCR-01)")
+
         max_lines = max([len(slots_bucket[i]) for i in range(8)] + [1])
         for line_idx in range(max_lines):
             row = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
