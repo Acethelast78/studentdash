@@ -2,8 +2,8 @@ name: Automated XL ERP Timetable Sync
 
 on:
   schedule:
-    # Runs every hour from 7:00 AM to 7:00 PM IST (01:30 to 13:30 UTC):
-    - cron: '30 1-13 * * *'
+    # Runs hourly at :45 past the hour IST (07:45 AM, 08:45 AM, 09:45 AM, 10:45 AM...):
+    - cron: '15 1-14 * * *'
   workflow_dispatch: # Allows 1-click manual trigger from GitHub website
 
 permissions:
