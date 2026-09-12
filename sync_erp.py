@@ -35,7 +35,7 @@ LOGIN_URL = f"{API_BASE_URL}/auth/login"
 SCHEDULE_ENDPOINT = f"{API_BASE_URL}/schedule/my-schedule/student"
 
 DEFAULT_START_DATE = "2026-09-11"
-DEFAULT_END_DATE = "2026-11-30"
+DEFAULT_END_DATE = "2026-12-31"
 
 CSV_OUTPUT_NAME = "term5_timetable.csv"
 JSON_OUTPUT_NAME = "term5_schedule.json"
@@ -244,7 +244,23 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
         sessions_by_date[formatted_date].append(s)
 
     start_dt = date(2026, 9, 11)
-    end_dt = date(2026, 11, 30)
+    
+    # Dynamically determine latest class date from active sessions (at least Nov 30)
+    max_session_dt = date(2026, 11, 30)
+    for s in sessions:
+        if s.get('classDate') and not s.get('isCancelled'):
+            try:
+                parts = s['classDate'].split('-')
+                if len(parts) == 3:
+                    s_dt = date(int(parts[0]), int(parts[1]), int(parts[2]))
+                    if s_dt > max_session_dt:
+                        max_session_dt = s_dt
+            except Exception:
+                pass
+
+    # Stretch timetable to the Sunday of the latest class week (Mon=0, Sun=6)
+    days_to_sunday = (6 - max_session_dt.weekday()) % 7
+    end_dt = max_session_dt + timedelta(days=days_to_sunday)
     curr_dt = start_dt
 
     csv_rows = []
