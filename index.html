@@ -2678,8 +2678,8 @@ function getTermDateRange(term = currentSelectedTerm) {
     };
   } else {
     // Term 5: starts Sep 11, 2026.
-    // Dynamically find latest class date among all scheduled sessions (at least Nov 30, 2026)
-    let maxDate = new Date(2026, 10, 30);
+    // Dynamically find latest class date among all scheduled sessions
+    let maxDate = new Date(2026, 8, 11);
     const activeSlots = (typeof term5TimetableData !== 'undefined' && term5TimetableData.length > 0) 
       ? term5TimetableData 
       : (typeof timetableData !== 'undefined' ? timetableData : []);
