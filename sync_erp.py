@@ -245,8 +245,8 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
 
     start_dt = date(2026, 9, 11)
     
-    # Dynamically determine latest class date from active sessions (at least Nov 30)
-    max_session_dt = date(2026, 11, 30)
+    # Dynamically determine latest class date from active sessions
+    max_session_dt = date(2026, 9, 11)
     for s in sessions:
         if s.get('classDate') and not s.get('isCancelled'):
             try:
