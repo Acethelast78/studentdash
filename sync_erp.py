@@ -287,9 +287,9 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
             venue = v_obj.get('code', '') or v_obj.get('name', '') or ''
             
             slot_text = code
-            if sec_info and sec_info.lower() not in slot_text.lower():
+            if sec_info and not re.search(r'\bsec\s*' + re.escape(sec_info) + r'\b', slot_text, re.IGNORECASE):
                 slot_text += f" Sec {sec_info}"
-            if venue and venue.lower() not in slot_text.lower():
+            if venue and not re.search(r'\b' + re.escape(venue) + r'\b', slot_text, re.IGNORECASE):
                 slot_text += f" ({venue})"
             slots_bucket[slot_idx].append(slot_text)
         
