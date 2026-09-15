@@ -60,6 +60,114 @@ STUDENTS_CONFIG = [
     {"slot": 5, "name": "Dhruv Aggarwal", "sid": "B25362", "key": "STUDENT_5"},
 ]
 
+# Master Term 5 Course Information & Teaching Assistants (TA)
+MASTER_TERM5_COURSES = {
+    'FME': {
+        'code': 'FMEBD25-5',
+        'name': 'Financial Modeling using Excel',
+        'faculty': 'Prof. Pitabas Mohanty',
+        'ta': 'Manjula Siby & Shubham Singh'
+    },
+    'OMCR': {
+        'code': 'OMCRBD25-5',
+        'name': 'Omnichannel Retailing',
+        'faculty': 'Dr. Smitu Malhotra',
+        'ta': 'Tuhina Nandi'
+    },
+    'DBF': {
+        'code': 'DBFBD25-5',
+        'name': 'Demand and Business Forecasting',
+        'faculty': 'Dr. Amitava Mukherjee',
+        'ta': 'Tuhina Nandi'
+    },
+    'BDM': {
+        'code': 'BDMBD25-5',
+        'name': 'Brand Management',
+        'faculty': 'Dr Madhu Mandal',
+        'ta': 'Vanshika Saluja'
+    },
+    'SDM': {
+        'code': 'SDMBD25-5',
+        'name': 'Sales and Distribution Management',
+        'faculty': 'Dr. Sanjeev Varshney',
+        'ta': 'Anjelina Mundu & Shikha Dhandhi'
+    },
+    'GCD': {
+        'code': 'GCDBD25-5',
+        'name': 'Gales of Creative Destruction - Managing Innovation',
+        'faculty': 'Dr Faisal Mohammad Ahsan',
+        'ta': 'Chandrima Das Gupta'
+    },
+    'PCGM': {
+        'code': 'PCGMBD25-5',
+        'name': 'Pricing Management',
+        'faculty': 'Dr. Narasimhan Rajkumar',
+        'ta': 'Tuhina Nandi'
+    },
+    'VCPE': {
+        'code': 'VCPEBD25-5',
+        'name': 'Venture Capital & Private Equity',
+        'faculty': 'Mr Venkatesh Bangaruswamy',
+        'ta': 'Souparna Biswas'
+    },
+    'SAPM': {
+        'code': 'SAPMBD25-5',
+        'name': 'Security Analysis and Portfolio Management',
+        'faculty': 'Dr. Prantik Ray',
+        'ta': 'Shubham Singh'
+    },
+    'IMCE': {
+        'code': 'IMCEBD25-5',
+        'name': 'International Business Models for the Circular Economy',
+        'faculty': 'Dr. Sanchayan Nath',
+        'ta': 'Souparna Biswas'
+    },
+    'MST': {
+        'code': 'MSTBD25-5',
+        'name': 'Managing Strategic Transformation',
+        'faculty': '',
+        'ta': 'Tuhina Nandi'
+    },
+    'B2B': {
+        'code': 'B2BBD25-5',
+        'name': 'Business to Business Marketing',
+        'faculty': '',
+        'ta': 'Neha Minz & Shikha Dhandhi'
+    }
+}
+
+def get_course_key(code_or_name):
+    """Normalize code or name to identify course key."""
+    if not code_or_name:
+        return ""
+    text = str(code_or_name).upper()
+    for k in ['FME', 'OMCR', 'DBF', 'BDM', 'SDM', 'GCD', 'PCGM', 'VCPE', 'SAPM', 'IMCE', 'MST', 'B2B']:
+        if k in text:
+            return k
+    if 'CIRCULAR' in text:
+        return 'IMCE'
+    if 'BRAND' in text:
+        return 'BDM'
+    if 'PRICING' in text:
+        return 'PCGM'
+    if 'GALES' in text or 'CREATIVE DESTRUCTION' in text:
+        return 'GCD'
+    if 'DEMAND' in text or 'FORECASTING' in text:
+        return 'DBF'
+    if 'FINANCIAL MODEL' in text:
+        return 'FME'
+    if 'SALES' in text or 'DISTRIBUTION' in text:
+        return 'SDM'
+    if 'VENTURE' in text or 'PRIVATE EQUITY' in text:
+        return 'VCPE'
+    if 'SECURITY ANALYSIS' in text or 'PORTFOLIO' in text:
+        return 'SAPM'
+    if 'STRATEGIC TRANSFORMATION' in text:
+        return 'MST'
+    if 'OMNICHANNEL' in text or 'RETAIL' in text:
+        return 'OMCR'
+    return ""
+
 def match_time_to_slot_idx(time_str):
     if not time_str:
         return 1
@@ -214,6 +322,16 @@ def deduplicate_sessions(sessions_list):
 def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
     """Convert genuine ERP schedule JSON to Google Sheets layout CSV."""
     course_metadata = {}
+    
+    # Pre-populate all 12 known Term 5 courses with their master faculty and TA details
+    for k, m in MASTER_TERM5_COURSES.items():
+        course_metadata[m['code']] = {
+            'code': m['code'],
+            'name': m['name'],
+            'faculty': m['faculty'],
+            'ta': m['ta']
+        }
+
     for s in sessions:
         course = s.get('course', {})
         code = course.get('courseCode', '') or ''
@@ -222,13 +340,31 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
         faculty = s.get('faculty', {})
         faculty_name = f"{faculty.get('prefix', '')} {faculty.get('firstName', '')} {faculty.get('lastName', '')}".strip() if faculty else ''
         
-        if offer_code and offer_code not in course_metadata:
-            course_metadata[offer_code] = {
-                'code': offer_code,
-                'name': name,
-                'faculty': faculty_name,
-                'ta': ''
-            }
+        ckey = get_course_key(code) or get_course_key(offer_code) or get_course_key(name)
+        ta_name = MASTER_TERM5_COURSES[ckey]['ta'] if (ckey and ckey in MASTER_TERM5_COURSES) else ''
+        
+        # Match with master course entry if exists
+        target_code = None
+        if offer_code in course_metadata:
+            target_code = offer_code
+        elif ckey and ckey in MASTER_TERM5_COURSES:
+            target_code = MASTER_TERM5_COURSES[ckey]['code']
+            
+        if target_code and target_code in course_metadata:
+            if faculty_name:
+                course_metadata[target_code]['faculty'] = faculty_name
+            if name and not course_metadata[target_code]['name']:
+                course_metadata[target_code]['name'] = name
+            if ta_name:
+                course_metadata[target_code]['ta'] = ta_name
+        else:
+            if offer_code:
+                course_metadata[offer_code] = {
+                    'code': offer_code,
+                    'name': name,
+                    'faculty': faculty_name,
+                    'ta': ta_name
+                }
 
     sessions_by_date = {}
     for s in sessions:
