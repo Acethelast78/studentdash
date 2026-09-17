@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "11:37 AM",
-  "last_synced_full": "17-Sep-2026 11:37 AM IST",
+  "last_synced_time": "05:06 PM",
+  "last_synced_full": "17-Sep-2026 05:06 PM IST",
   "total_sessions": 307,
   "data": [
     {
@@ -9624,6 +9624,58 @@
       ]
     },
     {
+      "sessionId": "f890f417-cf72-44d6-890d-1245115cfb3b",
+      "classDate": "2026-10-17",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "d002c1cb-71d1-4aa5-ba19-7d6e11ddb7a8",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "5ac14397-8f36-4237-968e-745ef52bc295",
+        "courseName": "Demand and Business Forecasting",
+        "courseCode": "DBF"
+      },
+      "courseOfferId": "76968bf0-baea-492a-b90f-4fa29f24dad7",
+      "courseOfferCode": "DBFBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "c53a803b-afc7-4277-b6e8-661dfa63417f",
+        "prefix": "Dr.",
+        "userId": "dd653149-23f7-4cd6-b86b-45eb4d297470",
+        "firstName": "Amitava",
+        "middleName": null,
+        "lastName": "Mukherjee"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
       "sessionId": "62eee147-352c-490a-bf48-d4fd00e7d66a",
       "classDate": "2026-10-22",
       "status": "scheduled",
@@ -10802,58 +10854,6 @@
         "firstName": "Madhu",
         "middleName": null,
         "lastName": "Mandal"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "04bcb34d-0c4e-4864-a67d-e8758905b3a2",
-      "classDate": "2026-11-25",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "d002c1cb-71d1-4aa5-ba19-7d6e11ddb7a8",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "5ac14397-8f36-4237-968e-745ef52bc295",
-        "courseName": "Demand and Business Forecasting",
-        "courseCode": "DBF"
-      },
-      "courseOfferId": "76968bf0-baea-492a-b90f-4fa29f24dad7",
-      "courseOfferCode": "DBFBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "c53a803b-afc7-4277-b6e8-661dfa63417f",
-        "prefix": "Dr.",
-        "userId": "dd653149-23f7-4cd6-b86b-45eb4d297470",
-        "firstName": "Amitava",
-        "middleName": null,
-        "lastName": "Mukherjee"
       },
       "sectionKind": "elective",
       "section": {
@@ -12224,71 +12224,19 @@
       ]
     },
     {
-      "sessionId": "22ce8907-80c9-450b-b268-642726bfee7e",
-      "classDate": "2026-10-05",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
-        "courseName": "Omnichannel Retailing",
-        "courseCode": "OMCR"
-      },
-      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
-      "courseOfferCode": "OMCRBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
-        "prefix": "Dr.",
-        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
-        "firstName": "Smitu",
-        "middleName": null,
-        "lastName": "Malhotra"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "784c8e7a-cbe8-402a-b876-4567871f6bd3",
       "classDate": "2026-10-05",
-      "status": "scheduled",
+      "status": "rescheduled",
       "isCancelled": false,
       "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
+      "isRescheduled": true,
+      "originalDate": "2026-10-05",
+      "originalStartTime": "14:45:00",
+      "originalEndTime": "16:15:00",
       "remarks": null,
       "courseOfferFacultySectionId": "e0fc63ff-ef40-4515-8781-6a28cb15e481",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
+      "startTime": "10:20:00",
+      "endTime": "11:50:00",
       "venue": {
         "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
         "name": "MCR 08",
@@ -12324,6 +12272,58 @@
           "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
           "sectionName": "F",
           "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
+      "sessionId": "623b0528-f1a7-485e-b480-0da51b11c7f1",
+      "classDate": "2026-10-05",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
+        "courseName": "Omnichannel Retailing",
+        "courseCode": "OMCR"
+      },
+      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
+      "courseOfferCode": "OMCRBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
+        "prefix": "Dr.",
+        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
+        "firstName": "Smitu",
+        "middleName": null,
+        "lastName": "Malhotra"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
         }
       ]
     },
