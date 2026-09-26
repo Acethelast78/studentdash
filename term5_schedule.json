@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "10:37 PM",
-  "last_synced_full": "25-Sep-2026 10:37 PM IST",
+  "last_synced_time": "11:38 AM",
+  "last_synced_full": "26-Sep-2026 11:38 AM IST",
   "total_sessions": 307,
   "data": [
     {
@@ -12692,58 +12692,6 @@
       ]
     },
     {
-      "sessionId": "b467fb50-ad68-4dad-979b-de6fae8fce36",
-      "classDate": "2026-10-10",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
-        "courseName": "Omnichannel Retailing",
-        "courseCode": "OMCR"
-      },
-      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
-      "courseOfferCode": "OMCRBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
-        "prefix": "Dr.",
-        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
-        "firstName": "Smitu",
-        "middleName": null,
-        "lastName": "Malhotra"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "cd5757b3-087d-4a18-87c5-05b74ec11f84",
       "classDate": "2026-10-12",
       "status": "scheduled",
@@ -14404,6 +14352,58 @@
           "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
           "sectionName": "F",
           "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
+      "sessionId": "b467fb50-ad68-4dad-979b-de6fae8fce36",
+      "classDate": "2026-11-11",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-10-10",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
+        "courseName": "Omnichannel Retailing",
+        "courseCode": "OMCR"
+      },
+      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
+      "courseOfferCode": "OMCRBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
+        "prefix": "Dr.",
+        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
+        "firstName": "Smitu",
+        "middleName": null,
+        "lastName": "Malhotra"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
         }
       ]
     },
