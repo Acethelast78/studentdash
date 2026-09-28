@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "11:13 PM",
-  "last_synced_full": "27-Sep-2026 11:13 PM IST",
+  "last_synced_time": "12:19 PM",
+  "last_synced_full": "28-Sep-2026 12:19 PM IST",
   "total_sessions": 307,
   "data": [
     {
@@ -12330,17 +12330,17 @@
     {
       "sessionId": "d794828a-a815-41df-87d9-458bf3471e51",
       "classDate": "2026-10-05",
-      "status": "scheduled",
+      "status": "rescheduled",
       "isCancelled": false,
       "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
+      "isRescheduled": true,
+      "originalDate": "2026-10-05",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
       "remarks": null,
       "courseOfferFacultySectionId": "9611197b-f53a-470f-8d19-bc733c843dda",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
       "venue": {
         "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
         "name": "MCR 07",
