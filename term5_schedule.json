@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "12:46 AM",
-  "last_synced_full": "03-Oct-2026 12:46 AM IST",
-  "total_sessions": 309,
+  "last_synced_time": "11:59 AM",
+  "last_synced_full": "03-Oct-2026 11:59 AM IST",
+  "total_sessions": 307,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -766,58 +766,6 @@
         "firstName": "Sanchayan",
         "middleName": null,
         "lastName": "Nath"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "d6341dfd-66f4-4a48-8b81-695cf0a1b543",
-      "classDate": "2026-10-06",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
-        "courseName": "Gales of Creative Destruction - Managing Innovation",
-        "courseCode": "GCD"
-      },
-      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
-      "courseOfferCode": "GCDBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
-        "prefix": "Dr",
-        "userId": "122fe1ed-2585-40aa-9825-908760882057",
-        "firstName": "Faisal Mohammad",
-        "middleName": null,
-        "lastName": "Ahsan"
       },
       "sectionKind": "elective",
       "section": {
@@ -8840,58 +8788,6 @@
           "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
           "sectionName": "EF",
           "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "16154f7a-19b1-4549-837e-764304bda333",
-      "classDate": "2026-10-06",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
-        "courseName": "Gales of Creative Destruction - Managing Innovation",
-        "courseCode": "GCD"
-      },
-      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
-      "courseOfferCode": "GCDBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
-        "prefix": "Dr",
-        "userId": "122fe1ed-2585-40aa-9825-908760882057",
-        "firstName": "Faisal Mohammad",
-        "middleName": null,
-        "lastName": "Ahsan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
         }
       ]
     },
