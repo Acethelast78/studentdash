@@ -314,17 +314,13 @@ def fetch_schedule(token, label="User", start_date=DEFAULT_START_DATE, end_date=
     seen_urls = set()
     
     endpoints = [
-        f"{SCHEDULE_ENDPOINT}?{params_events}",
         f"{SCHEDULE_ENDPOINT}?{params}",
+        f"{API_BASE_URL}/class-activities/my?{params}",
+        f"{API_BASE_URL}/class-activities?{params}",
+        f"{API_BASE_URL}/schedule/my-schedule/student/upcoming",
         f"{API_BASE_URL}/schedule/events?{params}",
-        f"{API_BASE_URL}/event/my-events?{params}",
-        f"{API_BASE_URL}/schedule/student-events?{params}",
         f"{API_BASE_URL}/schedule/examination/student?{params}",
         f"{API_BASE_URL}/examination/student/schedule?{params}",
-        f"{API_BASE_URL}/examination/my-schedule/student?{params}",
-        f"{API_BASE_URL}/assessment/student/schedule?{params}",
-        f"{API_BASE_URL}/schedule/academic-events?{params}",
-        f"{API_BASE_URL}/academic-calendar/events?{params}"
     ]
     
     for url in endpoints:
@@ -489,21 +485,29 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
         slots_bucket = {i: [] for i in range(8)}
         for s in day_sessions:
             slot_idx = match_time_to_slot_idx(s.get('startTime', ''))
-            c_obj = s.get('course') or {}
             
-            # Robustly extract course code or session/event title (e.g. 'Term V registration')
-            code = (
-                c_obj.get('courseCode', '') or 
-                s.get('courseCode', '') or 
-                s.get('sessionName', '') or 
-                s.get('title', '') or 
-                s.get('eventName', '') or 
-                s.get('activityName', '') or 
+            # Extract specific activity/quiz title if present
+            activity_name = (
                 s.get('name', '') or 
-                c_obj.get('courseName', '') or 
-                s.get('description', '') or 
-                'Event'
+                s.get('title', '') or 
+                s.get('activityName', '') or 
+                s.get('eventName', '') or 
+                s.get('sessionName', '') or 
+                ''
             ).strip()
+            
+            if activity_name and any(w in activity_name.upper() for w in ['QUIZ', 'EXAM', 'TEST', 'REGISTRATION', 'PRESENTATION', 'GUEST', 'WORKSHOP', 'VIVA']):
+                code = activity_name
+            else:
+                c_obj = s.get('course') or {}
+                code = (
+                    c_obj.get('courseCode', '') or 
+                    s.get('courseCode', '') or 
+                    activity_name or 
+                    c_obj.get('courseName', '') or 
+                    s.get('description', '') or 
+                    'Event'
+                ).strip()
             
             sec_obj = s.get('section') or {}
             sec_info = sec_obj.get('sectionName', '') or ''
@@ -511,7 +515,15 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
                 sec_info = "/".join(x.get('sectionName', '') for x in s['attendingSections'] if x.get('sectionName'))
             
             v_obj = s.get('venue') or {}
-            venue = v_obj.get('code', '') or v_obj.get('name', '') or ''
+            venue = ""
+            if isinstance(v_obj, dict):
+                venue = v_obj.get('code', '') or v_obj.get('name', '') or ''
+            elif isinstance(v_obj, str):
+                venue = v_obj
+            elif s.get('venueName'):
+                venue = s.get('venueName')
+            elif s.get('room'):
+                venue = s.get('room')
             
             slot_text = code
             if sec_info and not re.search(r'\bsec\s*' + re.escape(sec_info) + r'\b', slot_text, re.IGNORECASE):
