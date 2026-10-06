@@ -253,10 +253,55 @@ def login(email, password, label="User"):
         print(f"[ERROR] Connection error for ({label}: {email}): {e}")
         return None
 
+def normalize_session(s):
+    """Normalize session fields across classes, academic events, quizzes, and exams."""
+    if not isinstance(s, dict):
+        return None
+        
+    if s.get("isCancelled") or s.get("status") in ["cancelled", "Cancelled", "CANCELLED"]:
+        return None
+        
+    class_date = (
+        s.get("classDate") or 
+        s.get("eventDate") or 
+        s.get("date") or 
+        s.get("startDate") or 
+        s.get("examDate") or 
+        ""
+    )
+    if "T" in str(class_date):
+        class_date = str(class_date).split("T")[0]
+    elif " " in str(class_date) and len(str(class_date).split(" ")[0].split("-")) == 3:
+        class_date = str(class_date).split(" ")[0]
+        
+    if not class_date or len(str(class_date).split("-")) != 3:
+        sdt = s.get("startDateTime") or s.get("startTime") or ""
+        if "T" in str(sdt):
+            class_date = str(sdt).split("T")[0]
+            
+    if not class_date or len(str(class_date).split("-")) != 3:
+        return None
+        
+    start_time = s.get("startTime") or s.get("start") or s.get("fromTime") or ""
+    if "T" in str(start_time):
+        start_time = str(start_time).split("T")[1].split(".")[0].split("+")[0].split("Z")[0]
+    elif " " in str(start_time) and len(str(start_time).split(" ")) == 2:
+        start_time = str(start_time).split(" ")[1]
+        
+    s["classDate"] = str(class_date).strip()
+    s["startTime"] = str(start_time).strip()
+    return s
+
 def fetch_schedule(token, label="User", start_date=DEFAULT_START_DATE, end_date=DEFAULT_END_DATE):
-    """Fetch timetable schedule JSON for date range."""
+    """Fetch timetable schedule JSON for date range (classes, academic events, and exams)."""
     params = urllib.parse.urlencode({"startDate": start_date, "endDate": end_date})
-    url = f"{SCHEDULE_ENDPOINT}?{params}"
+    params_events = urllib.parse.urlencode({
+        "startDate": start_date, 
+        "endDate": end_date,
+        "includeEvents": "true",
+        "includeExaminations": "true",
+        "includeAcademicEvents": "true"
+    })
     
     clean_token = token.replace("Bearer ", "").strip()
     headers = {
@@ -265,34 +310,63 @@ def fetch_schedule(token, label="User", start_date=DEFAULT_START_DATE, end_date=
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
     
-    req = urllib.request.Request(url, headers=headers, method="GET")
+    all_fetched = []
+    seen_urls = set()
     
-    try:
-        with urllib.request.urlopen(req, timeout=25) as response:
-            res_data = json.loads(response.read().decode("utf-8"))
-            if res_data.get("success") or "data" in res_data:
-                sessions = res_data.get("data", [])
-                print(f"[OK] Fetched {len(sessions)} schedule sessions for {label}.")
-                return sessions
-            else:
-                return []
-    except urllib.error.HTTPError as e:
-        err_msg = e.read().decode("utf-8")
-        print(f"[ERROR] Schedule fetch failed for {label} [HTTP {e.code}]: {err_msg}")
-        return []
-    except Exception as e:
-        print(f"[ERROR] Connection error for {label}: {e}")
-        return []
+    endpoints = [
+        f"{SCHEDULE_ENDPOINT}?{params_events}",
+        f"{SCHEDULE_ENDPOINT}?{params}",
+        f"{API_BASE_URL}/schedule/events?{params}",
+        f"{API_BASE_URL}/event/my-events?{params}",
+        f"{API_BASE_URL}/schedule/student-events?{params}",
+        f"{API_BASE_URL}/schedule/examination/student?{params}",
+        f"{API_BASE_URL}/examination/student/schedule?{params}",
+        f"{API_BASE_URL}/examination/my-schedule/student?{params}",
+        f"{API_BASE_URL}/assessment/student/schedule?{params}",
+        f"{API_BASE_URL}/schedule/academic-events?{params}",
+        f"{API_BASE_URL}/academic-calendar/events?{params}"
+    ]
+    
+    for url in endpoints:
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
+        req = urllib.request.Request(url, headers=headers, method="GET")
+        try:
+            with urllib.request.urlopen(req, timeout=15) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                items = []
+                data_val = res_data.get("data")
+                if isinstance(data_val, list):
+                    items = data_val
+                elif isinstance(data_val, dict):
+                    for sub_key in ["sessions", "events", "examinations", "records", "items", "data", "schedule"]:
+                        if isinstance(data_val.get(sub_key), list):
+                            items.extend(data_val[sub_key])
+                            
+                for raw_item in items:
+                    norm = normalize_session(raw_item)
+                    if norm:
+                        all_fetched.append(norm)
+        except Exception:
+            pass
+            
+    if all_fetched:
+        print(f"[OK] Fetched {len(all_fetched)} schedule sessions/events for {label}.")
+    else:
+        print(f"[WARN] 0 schedule sessions returned for {label}.")
+    return all_fetched
 
 def deduplicate_sessions(sessions_list):
-    """Deduplicate sessions across all students."""
+    """Deduplicate sessions across all students and endpoints."""
     seen_keys = set()
     unique_sessions = []
     
-    for s in sessions_list:
+    for raw_s in sessions_list:
+        s = normalize_session(raw_s) if not raw_s.get("classDate") else raw_s
         if not s or not s.get("classDate") or s.get("isCancelled"):
             continue
-        sid = s.get("sessionId")
+        sid = s.get("sessionId") or s.get("id") or s.get("eventId") or s.get("examinationId")
         if sid:
             if sid in seen_keys:
                 continue
@@ -307,6 +381,7 @@ def deduplicate_sessions(sessions_list):
             s.get("sessionName", "") or 
             s.get("title", "") or 
             s.get("eventName", "") or 
+            s.get("activityName", "") or 
             s.get("name", "")
         )
         sec_obj = s.get("section") or {}
@@ -444,12 +519,6 @@ def convert_sessions_to_csv(sessions, out_csv_path=CSV_OUTPUT_NAME):
             if venue and not re.search(r'\b' + re.escape(venue) + r'\b', slot_text, re.IGNORECASE):
                 slot_text += f" ({venue})"
             slots_bucket[slot_idx].append(slot_text)
-        
-        # Guarantee mandatory institutional events if omitted by ERP student endpoint
-        if formatted_date == "11-09-2026":
-            has_reg = any("REGISTRATION" in str(x).upper() for x in slots_bucket[0])
-            if not has_reg:
-                slots_bucket[0].insert(0, "Term V registration (LCR-01)")
 
         max_lines = max([len(slots_bucket[i]) for i in range(8)] + [1])
         for line_idx in range(max_lines):
