@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "11:48 PM",
-  "last_synced_full": "06-Oct-2026 11:48 PM IST",
-  "total_sessions": 307,
+  "last_synced_time": "12:13 AM",
+  "last_synced_full": "07-Oct-2026 12:13 AM IST",
+  "total_sessions": 315,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -5100,6 +5100,142 @@
       ]
     },
     {
+      "id": "d5dc1b19-4fdc-47b0-8ca9-8a2ab0a073c8",
+      "name": "Term V registration ",
+      "description": "9 AM to 12 PM",
+      "type": "Academic",
+      "date": "2026-09-11",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "21d934cd-15d0-4331-9ea9-4335058114fd",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-09-02T09:47:17.612Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-09-02T09:47:17.612Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "LCR 1",
+        "code": "LCR-01",
+        "building": "Academic Building",
+        "floor": "Ground",
+        "capacity": 120
+      },
+      "classDate": "2026-09-11"
+    },
+    {
+      "id": "d4f74bf1-9955-4a01-af9a-c0f82c73d265",
+      "name": "DBF Quiz 1",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-10-14",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-06T10:34:13.762Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-06T10:34:13.762Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-10-14"
+    },
+    {
+      "id": "cbc44f82-d0d3-43c2-a2a1-05fe22f78be3",
+      "name": "DBF Quiz 2",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-10-31",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-06T10:35:35.143Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-06T10:35:35.143Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-10-31"
+    },
+    {
+      "id": "6c54589c-1c49-4cdc-8698-b1937ef339c8",
+      "name": "DBF Quiz 3",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-25",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-06T10:37:09.281Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-06T10:37:09.281Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-25"
+    },
+    {
       "sessionId": "10ef26fb-f8c0-498d-aa0b-1f402af89d1f",
       "classDate": "2026-09-14",
       "status": "scheduled",
@@ -8010,6 +8146,142 @@
           "sectionCode": "BD25-5-F"
         }
       ]
+    },
+    {
+      "id": "cc7a539a-345b-44d4-a124-ff8449f25025",
+      "name": "Term V registration ",
+      "description": "9 AM to 12 PM",
+      "type": "Academic",
+      "date": "2026-09-11",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "21d934cd-15d0-4331-9ea9-4335058114fd",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-09-02T09:47:17.612Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-09-02T09:47:17.612Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "LCR 1",
+        "code": "LCR-01",
+        "building": "Academic Building",
+        "floor": "Ground",
+        "capacity": 120
+      },
+      "classDate": "2026-09-11"
+    },
+    {
+      "id": "e9a846bf-3e0e-48fc-8430-7b5c00b26d10",
+      "name": "DBF Quiz 1",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-10-14",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-06T10:34:13.762Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-06T10:34:13.762Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-10-14"
+    },
+    {
+      "id": "b1eb0317-1eb4-4c1c-9c09-e8fe7c097983",
+      "name": "DBF Quiz 2",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-10-31",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-06T10:35:35.143Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-06T10:35:35.143Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-10-31"
+    },
+    {
+      "id": "fab97739-6b02-4cc2-8ed7-70e6515bd9ce",
+      "name": "DBF Quiz 3",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-25",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-06T10:37:09.281Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-06T10:37:09.281Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-25"
     },
     {
       "sessionId": "4ba879c0-d7a2-44a5-8a0a-b27f6247a32a",
