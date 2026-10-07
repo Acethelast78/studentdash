@@ -1360,6 +1360,175 @@
     border-color: var(--accent);
   }
 
+
+  /* ── Multi-Subject Filter Dropdown ── */
+  .tt-subject-filter-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tt-multiselect-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 12px;
+    min-width: 150px;
+    max-width: 260px;
+    height: 34px;
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .tt-multiselect-btn:hover {
+    border-color: var(--accent);
+    background: var(--surface2);
+  }
+  .tt-multiselect-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    flex: 1;
+  }
+  .tt-multiselect-arrow {
+    font-size: 11px;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .tt-multiselect-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 290px;
+    max-width: 380px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.14);
+    z-index: 1000;
+    overflow: hidden;
+    animation: ttFadeIn 0.15s ease-out;
+  }
+  .tt-multiselect-dropdown.open {
+    display: block;
+  }
+  @keyframes ttFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .tt-multiselect-header {
+    padding: 8px 10px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tt-multiselect-search-wrap input {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text-primary);
+    outline: none;
+    box-sizing: border-box;
+  }
+  .tt-multiselect-search-wrap input:focus {
+    border-color: var(--accent);
+  }
+  .tt-multiselect-actions {
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
+  }
+  .tt-action-btn {
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--accent);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tt-action-btn:hover {
+    background: var(--accent-light);
+  }
+  .tt-multiselect-list {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+  .tt-multiselect-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-size: 12.5px;
+    color: var(--text-primary);
+    transition: background 0.1s ease;
+    user-select: none;
+  }
+  .tt-multiselect-item:hover {
+    background: var(--surface2);
+  }
+  .tt-multiselect-item input[type="checkbox"] {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* Dark Theme Overrides for Multi-Select Dropdown */
+  body.dark-theme .tt-multiselect-btn {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+  }
+  body.dark-theme .tt-multiselect-btn:hover {
+    background: #334155 !important;
+    border-color: #3b82f6 !important;
+  }
+  body.dark-theme .tt-multiselect-dropdown {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+  }
+  body.dark-theme .tt-multiselect-header {
+    background: #0f172a !important;
+    border-bottom-color: #334155 !important;
+  }
+  body.dark-theme .tt-multiselect-search-wrap input {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+  }
+  body.dark-theme .tt-action-btn {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #60a5fa !important;
+  }
+  body.dark-theme .tt-action-btn:hover {
+    background: #334155 !important;
+  }
+  body.dark-theme .tt-multiselect-item:hover {
+    background: #334155 !important;
+  }
+
 </style>
 </head>
 <body>
@@ -1559,6 +1728,7 @@ const initialDefaultSid = (savedDefaultSid && studentMap[savedDefaultSid]) ? sav
 let ttSIDs = initialDefaultSid ? [initialDefaultSid] : [];
 let ttSID = initialDefaultSid || null;
 let ttShowAllSubjects = !initialDefaultSid; // Default to Master Timetable if no student is pinned
+let ttSelectedSubjects = new Set(['all']);
 let ttSelectedSubject = 'all';
 
 // ── Filters ────────────────────────────────────────────────────────────────
@@ -2046,12 +2216,12 @@ const TIME_SLOTS = [
 ];
 
 const TERM4_FROZEN_CSV = "\"      TERM IV\",\"\",\"\",\"\",\"\",\"\",\"Venue: Sec E MCR-07 , Sec F MCR-08 , Common MCR-07.\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"DAY\",\"Date/Time\",\"8:00 AM\",\"08:30 To 10:00 AM\",\"10:20 To 11:50AM\",\"12:10 To 1:40 PM\",\"02:45 to 4:15 PM\",\"04:30 To 6:00 PM\",\"06:15 To 7:45 PM\",\"08:00 To 9:30PM\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"15-06-2026\",\"\",\"Registration Term IV 9:30 am - 12:30 pm\",\"\",\"\",\"PPBS (Dr.Smriti)\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"Course Code \",\"Courses Name\",\"Faculty\",\"TA\"\n\"Tuesday\",\"16-06-2026\",\"\",\"\",\"MABA\",\"CNB Sec E\",\"CNB Sec F\",\"PJM (LCR01)\",\"PJM (LCR01)\",\"\",\"\",\"BAVBD25-4\",\"Business Analysis & Valuation  (20)\",\"Dr N Sivasankaran\",\"Ms.Surekha\"\n\"\",\"\",\"\",\"\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"\",\"\",\"\",\"\",\"CMNBD25-4\",\"Conflicts Management and Negotiations (20)\",\"Dr Ankit  \",\"Ms.Chandrima\"\n\"Wednesday\",\"17-06-2026\",\"\",\"\",\"\",\"\",\"PPBS (Dr.Smriti)\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"CNBBD25-4\",\"Consumer Behaviour \",\"Dr Megha Bharti\",\"Ms.Indu\"\n\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"CSPBD25-4\",\"Corporate Sustainability in Practice  (21)\",\"Dr Sanchayan Nath \",\"Mr.Shubham\"\n\"Thursday\",\"18-06-2026\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"DPCC sec E (AG)\",\"DPCC sec F (AG)\",\"\",\"DGMBD25-4\",\"Digital Marketing (20)\",\"Dr Mohit Malhan\",\"Mr. Souparna\"\n\"\",\"\",\"\",\"\",\"DGM Sec E\",\"DGM Sec F\",\"\",\"\",\"\",\"\",\"\",\"DMDBD25-4\",\"Debt Markets and their Derivatives  (21)\",\"Dr Nand Kishore Rathi\",\"Mr. Souparna\"\n\"Friday\",\"19-06-2026\",\"\",\"CSP\",\"DPCC sec E (AG)\",\"CNB Sec E\",\"CNB Sec F\",\"MABA\",\"\",\"\",\"\",\"DPCCBD25-4\",\"Digital Product Management: Concept to Commercialization (20)\",\"Mr Atanu Ghosh, Dr Dipankar Bose, Dr Harshit Kumar Singh  \",\"Ms.Nupur\"\n\"\",\"\",\"\",\"\",\"\",\"DPCC (AG) sec F\",\"1 SGM Sec E\",\"\",\"1 SGM Sec F\",\"2 SGM Sec F\",\"\",\"INMBD25-4\",\"International Management (21)\",\"Dr Faisal Mohammad Ahsan  \",\"Ms.Chandrima\"\n\"Saturday\",\"20-06-2026\",\"\",\"PJM \",\"\",\"\",\"2 SGM Sec E\",\"3 SGM Sec E\",\"3 SGM Sec F\",\"\",\"\",\"LSCBD25-4\",\"Logistics and Supply Chain Management (20)\",\"Dr T A S Vijayaraghavan \",\"Mr. Souparna\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"MABABD25-4\",\"Management of Banking (20)\",\"Dr Pankaj Kumar Agarwal \",\"Ms.Indu\"\n\"Sunday\",\"21-06-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"PJMBD25-4\",\"Project Management (20)\",\"Prof Rajiv Misra  \",\"Ms.Akanksha\"\n\"Monday\",\"22-06-2026\",\"\",\"DMD\",\"INM Sec F (10:30 am) MCR08\",\"INM Sec E\",\"PPBS (Dr.Smriti)\",\"CSP\",\"\",\"\",\"\",\"PMGBD25-4\",\"Product Management (20)\",\"Prof.Sanjay Patro\",\"Ms.Shikha\"\n\"\",\"\",\"\",\"\",\"DGM Sec E\",\"DGM Sec F\",\"\",\"\",\"\",\"\",\"\",\"PPBSBD25-4\",\"Public Policy and Business Strategy (20)\",\"Dr Smriti Das, Dr Kalyan Bhaskar\",\"Ms.Chandrima\"\n\"Tuesday\",\"23-06-2026\",\"\",\"PJM \",\"DMD\",\"MABA\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"\",\"\",\"QCAMBD25-4\",\"Quality Control, Analysis and Management (19)\",\"Dr Dipankar Bose \",\"Ms.Nupur\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"RBSBD25-4\",\"Resource Based Strategy (20)\",\"Dr Manoj T Thomas \",\"Ms.Shikha\"\n\"Wednesday\",\"24-06-2026\",\"\",\"DMD\",\"DGM Sec E\",\"DGM Sec F\",\"PPBS (Dr.Smriti)\",\"RBS\",\"\",\"\",\"\",\"SGMBD25-4\",\"Strategic Marketing\",\"Mr.Ulhas Joshi \",\"Ms.Nupur Ghosh\"\n\"\",\"\",\"\",\"\",\"INM Sec F (MCR8)\",\"INM Sec E (MCR07)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"25-06-2026\",\"\",\"BAV Sec E\",\"BAV Sec E\",\"PJM \",\"BAV Sec F\",\"QCAM (DB)\",\"DPCC sec E (AG)\",\"DPCC sec F (AG)\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"INM Sec F\",\"\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"26-06-2026\",\"\",\"BAV Sec F\",\"BAV Sec F\",\"DMD\",\"BAV Sec E\",\"DPCC sec F (DB)\",\"DPCC sec E (DB)\",\"RBS\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"4 SGM Sec E\",\"CMN sec E\",\"\",\"CNB Sec F\",\"CNB Sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"27-06-2026\",\"\",\"BAV Sec E\",\"BAV Sec F\",\"PJM \",\"RBS\",\"QCAM (DB)\",\"4 SGM Sec F\",\"5 SGM Sec F & E combined LCR01\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"DPCC sec F (DB)\",\"DPCC sec E (DB)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"28-06-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"  \",\"\",\"\"\n\"Monday\",\"29-06-2026\",\"\",\"\",\"DMD\",\"CSP\",\"PPBS (Dr.Smriti)\",\"RBS\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"30-06-2026\",\"\",\"PJM \",\"DMD\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"01-07-2026\",\"\",\"PJM \",\"DMD\",\"CMN sec E\",\"CMN sec F\",\"PPBS (Dr.Smriti)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"02-07-2026\",\"\",\"DMD\",\"DMD\",\"DPCC sec F (AG)\",\"DPCC sec E (AG)\",\"RBS\",\" 6 SGM Sec E (MCR08)\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"DGM Sec E\",\"DGM Sec F\",\"\",\"PMG (MCR 07)\",\"6 SGM Sec F\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"03-07-2026\",\"\",\"DMD\",\"MABA\",\"PMG\",\"PMG\",\"DPCC sec F (AG)\",\"DPCC sec E (AG)\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"7 SGM Sec E\",\"7 SGM Sec F\",\"8 SGM Sec F\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"04-07-2026\",\"\",\"PMG\",\"DPCC sec F (AG)\",\"DPCC sec E (AG)\",\"8 SGM Sec E\",\"QCAM (VF)\",\"QCAM (VF)\",\"\",\"\",\"\",\" \",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CNB Sec E\",\"CNB Sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"05-07-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"06-07-2026\",\"\",\"PJM \",\"QCAM (VF)\",\"QCAM (VF)\",\"INM Sec E\",\"INM Sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"07-07-2026\",\"DMD Quiz 1 (7:30 AM)\",\"PJM \",\"MABA\",\"CMN sec E\",\"CMN sec F\",\"DPCC sec F (HK)   MCR 08\",\"DPCC sec E (HK) LCR 01\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"08-07-2026\",\"\",\"CSP\",\"DGM Sec E\",\"DGM Sec F\",\"PPBS (Dr.Smriti)\",\"MABA\",\"LSCM MCR08\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CNB Sec F\",\"CNB Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"09-07-2026\",\"CMN Quiz 1 (7:30 am)\",\"BAV Sec E\",\"BAV Sec E\",\"PJM \",\"BAV Sec F\",\"DPCC sec F (HK)\",\"DPCC sec E (HK)\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"9 SGM Sec F\",\"\",\"\",\"\",\"9 SGM Sec E\",\"10 SGM Sec F\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"10-07-2026\",\"INM Quiz 1(7:30)\",\"BAV Sec F\",\"BAV Sec F\",\"MABA\",\"BAV Sec E\",\"CMN sec F\",\"LSCM\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"10 SGM Sec E\",\"CMN sec E\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"\",\"11 SGM Sec F & E\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"11-07-2026\",\"\",\"BAV Sec E\",\"BAV Sec F MCR07\",\"PJM \",\"CNB Sec E\",\"CNB Sec F MCR07\",\"LSCM\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"12-07-2026\",\"\",\"\",\"LSCM\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"13-07-2026\",\"\",\"AOL EXAM\",\"\",\"CSP\",\"DPCC sec F (HK)\",\"DPCC sec E (HK)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"14-07-2026\",\"\",\"PJM \",\"MABA\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"SGM Mid- Term\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"15-07-2026\",\"\",\"CSP\",\"DGM Sec F\",\"DGM Sec E\",\"DPCC sec F (HK)\",\"DPCC sec E (HK)\",\"MABA\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"16-07-2026\",\"\",\"PJM \",\"INM Sec F\",\"INM Sec E\",\"\",\"RBS\",\"DMD Mid-Term\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"17-07-2026\",\"\",\"QCAM (VF)\",\"QCAM (VF)\",\"CNB Sec E\",\"CNB Sec F\",\"PPBS (Dr.Smriti)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"\",\"12 SGM Sec F & E LCR01\",\"13 SGM Sec F\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"18-07-2026\",\"\",\"PMG\",\"PMG\",\"\",\"RBS\",\"13 SGM Sec E\",\"14 SGM Sec E\",\"14 SGM Sec F (MCR07)\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"19-07-2026\",\"\",\"\",\"PMG\",\"PMG\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"20-07-2026\",\"\",\"\",\"PMG\",\"CSP\",\"PPBS (Dr.Smriti)\",\"RBS\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"21-07-2026\",\"\",\"\",\"MABA\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"22-07-2026\",\"RBS Mid-Term (7:00)\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"MABA Mid-Term\",\"RBS\",\"FINAX Quiz\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"23-07-2026\",\"\",\"BAV Sec E\",\"BAV Sec E\",\"PJM \",\"BAV Sec F\",\"MABA\",\"LSCM\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"INM Sec F\",\"\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"24-07-2026\",\"\",\"BAV Sec F\",\"BAV Sec F\",\"LSCM\",\"BAV Sec E\",\"DPCC sec F (AG)\",\"DPCC sec E (AG)\",\"CSP\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CNB Sec E\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"CNB Sec F\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"25-07-2026\",\"\",\"BAV Sec E\",\"BAV Sec F\",\"CNB Sec E&F MCR08\",\"CNB Sec E&F MCR08\",\"DPCC sec F (AG)\",\"DPCC sec E (AG)\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"26-07-2026\",\"\",\"DMD\",\"DPCC sec F (AG)\",\"DPCC sec E (AG)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"27-07-2026\",\"DGM Quiz \",\"DMD\",\"DGM Sec F\",\"DGM Sec E\",\"QCAM (DB)\",\"PPBS (Dr.Smriti)\",\"PJM \",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"28-07-2026\",\"\",\"PJM \",\"MABA\",\"DMD\",\"CNB Sec E\",\"CNB Sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"29-07-2026\",\"\",\"DMD\",\"DGM Sec F\",\"DGM Sec E\",\"QCAM (DB)\",\"CSP\",\"DPCC sec E (AG)\",\"DPCC sec F (AG)\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"30-07-2026\",\"\",\"BAV Sec E\",\"BAV Sec E\",\"DMD\",\"BAV Sec F (MCR 07)\",\"MABA\",\"PJM \",\"DPCC Mid-Term\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"INM Sec F\",\"\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"31-07-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"01-08-2026\",\"CMN Mid-Term (7:00 am)\",\"BAV Sec F\",\"BAV Sec F\",\"DMD\",\"RBS\",\"BAV Sec E\",\"PJM (615-7.00pm)\",\"QCAM (DB) 7:30 PM - 9:00 PM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CNB Sec E\",\"\",\"\",\"CNB Sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"02-08-2026\",\"\",\"BAV Sec F\",\"BAV Sec E\",\"DMD\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"DPCC sec E&F (AG) LCR01\",\"DPCC sec E&F (AG) LCR01\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"03-08-2026\",\"PPBS Quiz (7:30 am)\",\"DMD\",\"QCAM (DB)\",\"RBS\",\"DPCC sec F (DB)\",\"DPCC sec E (DB)\",\"LSCM\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"04-08-2026\",\"BAV Mid- Term (7:15 - 8:00 am)\",\"DMD\",\"MABA\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"QCAM (DB)\",\"RBS Quiz 1\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"05-08-2026\",\"\",\"DMD\",\"CSP\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"QCAM (DB)\",\"QCAM (DB)\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"DGM Sec F\",\"DGM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"06-08-2026\",\"\",\"CMN Quiz 2 (8:45 am)\",\"CSP\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"PJM Mid Term\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"07-08-2026\",\"\",\"CSP\",\"MABA\",\"CNB Sec E\",\"CNB Sec F\",\"RBS\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"15 SGM Sec F\",\"15 SGM Sec E\",\"\",\"16 SGM Sec E & F\",\"17 SGM Sec F\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"08-08-2026\",\"\",\"PPBS (Dr.Bhaskar)\",\"PPBS (Dr.Bhaskar)\",\"CMN sec E & F\",\"RBS\",\"17 SGM Sec E\",\"18 SGM Sec F\",\"LSCM Mid term\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"09-08-2026\",\"\",\"PPBS (Dr.Bhaskar)\",\"PPBS (Dr.Bhaskar)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"10-08-2026\",\"\",\"CNB Quiz \",\"CSP\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"CMN sec F\",\"CMN sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"11-08-2026\",\"QCAM Mid Term (7:00 am)\",\"BAV Sec E\",\"BAV Sec E\",\"MABA\",\"BAV Sec F\",\"PPBS Mid-Term (4:30 PM)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"INM Sec F\",\"\",\"INM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"12-08-2026\",\"DMD Quiz 2 7:45 AM\",\"BAV Sec F\",\"BAV Sec F\",\"PMG\",\"BAV Sec E\",\"PMG\",\"CSP\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec E (MCR09)\",\"\",\"CMN sec F (MCR09)\",\"\",\"PMG\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"13-08-2026\",\"INM QUIZ 2 (7:40 am)\",\"BAV Sec E\",\"BAV Sec F\",\"INM Sec F\",\"PMG\",\"PMG\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"INM Sec E\",\"DGM Sec E\",\"DGM Sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"14-08-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"15-08-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"16-08-2026\",\"\",\"\",\"LSCM\",\"LSCM\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"17-08-2026\",\"DGM Quiz II (7:45 AM)\",\"CSP\",\"DGM Sec E\",\"DGM Sec F\",\"PJM (AG)\",\"PJM (AG)\",\"QCAM (DB)\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec F\",\"CMN sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"18-08-2026\",\"\",\"QCAM Quiz \",\"\",\"\",\"\",\"\",\"LSCM\",\"LSCM\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"DPCC sec E (DB)\",\"DPCC sec F (DB)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"19-08-2026\",\"\",\"\",\"PJM (AG)\",\"PJM (AG)\",\"QCAM (DB)\",\"\",\"LSCM\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"20-08-2026\",\"\",\"LSCM\",\"INM Sec F\",\"INM Sec E\",\"QCAM (DB)\",\"QCAM (DB)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"DPCC sec E (DB)\",\"DPCC sec F (DB)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"21-08-2026\",\"\",\"INM Sec F\",\"INM Sec E\",\"\",\"\",\"\",\"QCAM (DB)\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"CMN sec F\",\"CMN sec E\",\"DGM Sec F\",\"DGM Sec E\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"22-08-2026\",\"\",\"\",\"\",\"\",\"\",\"CSP\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"23-08-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"24-08-2026\",\"\",\"\",\"CSP\",\"DGM Sec F\",\"DGM Sec E\",\"MABA\",\"PMG\",\"PMG\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"CMN sec E\",\"CMN sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Tuesday\",\"25-08-2026\",\"CMN Quiz 3 (7:45 am)\",\"PMG\",\"CSP\",\"MABA\",\"18 SGM Sec E\",\"19 SGM Sec E\",\"19 SGM Sec F\",\"PMG\",\"\",\"\",\"\",\"\",\"\"\n\"Wednesday\",\"26-08-2026\",\"\",\"CSP\",\"CSP\",\"\",\"\",\"\",\"CMN sec E& F Guest session\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"20 SGM Sec E\",\"20 SGM Sec F\",\"\",\"PMG\",\"\",\"\",\"\",\"\",\"\"\n\"Thursday\",\"27-08-2026\",\"\",\"\",\"INM Sec F\",\"INM Sec E\",\"MABA\",\"PPBS (Dr.Bhaskar)\",\"PPBS (Dr.Bhaskar)\",\"PMG\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"DGM Sec E\",\"DGM Sec F\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Friday\",\"28-08-2026\",\"\",\"\",\"\",\"\",\"\",\"PPBS (Dr.Bhaskar)\",\"PPBS (Dr.Bhaskar)\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Saturday\",\"29-08-2026\",\"\",\"PPBS (Dr.Bhaskar)\",\"PPBS (Dr.Bhaskar)\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Sunday\",\"30-08-2026\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"Monday\",\"31-08-2026\",\"\",\"\",\"CMN sec F (presentation)\",\"CMN sec E (presentation)\",\"MABA\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"\n\"\",\"\",\"\",\"\",\"\",\"\",\"\",\" \",\"\",\"\",\"\",\"\",\"\",\"\",\"\"";
-const TERM5_DEFAULT_CSV = "      TERM V,,,,,,\"Venue: Sec E MCR-07 , Sec F MCR-08 , Common MCR-07.\",,,,,,,,\nDAY,Date/Time,8:00 AM,08:30 To 10:00 AM,10:20 To 11:50AM,12:10 To 1:40 PM,02:45 to 4:15 PM,04:30 To 6:00 PM,06:15 To 7:45 PM,08:00 To 9:30PM,,Course Code ,Courses Name,Faculty,TA\nFriday,11-09-2026,Term V registration (LCR-01),FME Sec EF (LCR-01),OMCR Sec EF (MCR-07),,DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,FMEBD25-5,Financial Modeling using Excel,Prof. Pitabas Mohanty,Manjula Siby & Shubham Singh\n,,Term V registration (LCR-01),,,,,,,,,OMCRBD25-5,Omnichannel Retailing,Dr. Smitu Malhotra,Tuhina Nandi\nSaturday,12-09-2026,,FME Sec EF (LCR-01),OMCR Sec EF (MCR-07),,BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,DBFBD25-5,Demand and Business Forecasting,Dr. Amitava Mukherjee,Tuhina Nandi\nSunday,13-09-2026,,,,,,,,,,BDMBD25-5,Brand Management,Dr Madhu Mandal,Vanshika Saluja\nMonday,14-09-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),GCD Sec E (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),PCGM Sec EF (MCR-07),,SDMBD25-5,Sales and Distribution Management,Dr. Sanjeev Varshney,Anjelina Mundu & Shikha Dhandhi\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,GCDBD25-5,Gales of Creative Destruction - Managing Innovation,Dr Faisal Mohammad Ahsan,Chandrima Das Gupta\nTuesday,15-09-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),,,,,PCGMBD25-5,Pricing Management,Dr. Narasimhan Rajkumar,Tuhina Nandi\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,VCPEBD25-5,Venture Capital & Private Equity,Mr Venkatesh Bangaruswamy,Souparna Biswas\nWednesday,16-09-2026,,FME Sec EF (LCR-01),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),SDM Sec E (MCR-07),SDM Sec F (MCR-08),OMCR Sec EF (MCR-07),,,SAPMBD25-5,Security Analysis and Portfolio Management,Dr. Prantik Ray,Shubham Singh\nThursday,17-09-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),SDM Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),,IMCEBD25-5,International Business Models for the Circular Economy,Dr. Sanchayan Nath,Souparna Biswas\n,,,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,MSTBD25-5,Managing Strategic Transformation,Dr. Indrajit Mukherjee,Tuhina Nandi\nFriday,18-09-2026,,OMCR Sec EF (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),SDM Sec E (MCR-07),SDM Sec F (MCR-08),DBF Sec EF (MCR-07),,,B2BBD25-5,Business to Business Marketing,Dr. Mohit Malhan,Neha Minz & Shikha Dhandhi\nSaturday,19-09-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),,,,,,BD25-5,,,\nSunday,20-09-2026,,,,,,,,,,,,,\nMonday,21-09-2026,,,,,,,,,,,,,\nTuesday,22-09-2026,,,,,,,,,,,,,\nWednesday,23-09-2026,,,,,,,,,,,,,\nThursday,24-09-2026,,,,,,,,,,,,,\nFriday,25-09-2026,,,,,,,,,,,,,\nSaturday,26-09-2026,,,,,,,,,,,,,\nSunday,27-09-2026,,,,,,,,,,,,,\nMonday,28-09-2026,,,,,,,,,,,,,\nTuesday,29-09-2026,,,,,,,,,,,,,\nWednesday,30-09-2026,,,,,,,,,,,,,\nThursday,01-10-2026,,,,,,,,,,,,,\nFriday,02-10-2026,,,,,,,,,,,,,\nSaturday,03-10-2026,,,,,,,,,,,,,\nSunday,04-10-2026,,,,,,,,,,,,,\nMonday,05-10-2026,,,B2B Sec F (MCR-08),B2B Sec E (MCR-07),OMCR Sec EF (MCR-07),,BDM Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\nTuesday,06-10-2026,,,IMCE Sec E (MCR-07),IMCE Sec F (MCR-08),OMCR Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,\nWednesday,07-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,OMCR Sec EF (MCR-07),BDM Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,08-10-2026,,FME Sec EF (LCR-01),IMCE Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nFriday,09-10-2026,,FME Sec EF (LCR-01),VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),,DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,\nSaturday,10-10-2026,,VCPE Sec EF (MCR-07),FME Sec EF (LCR-01),,,,,,,,,,\nSunday,11-10-2026,,,,,,,,,,,,,\nMonday,12-10-2026,,FME Sec EF (LCR-01),B2B Sec F (MCR-08),B2B Sec E (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\nTuesday,13-10-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),IMCE Sec E (MCR-07),GCD Sec F (MCR-08),GCD Sec E (MCR-07),MST Sec EF (MCR-07),,,,,,\n,,,,IMCE Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nWednesday,14-10-2026,,DBF Quiz 1 (EXAM_HALL),SDM Sec E (MCR-07),IMCE Sec E (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,\n,,,DBF Quiz 1 (EXAM_HALL),IMCE Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nThursday,15-10-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec F (MCR-08),GCD Sec E (MCR-07),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nFriday,16-10-2026,,,SDM Sec E (MCR-07),IMCE Sec E (MCR-07),,,MST Sec EF (MCR-07),,,,,,\n,,,,IMCE Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSaturday,17-10-2026,,,,,BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),SDM Sec E (MCR-07),SDM Sec F (MCR-08),,,,,\nSunday,18-10-2026,,,MST Sec EF (MCR-07),MST Sec EF (MCR-07),,,,,,,,,\nMonday,19-10-2026,,,,,,,,,,,,,\nTuesday,20-10-2026,,,,,,,,,,,,,\nWednesday,21-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,,,,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,22-10-2026,,,B2B Sec E (MCR-07),GCD Sec E (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,,\nFriday,23-10-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,,,,\nSaturday,24-10-2026,,OMCR Sec EF (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),,,,,,,,,\nSunday,25-10-2026,,,,,,,,,,,,,\nMonday,26-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nTuesday,27-10-2026,,,IMCE Sec E (MCR-07),GCD Sec E (MCR-07),,BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,28-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,29-10-2026,,,VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),,BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\nFriday,30-10-2026,,VCPE Sec EF (MCR-07),IMCE Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec F (MCR-08),GCD Sec E (MCR-08),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nSaturday,31-10-2026,,DBF Quiz 2 (EXAM_HALL),,,,,,,,,,,\n,,,DBF Quiz 2 (EXAM_HALL),,,,,,,,,,,\nSunday,01-11-2026,,,,,,,,,,,,,\nMonday,02-11-2026,,,IMCE Sec E (MCR-07),SDM Sec E (MCR-07),,PCGM Sec EF (MCR-07),BDM Sec EF (MCR-07),MST Sec EF (MCR-07),,,,,\n,,,,SDM Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nTuesday,03-11-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec E (MCR-07),SDM Sec E (MCR-07),MST Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),SDM Sec F (MCR-08),GCD Sec F (MCR-08),,,,,,,\nWednesday,04-11-2026,,,IMCE Sec E (MCR-07),SDM Sec E (MCR-07),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,\n,,,,SDM Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,05-11-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),SDM Sec E (MCR-07),GCD Sec E (MCR-07),,,,,,,\n,,,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,\nFriday,06-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),,,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSaturday,07-11-2026,,,,,,,,,,,,,\nSunday,08-11-2026,,,,,,,,,,,,,\nMonday,09-11-2026,,,B2B Sec F (MCR-08),B2B Sec E (MCR-07),GCD Sec E (MCR-07),IMCE Sec E (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,,,IMCE Sec F (MCR-08),GCD Sec F (MCR-08),,,,,,,\nTuesday,10-11-2026,,,IMCE Sec E (MCR-07),GCD Sec E (MCR-07),,IMCE Sec E (MCR-07),IMCE Sec F (MCR-08),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,11-11-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,12-11-2026,,FME Sec EF (LCR-01),VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),,BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\nFriday,13-11-2026,,VCPE Sec EF (MCR-07),FME Sec EF (LCR-01),B2B Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),MST Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,\n,,,,,GCD Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,\nSaturday,14-11-2026,,FME Sec EF (LCR-01),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,,,,\nSunday,15-11-2026,,,,,,,,,,,,,\nMonday,16-11-2026,,FME Sec EF (LCR-01),,,MST Sec EF (MCR-07),,PCGM Sec EF (MCR-07),,,,,,\nTuesday,17-11-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),,,,,,,,\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nWednesday,18-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),MST Sec EF (MCR-07),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nThursday,19-11-2026,,OMCR Sec EF (MCR-07),SDM Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),,,,,,,,\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nFriday,20-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),MST Sec EF (MCR-07),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSaturday,21-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),,,,,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSunday,22-11-2026,,,,,,,,,,,,,\nMonday,23-11-2026,,FME Sec EF (LCR-01),IMCE Sec E (MCR-07),B2B Sec E (MCR-07),MST Sec EF (MCR-07),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nTuesday,24-11-2026,,FME Sec EF (LCR-01),IMCE Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),MST Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,25-11-2026,,FME Sec EF (LCR-01),BDM Sec EF (MCR-01),BDM Sec EF (MCR-07),DBF Quiz 3 (EXAM_HALL),OMCR Sec EF (MCR-07),,,,,,,\n,,,,,,DBF Quiz 3 (EXAM_HALL),,,,,,,,\nThursday,26-11-2026,,FME Sec EF (LCR-01),,B2B Sec E (MCR-07),GCD Sec E (MCR-07),,PCGM Sec EF (MCR-07),,,,,,\n,,,,,GCD Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,\nFriday,27-11-2026,,FME Sec EF (LCR-01),B2B Sec E (MCR-07),B2B Sec F (MCR-08),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,,\nSaturday,28-11-2026,,,,,,,,,,,,,\nSunday,29-11-2026,,,,,,,,,,,,,\n";
+const TERM5_DEFAULT_CSV = "      TERM V,,,,,,\"Venue: Sec E MCR-07 , Sec F MCR-08 , Common MCR-07.\",,,,,,,,\nDAY,Date/Time,8:00 AM,08:30 To 10:00 AM,10:20 To 11:50AM,12:10 To 1:40 PM,02:45 to 4:15 PM,04:30 To 6:00 PM,06:15 To 7:45 PM,08:00 To 9:30PM,,Course Code ,Courses Name,Faculty,TA\nFriday,11-09-2026,Term V registration (LCR-01),FME Sec EF (LCR-01),OMCR Sec EF (MCR-07),,DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,FMEBD25-5,Financial Modeling using Excel,Prof. Pitabas Mohanty,Manjula Siby & Shubham Singh\nSaturday,12-09-2026,,FME Sec EF (LCR-01),OMCR Sec EF (MCR-07),,BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,OMCRBD25-5,Omnichannel Retailing,Dr. Smitu Malhotra,Tuhina Nandi\nSunday,13-09-2026,,,,,,,,,,DBFBD25-5,Demand and Business Forecasting,Dr. Amitava Mukherjee,Tuhina Nandi\nMonday,14-09-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),GCD Sec E (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),PCGM Sec EF (MCR-07),,BDMBD25-5,Brand Management,Dr Madhu Mandal,Vanshika Saluja\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,SDMBD25-5,Sales and Distribution Management,Dr. Sanjeev Varshney,Anjelina Mundu & Shikha Dhandhi\nTuesday,15-09-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),,,,,GCDBD25-5,Gales of Creative Destruction - Managing Innovation,Dr Faisal Mohammad Ahsan,Chandrima Das Gupta\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,PCGMBD25-5,Pricing Management,Dr. Narasimhan Rajkumar,Tuhina Nandi\nWednesday,16-09-2026,,FME Sec EF (LCR-01),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),SDM Sec E (MCR-07),SDM Sec F (MCR-08),OMCR Sec EF (MCR-07),,,VCPEBD25-5,Venture Capital & Private Equity,Mr Venkatesh Bangaruswamy,Souparna Biswas\nThursday,17-09-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),SDM Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),,SAPMBD25-5,Security Analysis and Portfolio Management,Dr. Prantik Ray,Shubham Singh\n,,,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,IMCEBD25-5,International Business Models for the Circular Economy,Dr. Sanchayan Nath,Souparna Biswas\nFriday,18-09-2026,,OMCR Sec EF (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),SDM Sec E (MCR-07),SDM Sec F (MCR-08),DBF Sec EF (MCR-07),,,MSTBD25-5,Managing Strategic Transformation,Dr. Indrajit Mukherjee,Tuhina Nandi\nSaturday,19-09-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),,,,,,B2BBD25-5,Business to Business Marketing,Dr. Mohit Malhan,Neha Minz & Shikha Dhandhi\nSunday,20-09-2026,,,,,,,,,,,,,\nMonday,21-09-2026,,,,,,,,,,,,,\nTuesday,22-09-2026,,,,,,,,,,,,,\nWednesday,23-09-2026,,,,,,,,,,,,,\nThursday,24-09-2026,,,,,,,,,,,,,\nFriday,25-09-2026,,,,,,,,,,,,,\nSaturday,26-09-2026,,,,,,,,,,,,,\nSunday,27-09-2026,,,,,,,,,,,,,\nMonday,28-09-2026,,,,,,,,,,,,,\nTuesday,29-09-2026,,,,,,,,,,,,,\nWednesday,30-09-2026,,,,,,,,,,,,,\nThursday,01-10-2026,,,,,,,,,,,,,\nFriday,02-10-2026,,,,,,,,,,,,,\nSaturday,03-10-2026,,,,,,,,,,,,,\nSunday,04-10-2026,,,,,,,,,,,,,\nMonday,05-10-2026,,,OMCR Sec EF (MCR-07),B2B Sec E (MCR-07),B2B Sec F (MCR-08),PCGM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\nTuesday,06-10-2026,,,IMCE Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,07-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,OMCR Sec EF (MCR-07),BDM Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,08-10-2026,,FME Sec EF (LCR-01),IMCE Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nFriday,09-10-2026,,FME Sec EF (LCR-01),VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,\nSaturday,10-10-2026,,VCPE Sec EF (MCR-07),FME Sec EF (LCR-01),OMCR Sec EF (MCR-07),,,,,,,,,\nSunday,11-10-2026,,,,,,,,,,,,,\nMonday,12-10-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),B2B Sec E (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nTuesday,13-10-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),IMCE Sec E (MCR-07),GCD Sec F (MCR-08),GCD Sec E (MCR-07),MST Sec EF (MCR-07),,,,,,\n,,,,IMCE Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nWednesday,14-10-2026,,DBF Quiz 1 (EXAM_HALL),SDM Sec E (MCR-07),IMCE Sec E (MCR-07),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,\n,,,,IMCE Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nThursday,15-10-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec F (MCR-08),GCD Sec E (MCR-07),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nFriday,16-10-2026,,,SDM Sec E (MCR-07),IMCE Sec E (MCR-07),,,MST Sec EF (MCR-07),,,,,,\n,,,,IMCE Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSaturday,17-10-2026,,,,BDM Sec EF (MCR-07),,,,,,,,,\nSunday,18-10-2026,,,MST Sec EF (MCR-07),MST Sec EF (MCR-07),,,,,,,,,\nMonday,19-10-2026,,,,,,,,,,,,,\nTuesday,20-10-2026,,,,,,,,,,,,,\nWednesday,21-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,,,,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,22-10-2026,,,B2B Sec E (MCR-07),GCD Sec E (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,,\nFriday,23-10-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,,,,\nSaturday,24-10-2026,,OMCR Sec EF (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),,,,,,,,,\nSunday,25-10-2026,,,,,,,,,,,,,\nMonday,26-10-2026,,,B2B Sec F (MCR-08),B2B Sec E (MCR-08),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,,\nTuesday,27-10-2026,,,IMCE Sec E (MCR-07),GCD Sec E (MCR-07),OMCR Sec EF (MCR-07),BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,28-10-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,29-10-2026,,,VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),,BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\nFriday,30-10-2026,,VCPE Sec EF (MCR-07),IMCE Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec F (MCR-08),GCD Sec E (MCR-08),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nSaturday,31-10-2026,,,,,,,,,,,,,\nSunday,01-11-2026,,,,,,,,,,,,,\nMonday,02-11-2026,,,IMCE Sec E (MCR-07),SDM Sec E (MCR-07),,PCGM Sec EF (MCR-07),BDM Sec EF (MCR-07),MST Sec EF (MCR-07),,,,,\n,,,,SDM Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nTuesday,03-11-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec E (MCR-07),SDM Sec E (MCR-07),MST Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),SDM Sec F (MCR-08),GCD Sec F (MCR-08),,,,,,,\nWednesday,04-11-2026,,,IMCE Sec E (MCR-07),SDM Sec E (MCR-07),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,\n,,,,SDM Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,05-11-2026,,,SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),SDM Sec E (MCR-07),GCD Sec E (MCR-07),,,,,,,\n,,,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,\nFriday,06-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),SAPM Sec EF (MCR-07),SAPM Sec EF (MCR-07),,,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSaturday,07-11-2026,,,,,,,,,,,,,\nSunday,08-11-2026,,,,,,,,,,,,,\nMonday,09-11-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),GCD Sec E (MCR-07),GCD Sec F (MCR-08),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nTuesday,10-11-2026,,,IMCE Sec E (MCR-07),GCD Sec E (MCR-07),,,,,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,11-11-2026,,,IMCE Sec E (MCR-07),B2B Sec E (MCR-07),,VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nThursday,12-11-2026,,FME Sec EF (LCR-01),VCPE Sec EF (MCR-07),VCPE Sec EF (MCR-07),,BDM Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\nFriday,13-11-2026,,VCPE Sec EF (MCR-07),FME Sec EF (LCR-01),B2B Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),MST Sec EF (MCR-07),,,,,,\n,,,,,GCD Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,\nSaturday,14-11-2026,,FME Sec EF (LCR-01),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,,,,\nSunday,15-11-2026,,,,,,,,,,,,,\nMonday,16-11-2026,,FME Sec EF (LCR-01),OMCR Sec EF (MCR-07),,MST Sec EF (MCR-07),,PCGM Sec EF (MCR-07),,,,,,\nTuesday,17-11-2026,,FME Sec EF (LCR-01),SDM Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,,,\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nWednesday,18-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),MST Sec EF (MCR-07),OMCR Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nThursday,19-11-2026,,,SDM Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),OMCR Sec EF (MCR-07),,,,,,,\n,,,,GCD Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nFriday,20-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),MST Sec EF (MCR-07),MST Sec EF (MCR-07),PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSaturday,21-11-2026,,,SDM Sec E (MCR-07),B2B Sec E (MCR-07),,,,,,,,,\n,,,,B2B Sec F (MCR-08),SDM Sec F (MCR-08),,,,,,,,,\nSunday,22-11-2026,,,,,,,,,,,,,\nMonday,23-11-2026,,FME Sec EF (LCR-01),IMCE Sec E (MCR-07),B2B Sec E (MCR-07),MST Sec EF (MCR-07),,PCGM Sec EF (MCR-07),,,,,,\n,,,,B2B Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nTuesday,24-11-2026,,FME Sec EF (LCR-01),IMCE Sec E (MCR-07),GCD Sec E (MCR-07),MST Sec EF (MCR-07),MST Sec EF (MCR-07),BDM Sec EF (MCR-07),,,,,,\n,,,,GCD Sec F (MCR-08),IMCE Sec F (MCR-08),,,,,,,,,\nWednesday,25-11-2026,,FME Sec EF (LCR-01),BDM Sec EF (MCR-01),BDM Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,,,\nThursday,26-11-2026,,FME Sec EF (LCR-01),,B2B Sec E (MCR-07),GCD Sec E (MCR-07),,PCGM Sec EF (MCR-07),,,,,,\n,,,,,GCD Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,\nFriday,27-11-2026,,FME Sec EF (LCR-01),B2B Sec E (MCR-07),IMCE Sec E (MCR-07),DBF Sec EF (MCR-07),DBF Sec EF (MCR-07),,,,,,,\n,,,,IMCE Sec F (MCR-08),B2B Sec F (MCR-08),,,,,,,,,\nSaturday,28-11-2026,,,,,,,,,,,,,\nSunday,29-11-2026,,,,,,,,,,,,,\n";
 
 let currentSelectedTerm = '4';
 let timetableData = [];
 let courseMetadata = {};
-let timetableSyncTime = '02:07 PM';
+let timetableSyncTime = '11:16 PM';
 let timetableSyncStatus = 'online';
 // ttSIDs already initialized at top
 let ttSelectedWeekStart = null;
@@ -2592,6 +2762,7 @@ function loadTermData(term) {
 
 function changeTermFilter(term) {
   loadTermData(term);
+  ttSelectedSubjects = new Set(['all']);
   ttSelectedSubject = 'all';
   renderTimetable(false);
   const selectEl = document.getElementById('tt-term-select');
@@ -3180,6 +3351,7 @@ function initScrollListener() {
 function viewStudentCalendar(sid) {
   ttSIDs = [sid];
   ttSID = sid;
+  ttSelectedSubjects = new Set(['all']);
   ttSelectedSubject = 'all';
   ttShowAllSubjects = false;
   
@@ -3298,18 +3470,50 @@ function openClassDetails(slotJsonOrObj) {
     const activeSid = slot.attendeeSids ? slot.attendeeSids[0] : ttSID;
     const key = `xlri_absent_${activeSid}_${slot.date}_${slot.slotIndex}`;
     const isAbsent = localStorage.getItem(key) === 'true';
+    const isPast = isSlotInPast(slot.date, slot.time);
     const sidsStr = (slot.attendeeSids || [ttSID]).join(',');
+
+    let statusBadgeText = '';
+    let statusBadgeStyle = '';
+    let btnText = '';
+    let btnStyle = '';
+
+    if (isAbsent) {
+      if (isPast) {
+        statusBadgeText = '❌ Missed';
+        statusBadgeStyle = 'background: rgba(239,68,68,0.15); color: #dc2626;';
+        btnText = '✓ Mark as Present';
+        btnStyle = 'background: #16a34a; color: #fff; border: none; box-shadow: 0 1px 2px rgba(0,0,0,0.1);';
+      } else {
+        statusBadgeText = '🕒 Planned Absence';
+        statusBadgeStyle = 'background: rgba(245,158,11,0.15); color: #d97706;';
+        btnText = '✓ Cancel Planned Absence';
+        btnStyle = 'background: #16a34a; color: #fff; border: none; box-shadow: 0 1px 2px rgba(0,0,0,0.1);';
+      }
+    } else {
+      if (isPast) {
+        statusBadgeText = '✓ Attended';
+        statusBadgeStyle = 'background: rgba(34,197,94,0.15); color: #16a34a;';
+        btnText = '❌ Mark as Missed';
+        btnStyle = 'background: var(--surface); color: #dc2626; border: 1px solid rgba(220,38,38,0.3);';
+      } else {
+        statusBadgeText = 'Upcoming';
+        statusBadgeStyle = 'background: var(--surface2); color: var(--text-secondary);';
+        btnText = '🕒 Plan Absence';
+        btnStyle = 'background: var(--surface); color: #d97706; border: 1px solid rgba(217,119,6,0.4);';
+      }
+    }
 
     attendanceHtml = `
       <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; margin: 8px 0; gap: 8px;">
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Attendance:</span>
-          <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; ${isAbsent ? 'background: rgba(239,68,68,0.15); color: #dc2626;' : 'background: rgba(34,197,94,0.15); color: #16a34a;'}">
-            ${isAbsent ? '❌ Missed' : '✓ Attended'}
+          <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; ${statusBadgeStyle}">
+            ${statusBadgeText}
           </span>
         </div>
-        <button class="tt-btn" onclick="toggleAttendance('${sidsStr}', '${slot.date}', ${slot.slotIndex})" style="padding: 4px 10px; min-height: 28px; font-size: 11.5px; font-weight: 700; border-radius: 6px; cursor: pointer; ${isAbsent ? 'background: #16a34a; color: #fff; border: none; box-shadow: 0 1px 2px rgba(0,0,0,0.1);' : 'background: var(--surface); color: #dc2626; border: 1px solid rgba(220,38,38,0.3);'}">
-          ${isAbsent ? '✓ Mark as Present' : '❌ Mark as Missed'}
+        <button class="tt-btn" onclick="toggleAttendance('${sidsStr}', '${slot.date}', ${slot.slotIndex})" style="padding: 4px 10px; min-height: 28px; font-size: 11.5px; font-weight: 700; border-radius: 6px; cursor: pointer; ${btnStyle}">
+          ${btnText}
         </button>
       </div>`;
   }
@@ -3407,11 +3611,12 @@ function getAttendanceWarningsHtml() {
     termCourses.forEach(course => {
       const courseCode = course['Subject Code'];
       const courseSlots = studentSlots.filter(s => s.courseCode === courseCode && !s.isSpecial && !s.isGeneral);
-      const missedSlots = courseSlots.filter(s => {
+      // Strictly count only conducted (past) missed lectures for warnings
+      const conductedMissedSlots = courseSlots.filter(s => {
         const key = 'xlri_absent_' + sid + '_' + s.date + '_' + s.slotIndex;
-        return localStorage.getItem(key) === 'true';
+        return localStorage.getItem(key) === 'true' && isSlotInPast(s.date, s.time);
       });
-      const missedCount = missedSlots.length;
+      const missedCount = conductedMissedSlots.length;
       
       if (missedCount >= 3) {
         let type = 'warning';
@@ -3583,6 +3788,7 @@ function openAttendanceTracker(activeSid) {
   let totalConductedBatch = 0;
   let totalAttendedBatch = 0;
   let totalMissedBatch = 0;
+  let totalPlannedBatch = 0;
 
   let cardsHtml = '';
   
@@ -3590,18 +3796,24 @@ function openAttendanceTracker(activeSid) {
     const courseCode = course['Subject Code'];
     // Filter strictly teaching lectures (excluding exams and special events)
     const courseSlots = studentSlots.filter(s => s.courseCode === courseCode && !s.isSpecial && !s.isGeneral);
-    const missedSlots = courseSlots.filter(s => {
+    
+    // Split into past conducted vs future planned absences
+    const allMarkedSlots = courseSlots.filter(s => {
       const key = 'xlri_absent_' + sid + '_' + s.date + '_' + s.slotIndex;
       return localStorage.getItem(key) === 'true';
     });
-    const missedCount = missedSlots.length;
-    const conductedSlots = courseSlots.filter(s => isSlotInPast(s.date, s.time) || localStorage.getItem('xlri_absent_' + sid + '_' + s.date + '_' + s.slotIndex) === 'true');
-    const conductedCount = Math.max(missedCount, conductedSlots.length);
+    const pastMissedSlots = allMarkedSlots.filter(s => isSlotInPast(s.date, s.time));
+    const futurePlannedSlots = allMarkedSlots.filter(s => !isSlotInPast(s.date, s.time));
+
+    const missedCount = pastMissedSlots.length;
+    const conductedSlots = courseSlots.filter(s => isSlotInPast(s.date, s.time));
+    const conductedCount = conductedSlots.length;
     const attendedCount = Math.max(0, conductedCount - missedCount);
     
     totalConductedBatch += conductedCount;
     totalAttendedBatch += attendedCount;
     totalMissedBatch += missedCount;
+    totalPlannedBatch += futurePlannedSlots.length;
 
     // Course Subject pastel theme matching calendar tile
     const pfx = courseCode.replace(/BD$/, '').toUpperCase();
@@ -3619,12 +3831,12 @@ function openAttendanceTracker(activeSid) {
       badgeBg = '#fffbeb'; badgeBorder = '#fde68a'; badgeColor = '#d97706';
     }
 
-    // 4-Slot Absence Meter (Balanced Proportions)
+    // 4-Slot Absence Meter (strictly past conducted absences)
     let absenceSlotsHtml = '';
     const ordinals = ['1st', '2nd', '3rd', '4th'];
     for (let slotNum = 1; slotNum <= 4; slotNum++) {
       if (slotNum <= missedCount) {
-        absenceSlotsHtml += `<div class="tt-absence-slot used" title="Absence #${slotNum} recorded">❌ #${slotNum}</div>`;
+        absenceSlotsHtml += `<div class="tt-absence-slot used" title="Past Absence #${slotNum} recorded">❌ #${slotNum}</div>`;
       } else {
         absenceSlotsHtml += `<div class="tt-absence-slot available" title="Buffer #${slotNum}">⚪ ${ordinals[slotNum-1]}</div>`;
       }
@@ -3633,31 +3845,46 @@ function openAttendanceTracker(activeSid) {
       absenceSlotsHtml += `<div class="tt-absence-slot used" style="grid-column: span 4; background:#b91c1c; color:#fff; margin-top:4px;" title="Penalty">⚠️ +${missedCount - 4} Over Limit</div>`;
     }
 
-    // Collapsible Missed Lectures Accordion (Balanced Proportions)
+    // Collapsible Missed Lectures Accordion (Includes both past missed and future planned)
     let accordionHtml = '';
-    if (missedSlots.length > 0) {
+    if (allMarkedSlots.length > 0) {
       const accordionId = `missed-acc-${cIdx}`;
+      let toggleLabel = '';
+      if (pastMissedSlots.length > 0 && futurePlannedSlots.length > 0) {
+        toggleLabel = `📍 ${pastMissedSlots.length} Missed + 🕒 ${futurePlannedSlots.length} Planned`;
+      } else if (pastMissedSlots.length > 0) {
+        toggleLabel = `📍 ${pastMissedSlots.length} Missed Lecture${pastMissedSlots.length > 1 ? 's' : ''}`;
+      } else {
+        toggleLabel = `🕒 ${futurePlannedSlots.length} Planned Absence${futurePlannedSlots.length > 1 ? 's' : ''}`;
+      }
+
       accordionHtml = `
         <div style="margin-top: 6px;">
           <div class="tt-missed-accordion-toggle" onclick="toggleMissedAccordion('${accordionId}')">
-            <span>📍 ${missedSlots.length} Missed Lecture${missedSlots.length > 1 ? 's' : ''}</span>
+            <span>${toggleLabel}</span>
             <span id="icon-${accordionId}" style="font-size: 11px;">▾</span>
           </div>
           <div class="tt-missed-accordion-body" id="${accordionId}">
-            ${missedSlots.map(s => `
-              <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; background: rgba(255,255,255,0.75); border: 1px solid rgba(0,0,0,0.1); border-radius: 6px; font-size: 11px; color: var(--text-primary); gap: 6px;">
-                <div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
-                  <span style="font-family: monospace; font-weight: 800; background: rgba(239, 68, 68, 0.18); color: #dc2626; padding: 1px 5px; border-radius: 3px; font-size: 10px;">#${s.lectureNumber || '?'}</span>
-                  <span style="font-weight: 700;">${s.day.slice(0,3)}, ${s.date}</span>
-                  <span style="opacity: 0.8; font-size: 10px;">(${s.time.split(' To ')[0]})</span>
-                  ${s.venue ? `<span style="font-size: 9.5px; opacity: 0.85; background: rgba(0,0,0,0.06); padding: 1px 4px; border-radius: 3px; font-weight: 600;">📍 ${s.venue}</span>` : ''}
-                </div>
-                <div style="display: flex; align-items: center; gap: 5px; margin-left: auto; flex-shrink: 0;">
-                  <button onclick="toggleTrackerAttendance('${sid}', '${s.date}', ${s.slotIndex})" style="background: #16a34a; color: #fff; border: none; width: 24px; height: 24px; border-radius: 5px; font-size: 13px; font-weight: 900; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0,0,0,0.15); transition: all 0.15s ease;" title="Mark this lecture as attended / present">✓</button>
-                  <button onclick="goToTimetableDate('${s.date}', '${courseCode}')" style="background: rgba(255,255,255,0.9); color: #1e40af; border: 1px solid rgba(0,0,0,0.15); width: 24px; height: 24px; border-radius: 5px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: all 0.15s ease;" title="Go to date in timetable">📅</button>
-                </div>
-              </div>
-            `).join('')}
+            ${allMarkedSlots.map(s => {
+              const isPast = isSlotInPast(s.date, s.time);
+              const tagBg = isPast ? 'rgba(239, 68, 68, 0.18)' : 'rgba(245, 158, 11, 0.2)';
+              const tagColor = isPast ? '#dc2626' : '#d97706';
+              const tagText = isPast ? `#${s.lectureNumber || '?'} · Missed` : `#${s.lectureNumber || '?'} · 🕒 Planned`;
+              const actionTitle = isPast ? 'Mark this lecture as attended / present' : 'Cancel planned absence';
+              return `
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; background: rgba(255,255,255,0.75); border: 1px solid rgba(0,0,0,0.1); border-radius: 6px; font-size: 11px; color: var(--text-primary); gap: 6px;">
+                  <div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
+                    <span style="font-family: monospace; font-weight: 800; background: ${tagBg}; color: ${tagColor}; padding: 1px 5px; border-radius: 3px; font-size: 10px;">${tagText}</span>
+                    <span style="font-weight: 700;">${s.day.slice(0,3)}, ${s.date}</span>
+                    <span style="opacity: 0.8; font-size: 10px;">(${s.time.split(' To ')[0]})</span>
+                    ${s.venue ? `<span style="font-size: 9.5px; opacity: 0.85; background: rgba(0,0,0,0.06); padding: 1px 4px; border-radius: 3px; font-weight: 600;">📍 ${s.venue}</span>` : ''}
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 5px; margin-left: auto; flex-shrink: 0;">
+                    <button onclick="toggleTrackerAttendance('${sid}', '${s.date}', ${s.slotIndex})" style="background: #16a34a; color: #fff; border: none; width: 24px; height: 24px; border-radius: 5px; font-size: 13px; font-weight: 900; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0,0,0,0.15); transition: all 0.15s ease;" title="${actionTitle}">✓</button>
+                    <button onclick="goToTimetableDate('${s.date}', '${courseCode}')" style="background: rgba(255,255,255,0.9); color: #1e40af; border: 1px solid rgba(0,0,0,0.15); width: 24px; height: 24px; border-radius: 5px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: all 0.15s ease;" title="Go to date in timetable">📅</button>
+                  </div>
+                </div>`;
+            }).join('')}
           </div>
         </div>`;
     }
@@ -3685,17 +3912,18 @@ function openAttendanceTracker(activeSid) {
   });
 
   const overallPct = totalConductedBatch > 0 ? Math.round((totalAttendedBatch / totalConductedBatch) * 100) : 100;
+  const plannedText = totalPlannedBatch > 0 ? ` · <span style="color: #d97706; font-weight: 700;">${totalPlannedBatch} Planned Future</span>` : '';
 
   const contentHtml = `
     <div>
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 2px;">
         <div style="font-size: 14px; font-weight: 800; color: var(--text-primary);">${stu.Name} <span style="font-size: 11.5px; font-weight: 500; color: var(--text-secondary);">(${stu.SID})</span></div>
         <div style="font-size: 11.5px; font-weight: 700; color: var(--text-secondary); background: var(--surface2); padding: 2px 8px; border-radius: 6px; border: 1px solid var(--border);">
-          Overall: ${totalAttendedBatch}/${totalConductedBatch} Attended (${overallPct}%) · ${totalMissedBatch} Total Absences
+          Overall: ${totalAttendedBatch}/${totalConductedBatch} Attended (${overallPct}%) · ${totalMissedBatch} Missed${plannedText}
         </div>
       </div>
       <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">
-        Term ${currentSelectedTerm} Attendance · Tracked on conducted lectures (Max 4 permissible absences before grade penalty).
+        Term ${currentSelectedTerm} Attendance · Tracked on conducted lectures only (Max 4 permissible absences before grade penalty).
       </div>
     </div>
     
@@ -3740,14 +3968,285 @@ function getSubjectName(code) {
   return rec ? rec['Subject Name'] : code;
 }
 
+// Multi-Subject & Section Filter Helper Functions
+function getSubjectFilterOptions() {
+  const options = [];
+  
+  if (ttSIDs.length > 0) {
+    // Student enrolled subjects
+    const enrolledMap = new Map();
+    ttSIDs.forEach(sid => {
+      const stu = studentMap[sid];
+      if (stu) {
+        stu.records.forEach(r => {
+          if (String(r.Term) === String(currentSelectedTerm) && r['Subject Code']) {
+            const code = r['Subject Code'];
+            if (!enrolledMap.has(code)) {
+              enrolledMap.set(code, {
+                code: code,
+                prefix: code.replace(/BD$/, '').toUpperCase(),
+                name: r['Subject Name'] || getSubjectName(code),
+                section: r.Section || 'Section E',
+                secLetter: (r.Section && r.Section.includes('F')) ? 'F' : 'E'
+              });
+            }
+          }
+        });
+      }
+    });
+
+    Array.from(enrolledMap.values())
+      .sort((a, b) => a.prefix.localeCompare(b.prefix))
+      .forEach(item => {
+        options.push({
+          key: item.code,
+          code: item.code,
+          prefix: item.prefix,
+          name: item.name,
+          section: item.section,
+          secLetter: item.secLetter,
+          label: `${item.prefix} - ${item.name}`,
+          shortLabel: item.prefix
+        });
+      });
+  } else {
+    // Master Timetable mode: Find all subjects and unique sections for active term in RAW
+    const termCoursesMap = new Map();
+    RAW.forEach(r => {
+      if (String(r.Term) === String(currentSelectedTerm) && r['Subject Code']) {
+        const code = r['Subject Code'];
+        if (!termCoursesMap.has(code)) {
+          termCoursesMap.set(code, {
+            code: code,
+            prefix: code.replace(/BD$/, '').toUpperCase(),
+            name: r['Subject Name'] || getSubjectName(code),
+            sections: new Set()
+          });
+        }
+        termCoursesMap.get(code).sections.add(r.Section || 'Section E');
+      }
+    });
+
+    Array.from(termCoursesMap.values())
+      .sort((a, b) => a.prefix.localeCompare(b.prefix))
+      .forEach(item => {
+        const secs = Array.from(item.sections).sort();
+        if (secs.length > 1) {
+          // Multi-section subject (e.g. B2B, GCD, IMCE, SDM)
+          secs.forEach(sec => {
+            const secLetter = sec.includes('F') ? 'F' : 'E';
+            const key = `${item.code}:${secLetter}`;
+            options.push({
+              key: key,
+              code: item.code,
+              prefix: item.prefix,
+              name: item.name,
+              section: sec,
+              secLetter: secLetter,
+              label: `${item.prefix} (Sec ${secLetter}) - ${item.name}`,
+              shortLabel: `${item.prefix} (Sec ${secLetter})`
+            });
+          });
+        } else {
+          // Single-cohort subject (e.g. FME, BDM, DBF, etc.)
+          options.push({
+            key: item.code,
+            code: item.code,
+            prefix: item.prefix,
+            name: item.name,
+            section: secs[0] || 'Section E',
+            secLetter: (secs[0] && secs[0].includes('F')) ? 'F' : 'E',
+            label: `${item.prefix} - ${item.name}`,
+            shortLabel: item.prefix
+          });
+        }
+      });
+  }
+  return options;
+}
+
+function isSlotMatchedBySubjectFilter(slot) {
+  if (ttSelectedSubjects.has('all') || ttSelectedSubjects.size === 0) {
+    return true;
+  }
+  if (slot.isGeneral) {
+    return ttSelectedSubjects.has('ACAD') || ttSelectedSubjects.has('all');
+  }
+  const code = slot.courseCode;
+  if (!code) return false;
+
+  // Direct match by full code or prefix
+  if (ttSelectedSubjects.has(code)) return true;
+  const prefix = code.replace(/BD$/, '').toUpperCase();
+  if (ttSelectedSubjects.has(prefix)) return true;
+
+  // Granular section match
+  const sec = slot.section || '';
+  const secLetter = sec.includes('F') ? 'F' : (sec.includes('E') ? 'E' : (sec.includes('G') ? 'G' : ''));
+  if (secLetter) {
+    if (ttSelectedSubjects.has(`${code}:${secLetter}`)) return true;
+    if (ttSelectedSubjects.has(`${prefix}:${secLetter}`)) return true;
+  }
+
+  return false;
+}
+
+function getSubjectFilterSummaryLabel() {
+  if (ttSelectedSubjects.has('all') || ttSelectedSubjects.size === 0) {
+    return ttSIDs.length > 0 ? 'All My Subjects' : 'All Subjects';
+  }
+  const options = getSubjectFilterOptions();
+  const selectedOptions = options.filter(opt => ttSelectedSubjects.has(opt.key) || ttSelectedSubjects.has(opt.code) || ttSelectedSubjects.has(opt.prefix));
+  
+  if (selectedOptions.length === 0) {
+    return `${ttSelectedSubjects.size} Selected`;
+  }
+  if (selectedOptions.length === 1) {
+    return selectedOptions[0].shortLabel;
+  }
+  if (selectedOptions.length === 2) {
+    return `${selectedOptions[0].shortLabel}, ${selectedOptions[1].shortLabel}`;
+  }
+  return `${selectedOptions.length} Subjects Selected`;
+}
+
+function toggleSubjectDropdown(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  const dd = document.getElementById('tt-multiselect-dropdown');
+  if (dd) {
+    const isOpen = dd.classList.toggle('open');
+    if (isOpen) {
+      const searchInput = document.getElementById('tt-subject-search');
+      if (searchInput) {
+        searchInput.value = '';
+        filterSubjectDropdownItems('');
+        setTimeout(() => searchInput.focus(), 50);
+      }
+    }
+  }
+}
+
+function closeSubjectDropdown() {
+  const dd = document.getElementById('tt-multiselect-dropdown');
+  if (dd) dd.classList.remove('open');
+}
+
+function toggleSubjectSelection(key, e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  if (key === 'all') {
+    ttSelectedSubjects = new Set(['all']);
+    ttSelectedSubject = 'all';
+  } else {
+    if (ttSelectedSubjects.has('all')) {
+      ttSelectedSubjects = new Set([key]);
+    } else {
+      if (ttSelectedSubjects.has(key)) {
+        ttSelectedSubjects.delete(key);
+      } else {
+        ttSelectedSubjects.add(key);
+      }
+    }
+    
+    // Check if all options are selected
+    const allOptions = getSubjectFilterOptions();
+    if (allOptions.length > 0 && allOptions.every(opt => ttSelectedSubjects.has(opt.key))) {
+      ttSelectedSubjects = new Set(['all']);
+    }
+    
+    if (ttSelectedSubjects.size === 0) {
+      ttSelectedSubject = '';
+    } else if (ttSelectedSubjects.has('all')) {
+      ttSelectedSubject = 'all';
+    } else {
+      ttSelectedSubject = Array.from(ttSelectedSubjects)[0];
+    }
+  }
+
+  updateSubjectDropdownUI();
+  renderTimetable();
+}
+
+function selectAllSubjects(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  ttSelectedSubjects = new Set(['all']);
+  ttSelectedSubject = 'all';
+  updateSubjectDropdownUI();
+  renderTimetable();
+}
+
+function clearAllSubjects(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  ttSelectedSubjects = new Set();
+  ttSelectedSubject = '';
+  updateSubjectDropdownUI();
+  renderTimetable();
+}
+
+function filterSubjectDropdownItems(q) {
+  const query = (q || '').trim().toLowerCase();
+  const items = document.querySelectorAll('.tt-multiselect-item');
+  items.forEach(item => {
+    const text = item.getAttribute('data-search') || item.textContent.toLowerCase();
+    if (!query || text.includes(query)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function updateSubjectDropdownUI() {
+  const labelEl = document.getElementById('tt-multiselect-label');
+  if (labelEl) {
+    labelEl.textContent = getSubjectFilterSummaryLabel();
+  }
+  const isAll = ttSelectedSubjects.has('all');
+  const allCheckbox = document.getElementById('tt-sub-cb-all');
+  if (allCheckbox) allCheckbox.checked = isAll;
+
+  const checkboxes = document.querySelectorAll('.tt-sub-cb-item');
+  checkboxes.forEach(cb => {
+    const key = cb.getAttribute('data-key');
+    cb.checked = isAll || ttSelectedSubjects.has(key);
+  });
+}
+
+// Global click listener to close dropdown when clicking outside
+if (typeof document !== 'undefined') {
+  document.addEventListener('click', (e) => {
+    const wrap = document.getElementById('tt-subject-filter-wrap');
+    if (wrap && !wrap.contains(e.target)) {
+      closeSubjectDropdown();
+    }
+  });
+}
+
 function changeSubjectFilter(val) {
   if (val === 'unlock-all-term') {
     ttShowAllSubjects = true;
+    ttSelectedSubjects = new Set(['all']);
     ttSelectedSubject = 'all';
   } else if (val === 'lock-my-subjects') {
     ttShowAllSubjects = false;
+    ttSelectedSubjects = new Set(['all']);
+    ttSelectedSubject = 'all';
+  } else if (val === 'all') {
+    ttSelectedSubjects = new Set(['all']);
     ttSelectedSubject = 'all';
   } else {
+    ttSelectedSubjects = new Set([val]);
     ttSelectedSubject = val;
   }
   renderTimetable();
@@ -3755,12 +4254,14 @@ function changeSubjectFilter(val) {
 
 function unlockAllSubjects() {
   ttShowAllSubjects = true;
+  ttSelectedSubjects = new Set(['all']);
   ttSelectedSubject = 'all';
   renderTimetable();
 }
 
 function lockAllSubjects() {
   ttShowAllSubjects = false;
+  ttSelectedSubjects = new Set(['all']);
   ttSelectedSubject = 'all';
   renderTimetable();
 }
@@ -3793,10 +4294,8 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
         });
       });
     });
-    // Filter by selected subject
-    if (ttSelectedSubject && ttSelectedSubject !== 'all') {
-      weekSchedules = weekSchedules.filter(s => s.courseCode === ttSelectedSubject);
-    }
+    // Filter by selected subjects
+    weekSchedules = weekSchedules.filter(s => isSlotMatchedBySubjectFilter(s));
   } else if (ttShowAllSubjects) {
     // Collect from master timetableData
     const weekSlots = timetableData.filter(slot => {
@@ -3846,9 +4345,6 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
       
       if (matchedCourse) {
         const code = matchedCourse['Subject Code'];
-        if (ttSelectedSubject !== 'all' && code !== ttSelectedSubject) {
-          return;
-        }
         
         // Resolve section
         let sectionName = 'Common / General';
@@ -3886,7 +4382,7 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
           if (cPrefix) colorClass = 'cc-' + cPrefix;
         }
         
-        weekSchedules.push({
+        const slotObj = {
           ...slot,
           isGeneral: false,
           courseName: matchedCourse['Subject Name'],
@@ -3906,7 +4402,10 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
             shortName: sectionName.replace('Section ', 'Sec '),
             colorIdx: colorIdx
           }
-        });
+        };
+        if (isSlotMatchedBySubjectFilter(slotObj)) {
+          weekSchedules.push(slotObj);
+        }
       }
     });
   }
@@ -3986,7 +4485,13 @@ function getWeeklyGridHTML(weekStart, isPrint = false) {
           const clickHandler = isPrint ? '' : `onclick="openClassDetails('${clJsonStr}')"`;
           const blockTitle = cl.isSpecial ? `⚠️ ${cl.text}` : cl.courseName;
           const isSlotAbsent = cl.attendees.some(att => localStorage.getItem(`xlri_absent_${att.sid}_${cl.date}_${cl.slotIndex}`) === 'true');
-          const absentIndicator = isSlotAbsent ? `<span class="tt-absent-badge" title="Marked as Missed">❌</span>` : '';
+          const isSlotPast = isSlotInPast(cl.date, cl.time);
+          let absentIndicator = '';
+          if (isSlotAbsent) {
+            absentIndicator = isSlotPast 
+              ? `<span class="tt-absent-badge" title="Marked as Missed">❌</span>` 
+              : `<span class="tt-absent-badge" style="background: rgba(245, 158, 11, 0.2); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.4);" title="Planned Absence (Future)">🕒</span>`;
+          }
           
           cellHtml += `
             <div class="tt-class-block ${cl.colorClass} ${isActive ? 'active' : ''}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}" ${clickHandler}>
@@ -4085,8 +4590,9 @@ function renderSelectedStudentChips() {
 function removeSelectedStudent(sid) {
   ttSIDs = ttSIDs.filter(s => s !== sid);
   ttSID = ttSIDs[0] || null;
+  ttSelectedSubjects = new Set(['all']);
+  ttSelectedSubject = 'all';
   if (ttSIDs.length === 0) {
-    ttSelectedSubject = 'all';
     ttShowAllSubjects = true; // Switch to Master Timetable immediately
   }
   renderSelectedStudentChips();
@@ -4130,9 +4636,9 @@ function renderTimetable() {
   if (ttSIDs.length > 0) {
     titleText = ttSIDs.length > 1 ? `Comparison: ${namesTitle}` : `Timetable Calendar - ${primaryStu.Name}`;
   } else {
-    titleText = ttSelectedSubject === 'all' 
+    titleText = ttSelectedSubjects.has('all') 
       ? 'Master Timetable - All Subjects' 
-      : `Master Timetable - ${ttSelectedSubject} (${getSubjectName(ttSelectedSubject)})`;
+      : `Master Timetable - ${getSubjectFilterSummaryLabel()}`;
   }
 
   if (weeks.length === 0) {
@@ -4209,10 +4715,8 @@ function renderTimetable() {
           });
         });
       });
-      // Filter by selected subject
-      if (ttSelectedSubject && ttSelectedSubject !== 'all') {
-        termSchedules = termSchedules.filter(s => s.courseCode === ttSelectedSubject);
-      }
+      // Filter by selected subjects
+      termSchedules = termSchedules.filter(s => isSlotMatchedBySubjectFilter(s));
     } else if (ttShowAllSubjects) {
       // Build master schedules from timetableData for active term
       const allTermCourses = [];
@@ -4257,11 +4761,6 @@ function renderTimetable() {
 
         if (matchedCourse) {
           const code = matchedCourse['Subject Code'];
-          const cleanSelected = ttSelectedSubject.replace(/BD$/, '').toUpperCase();
-          const cleanCourse = code.replace(/BD$/, '').toUpperCase();
-          if (ttSelectedSubject !== 'all' && cleanCourse !== cleanSelected && matchedCourse['Subject Code Full'] !== ttSelectedSubject) {
-            return;
-          }
 
           let sectionName = 'Common / General';
           let colorIdx = 2;
@@ -4322,9 +4821,6 @@ function renderTimetable() {
           });
         } else if (slot.text && slot.text.trim()) {
           // Render general term events in Master Timetable view
-          if (ttSelectedSubject && ttSelectedSubject !== 'all') {
-            return;
-          }
           let venue = '';
           if (textUpper.includes('(LCR01)') || textUpper.includes('(LCR 1)') || textUpper.includes('(LCR-01)') || textUpper.includes('LCR-01') || textUpper.includes('LCR01')) venue = 'LCR-01';
           else if (textUpper.includes('MCR-08') || textUpper.includes('MCR 08')) venue = 'MCR-08';
@@ -4370,6 +4866,8 @@ function renderTimetable() {
           slot.totalLectures = mTotals[key];
         }
       });
+      // Filter master termSchedules according to multi-subject & section filter
+      termSchedules = termSchedules.filter(s => isSlotMatchedBySubjectFilter(s));
     }
 
     if (ttIsTransposed) {
@@ -4457,7 +4955,11 @@ function renderTimetable() {
               const clickHandler = `onclick="openClassDetails('${clJsonStr}')"`;
               const blockTitle = cl.isSpecial ? `⚠️ ${cl.text}` : cl.courseName;
               const isSlotAbsent = cl.attendees.some(att => localStorage.getItem(`xlri_absent_${att.sid}_${cl.date}_${cl.slotIndex}`) === 'true');
-              const absentIndicator = isSlotAbsent ? `<span class="tt-absent-badge" title="Marked as Missed">❌</span>` : '';
+              const isSlotPast = isSlotInPast(cl.date, cl.time);
+          let absentIndicator = '';
+          if (isSlotAbsent) {
+            absentIndicator = isSlotPast ? `<span class="tt-absent-badge" title="Marked as Missed">❌</span>` : `<span class="tt-absent-badge" style="background: rgba(245, 158, 11, 0.2); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.4);" title="Planned Absence (Future)">🕒</span>`;
+          }
               
               cellHtml += `
                 <div class="tt-class-block ${cl.colorClass} ${isActive ? 'active' : ''}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}" ${clickHandler}>
@@ -4575,7 +5077,11 @@ function renderTimetable() {
               const clickHandler = `onclick="openClassDetails('${clJsonStr}')"`;
               const blockTitle = cl.isSpecial ? `⚠️ ${cl.text}` : cl.courseName;
               const isSlotAbsent = cl.attendees.some(att => localStorage.getItem(`xlri_absent_${att.sid}_${cl.date}_${cl.slotIndex}`) === 'true');
-              const absentIndicator = isSlotAbsent ? `<span class="tt-absent-badge" title="Marked as Missed">❌</span>` : '';
+              const isSlotPast = isSlotInPast(cl.date, cl.time);
+          let absentIndicator = '';
+          if (isSlotAbsent) {
+            absentIndicator = isSlotPast ? `<span class="tt-absent-badge" title="Marked as Missed">❌</span>` : `<span class="tt-absent-badge" style="background: rgba(245, 158, 11, 0.2); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.4);" title="Planned Absence (Future)">🕒</span>`;
+          }
               
               cellHtml += `
                 <div class="tt-class-block ${cl.colorClass} ${isActive ? 'active' : ''}" style="position:relative; flex:1; margin:0; min-height:0; display: flex; flex-direction: column; justify-content: space-between; ${blockPadding}" ${clickHandler}>
@@ -4634,65 +5140,56 @@ function renderTimetable() {
 
   const warningBannerHtml = getAttendanceWarningsHtml();
 
-  // Generate subject options HTML
-  const enrolledSubjects = new Set();
-  ttSIDs.forEach(sid => {
-    const stu = studentMap[sid];
-    if (stu) {
-      stu.records.forEach(r => {
-        if (String(r.Term) === String(currentSelectedTerm) && r['Subject Code']) {
-          enrolledSubjects.add(r['Subject Code']);
-        }
-      });
-    }
-  });
+  // Generate Multi-Subject Filter Dropdown HTML
+  const filterOptions = getSubjectFilterOptions();
+  const isAllSelected = ttSelectedSubjects.has('all');
+  const allLabel = ttSIDs.length > 0 ? 'All My Subjects' : 'All Subjects';
 
-  let subjectList = [];
-  if (ttSIDs.length > 0) {
-    subjectList = Array.from(enrolledSubjects).map(code => ({
-      code: code,
-      name: getSubjectName(code)
-    })).sort((a, b) => a.code.localeCompare(b.code));
-  } else {
-    const allTermSubjects = new Set();
-    RAW.forEach(r => {
-      if (String(r.Term) === String(currentSelectedTerm) && r['Subject Code']) {
-        allTermSubjects.add(r['Subject Code']);
-      }
-    });
-    subjectList = Array.from(allTermSubjects).map(code => ({
-      code: code,
-      name: getSubjectName(code)
-    })).sort((a, b) => a.code.localeCompare(b.code));
-  }
+  let optionsListHtml = `
+    <label class="tt-multiselect-item" data-search="${allLabel.toLowerCase()}" onclick="toggleSubjectSelection('all', event)">
+      <input type="checkbox" id="tt-sub-cb-all" ${isAllSelected ? 'checked' : ''} style="cursor: pointer; width: 15px; height: 15px; accent-color: var(--accent); flex-shrink: 0;" />
+      <span style="font-weight: 700; color: var(--text-primary); flex: 1;">${allLabel}</span>
+    </label>
+    <div style="height: 1px; background: var(--border); margin: 3px 0;"></div>
+  `;
 
-  let subjectOptionsHtml = '';
-  if (ttSIDs.length > 0) {
-    subjectOptionsHtml += `<option value="all" ${ttSelectedSubject === 'all' ? 'selected' : ''}>All My Subjects</option>`;
-    subjectOptionsHtml += subjectList.map(sub => {
-      return `<option value="${sub.code}" ${ttSelectedSubject === sub.code ? 'selected' : ''}>${sub.code} - ${sub.name}</option>`;
-    }).join('');
-  } else {
-    if (!ttShowAllSubjects) {
-      subjectOptionsHtml = `<option value="all">Select student to filter...</option>`;
-    } else {
-      subjectOptionsHtml += `<option value="all" ${ttSelectedSubject === 'all' ? 'selected' : ''}>All Subjects</option>`;
-      subjectOptionsHtml += subjectList.map(sub => {
-        return `<option value="${sub.code}" ${ttSelectedSubject === sub.code ? 'selected' : ''}>${sub.code} - ${sub.name}</option>`;
-      }).join('');
-    }
-  }
+  optionsListHtml += filterOptions.map(opt => {
+    const isChecked = isAllSelected || ttSelectedSubjects.has(opt.key);
+    const secBadge = opt.secLetter ? `<span style="font-size: 10px; font-weight: 800; background: var(--surface2); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; color: var(--text-secondary); margin-left: auto;">Sec ${opt.secLetter}</span>` : '';
+
+    return `
+      <label class="tt-multiselect-item" data-search="${opt.prefix.toLowerCase()} ${opt.name.toLowerCase()} ${opt.secLetter ? 'sec ' + opt.secLetter.toLowerCase() : ''}" onclick="toggleSubjectSelection('${opt.key}', event)">
+        <input type="checkbox" class="tt-sub-cb-item" data-key="${opt.key}" ${isChecked ? 'checked' : ''} style="cursor: pointer; width: 15px; height: 15px; accent-color: var(--accent); flex-shrink: 0;" />
+        <span style="font-weight: 700; font-size: 11px; padding: 1px 5px; border-radius: 4px; background: var(--surface2); color: var(--text-primary); margin-right: 4px;">${opt.prefix}</span>
+        <span style="font-size: 12px; color: var(--text-primary); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${opt.name}">${opt.name}</span>
+        ${secBadge}
+      </label>`;
+  }).join('');
 
   let subjectSelectHtml = '';
   if (ttSIDs.length > 0 || ttShowAllSubjects) {
     subjectSelectHtml = `
-      <div class="tt-subject-filter" style="display: inline-flex; align-items: center; gap: 6px;">
-        <label for="tt-subject-select" style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">Subject:</label>
-        <select class="tt-week-select" id="tt-subject-select" onchange="changeSubjectFilter(this.value)" style="min-width: 150px; padding: 6px 10px; font-size: 13px; border-radius: 8px;">
-          ${subjectOptionsHtml}
-        </select>
+      <div class="tt-subject-filter-wrap" id="tt-subject-filter-wrap">
+        <label style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">Subject:</label>
+        <button type="button" class="tt-multiselect-btn" id="tt-multiselect-btn" onclick="toggleSubjectDropdown(event)" title="Filter by one or more subjects / sections">
+          <span class="tt-multiselect-label" id="tt-multiselect-label">${getSubjectFilterSummaryLabel()}</span>
+          <span class="tt-multiselect-arrow">▾</span>
+        </button>
+        <div class="tt-multiselect-dropdown" id="tt-multiselect-dropdown" onclick="event.stopPropagation()">
+          <div class="tt-multiselect-header">
+            <div class="tt-multiselect-search-wrap">
+              <input type="text" id="tt-subject-search" placeholder="Search subjects..." oninput="filterSubjectDropdownItems(this.value)" />
+            </div>
+            <div class="tt-multiselect-actions">
+              <button type="button" class="tt-action-btn" onclick="selectAllSubjects(event)">✓ Select All</button>
+              <button type="button" class="tt-action-btn" onclick="clearAllSubjects(event)">✕ Clear All</button>
+            </div>
+          </div>
+          <div class="tt-multiselect-list" id="tt-multiselect-list">
+            ${optionsListHtml}
+          </div>
+        </div>
       </div>`;
-
   }
 
   container.innerHTML = `
@@ -4818,6 +5315,7 @@ makeAC('tt-inp', 'tt-list', sid => {
   }
   ttSIDs.push(sid);
   ttSID = ttSIDs[0] || null;
+  ttSelectedSubjects = new Set(['all']);
   ttSelectedSubject = 'all';
   ttShowAllSubjects = false;
   renderSelectedStudentChips();
