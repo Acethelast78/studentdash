@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "12:49 PM",
-  "last_synced_full": "12-Oct-2026 12:49 PM IST",
+  "last_synced_time": "11:21 PM",
+  "last_synced_full": "12-Oct-2026 11:21 PM IST",
   "total_sessions": 317,
   "data": [
     {
@@ -1835,8 +1835,8 @@
       "originalEndTime": "11:50:00",
       "remarks": null,
       "courseOfferFacultySectionId": "0ce62641-08ae-4f02-99fb-bf3857b2c9e1",
-      "startTime": "18:15:00",
-      "endTime": "19:45:00",
+      "startTime": "10:20:00",
+      "endTime": "11:50:00",
       "venue": {
         "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
         "name": "MCR 07",
@@ -6373,8 +6373,8 @@
       "originalEndTime": "13:40:00",
       "remarks": null,
       "courseOfferFacultySectionId": "e7a7d4c8-9041-4f17-997b-ed1b73bbadf8",
-      "startTime": "20:00:00",
-      "endTime": "21:30:00",
+      "startTime": "12:10:00",
+      "endTime": "13:40:00",
       "venue": {
         "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
         "name": "MCR 08",
@@ -9860,110 +9860,6 @@
       ]
     },
     {
-      "sessionId": "bde52a72-557f-4f01-b9a5-ef5acab570d0",
-      "classDate": "2026-10-17",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-10-12",
-      "originalStartTime": "18:15:00",
-      "originalEndTime": "19:45:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "d002c1cb-71d1-4aa5-ba19-7d6e11ddb7a8",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "5ac14397-8f36-4237-968e-745ef52bc295",
-        "courseName": "Demand and Business Forecasting",
-        "courseCode": "DBF"
-      },
-      "courseOfferId": "76968bf0-baea-492a-b90f-4fa29f24dad7",
-      "courseOfferCode": "DBFBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "c53a803b-afc7-4277-b6e8-661dfa63417f",
-        "prefix": "Dr.",
-        "userId": "dd653149-23f7-4cd6-b86b-45eb4d297470",
-        "firstName": "Amitava",
-        "middleName": null,
-        "lastName": "Mukherjee"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "f890f417-cf72-44d6-890d-1245115cfb3b",
-      "classDate": "2026-10-17",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-10-17",
-      "originalStartTime": "16:30:00",
-      "originalEndTime": "18:00:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "d002c1cb-71d1-4aa5-ba19-7d6e11ddb7a8",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "5ac14397-8f36-4237-968e-745ef52bc295",
-        "courseName": "Demand and Business Forecasting",
-        "courseCode": "DBF"
-      },
-      "courseOfferId": "76968bf0-baea-492a-b90f-4fa29f24dad7",
-      "courseOfferCode": "DBFBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "c53a803b-afc7-4277-b6e8-661dfa63417f",
-        "prefix": "Dr.",
-        "userId": "dd653149-23f7-4cd6-b86b-45eb4d297470",
-        "firstName": "Amitava",
-        "middleName": null,
-        "lastName": "Mukherjee"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "dd6cacd6-6cec-454c-a834-163cbb99df23",
       "classDate": "2026-10-17",
       "status": "rescheduled",
@@ -9998,6 +9894,110 @@
         "firstName": "Madhu",
         "middleName": null,
         "lastName": "Mandal"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "5c53838b-6486-48a6-b36f-a3625649cbb0",
+      "classDate": "2026-10-17",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "d002c1cb-71d1-4aa5-ba19-7d6e11ddb7a8",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "5ac14397-8f36-4237-968e-745ef52bc295",
+        "courseName": "Demand and Business Forecasting",
+        "courseCode": "DBF"
+      },
+      "courseOfferId": "76968bf0-baea-492a-b90f-4fa29f24dad7",
+      "courseOfferCode": "DBFBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "c53a803b-afc7-4277-b6e8-661dfa63417f",
+        "prefix": "Dr.",
+        "userId": "dd653149-23f7-4cd6-b86b-45eb4d297470",
+        "firstName": "Amitava",
+        "middleName": null,
+        "lastName": "Mukherjee"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "3682916c-333c-4fe6-89c3-451330b5f139",
+      "classDate": "2026-10-17",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "d002c1cb-71d1-4aa5-ba19-7d6e11ddb7a8",
+      "startTime": "18:15:00",
+      "endTime": "19:45:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "5ac14397-8f36-4237-968e-745ef52bc295",
+        "courseName": "Demand and Business Forecasting",
+        "courseCode": "DBF"
+      },
+      "courseOfferId": "76968bf0-baea-492a-b90f-4fa29f24dad7",
+      "courseOfferCode": "DBFBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "c53a803b-afc7-4277-b6e8-661dfa63417f",
+        "prefix": "Dr.",
+        "userId": "dd653149-23f7-4cd6-b86b-45eb4d297470",
+        "firstName": "Amitava",
+        "middleName": null,
+        "lastName": "Mukherjee"
       },
       "sectionKind": "elective",
       "section": {
