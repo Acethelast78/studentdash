@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "10:33 PM",
-  "last_synced_full": "23-Oct-2026 10:33 PM IST",
+  "last_synced_time": "11:18 AM",
+  "last_synced_full": "24-Oct-2026 11:18 AM IST",
   "total_sessions": 324,
   "data": [
     {
@@ -2604,6 +2604,58 @@
       ]
     },
     {
+      "sessionId": "6988f202-53e9-4419-b13d-cbd14e7a9ab0",
+      "classDate": "2026-10-31",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-06",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "0ce62641-08ae-4f02-99fb-bf3857b2c9e1",
+      "startTime": "18:15:00",
+      "endTime": "19:45:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
+        "courseName": "Sales and Distribution Management",
+        "courseCode": "SDM"
+      },
+      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
+      "courseOfferCode": "SDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
+        "prefix": "Dr.",
+        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
+        "firstName": "Sanjeev",
+        "middleName": null,
+        "lastName": "Varshney"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
       "sessionId": "8568d47c-2373-4e27-a963-417f5f519af0",
       "classDate": "2026-11-02",
       "status": "scheduled",
@@ -3106,58 +3158,6 @@
         "firstName": "Faisal Mohammad",
         "middleName": null,
         "lastName": "Ahsan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "6988f202-53e9-4419-b13d-cbd14e7a9ab0",
-      "classDate": "2026-11-06",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "0ce62641-08ae-4f02-99fb-bf3857b2c9e1",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
-        "courseName": "Sales and Distribution Management",
-        "courseCode": "SDM"
-      },
-      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
-      "courseOfferCode": "SDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
-        "prefix": "Dr.",
-        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
-        "firstName": "Sanjeev",
-        "middleName": null,
-        "lastName": "Varshney"
       },
       "sectionKind": "elective",
       "section": {
@@ -7210,6 +7210,58 @@
       ]
     },
     {
+      "sessionId": "0cfe72d2-7bc0-4aec-912b-8babce32297a",
+      "classDate": "2026-10-31",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-06",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "e7a7d4c8-9041-4f17-997b-ed1b73bbadf8",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
+        "courseName": "Sales and Distribution Management",
+        "courseCode": "SDM"
+      },
+      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
+      "courseOfferCode": "SDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
+        "prefix": "Dr.",
+        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
+        "firstName": "Sanjeev",
+        "middleName": null,
+        "lastName": "Varshney"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+        "sectionName": "F",
+        "sectionCode": "BD25-5-F"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+          "sectionName": "F",
+          "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
       "sessionId": "0586c91d-38ec-421c-86d0-11de7e852153",
       "classDate": "2026-11-02",
       "status": "scheduled",
@@ -7639,58 +7691,6 @@
       "courseOfferFacultySectionId": "e7a7d4c8-9041-4f17-997b-ed1b73bbadf8",
       "startTime": "16:30:00",
       "endTime": "18:00:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
-        "courseName": "Sales and Distribution Management",
-        "courseCode": "SDM"
-      },
-      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
-      "courseOfferCode": "SDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
-        "prefix": "Dr.",
-        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
-        "firstName": "Sanjeev",
-        "middleName": null,
-        "lastName": "Varshney"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
-        }
-      ]
-    },
-    {
-      "sessionId": "0cfe72d2-7bc0-4aec-912b-8babce32297a",
-      "classDate": "2026-11-06",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "e7a7d4c8-9041-4f17-997b-ed1b73bbadf8",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
       "venue": {
         "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
         "name": "MCR 08",
@@ -15040,6 +15040,110 @@
       ]
     },
     {
+      "sessionId": "c1e015af-8fba-4554-9710-75876e82e4b0",
+      "classDate": "2026-11-12",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-16",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
+        "courseName": "Omnichannel Retailing",
+        "courseCode": "OMCR"
+      },
+      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
+      "courseOfferCode": "OMCRBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
+        "prefix": "Dr.",
+        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
+        "firstName": "Smitu",
+        "middleName": null,
+        "lastName": "Malhotra"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "f82351b3-06c3-4231-a5e3-771fee08e224",
+      "classDate": "2026-11-12",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-17",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
+        "courseName": "Omnichannel Retailing",
+        "courseCode": "OMCR"
+      },
+      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
+      "courseOfferCode": "OMCRBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
+        "prefix": "Dr.",
+        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
+        "firstName": "Smitu",
+        "middleName": null,
+        "lastName": "Malhotra"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
       "sessionId": "e38c21e1-40f6-4b4b-adcd-9036bd5ede7b",
       "classDate": "2026-11-13",
       "status": "scheduled",
@@ -16184,58 +16288,6 @@
       ]
     },
     {
-      "sessionId": "c1e015af-8fba-4554-9710-75876e82e4b0",
-      "classDate": "2026-11-23",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-16",
-      "originalStartTime": "10:20:00",
-      "originalEndTime": "11:50:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
-        "courseName": "Omnichannel Retailing",
-        "courseCode": "OMCR"
-      },
-      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
-      "courseOfferCode": "OMCRBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
-        "prefix": "Dr.",
-        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
-        "firstName": "Smitu",
-        "middleName": null,
-        "lastName": "Malhotra"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "e9c92078-444c-4228-a725-f13a8d7dc568",
       "classDate": "2026-11-23",
       "status": "scheduled",
@@ -16374,58 +16426,6 @@
         "firstName": "Indrajit",
         "middleName": null,
         "lastName": "Mukherjee"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "f82351b3-06c3-4231-a5e3-771fee08e224",
-      "classDate": "2026-11-25",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-17",
-      "originalStartTime": "16:30:00",
-      "originalEndTime": "18:00:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "6050c312-2073-4a90-85e7-3d6a89c7013b",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "58b3b44d-099a-4223-98a8-d1fa53caf9bb",
-        "courseName": "Omnichannel Retailing",
-        "courseCode": "OMCR"
-      },
-      "courseOfferId": "578f9735-bd1a-4c8e-b7a9-17fe9d2d10aa",
-      "courseOfferCode": "OMCRBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "64ea8e69-041d-4a0b-a957-c8f193377fbc",
-        "prefix": "Dr.",
-        "userId": "0288fc32-ddeb-40c8-80f2-2e811acc51ba",
-        "firstName": "Smitu",
-        "middleName": null,
-        "lastName": "Malhotra"
       },
       "sectionKind": "elective",
       "section": {
