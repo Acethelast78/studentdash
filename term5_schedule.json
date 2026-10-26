@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "09:41 PM",
-  "last_synced_full": "25-Oct-2026 09:41 PM IST",
-  "total_sessions": 324,
+  "last_synced_time": "11:38 AM",
+  "last_synced_full": "26-Oct-2026 11:38 AM IST",
+  "total_sessions": 325,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -11240,6 +11240,58 @@
           "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
           "sectionName": "F",
           "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
+      "sessionId": "53f1db30-ea6d-40da-9280-67da78db1710",
+      "classDate": "2026-11-17",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
+        "courseName": "Brand Management",
+        "courseCode": "BDM"
+      },
+      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
+      "courseOfferCode": "BDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
+        "prefix": "Dr",
+        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
+        "firstName": "Madhu",
+        "middleName": null,
+        "lastName": "Mandal"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
         }
       ]
     },
