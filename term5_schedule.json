@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "11:44 AM",
-  "last_synced_full": "27-Oct-2026 11:44 AM IST",
-  "total_sessions": 325,
+  "last_synced_time": "05:44 PM",
+  "last_synced_full": "27-Oct-2026 05:44 PM IST",
+  "total_sessions": 331,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -2448,6 +2448,58 @@
       ]
     },
     {
+      "sessionId": "a07e62a6-3a67-4e7f-b658-4bfcbcccf1d6",
+      "classDate": "2026-10-29",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-03",
+      "originalStartTime": "14:45:00",
+      "originalEndTime": "16:15:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
+      "startTime": "12:10:00",
+      "endTime": "13:40:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
+        "courseName": "Gales of Creative Destruction - Managing Innovation",
+        "courseCode": "GCD"
+      },
+      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
+      "courseOfferCode": "GCDBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
+        "prefix": "Dr",
+        "userId": "122fe1ed-2585-40aa-9825-908760882057",
+        "firstName": "Faisal Mohammad",
+        "middleName": null,
+        "lastName": "Ahsan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
       "sessionId": "9c9f8eeb-a8b8-45ed-912d-39a727d6de83",
       "classDate": "2026-10-30",
       "status": "scheduled",
@@ -2846,58 +2898,6 @@
         "firstName": "Mohit",
         "middleName": null,
         "lastName": "Malhan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "a07e62a6-3a67-4e7f-b658-4bfcbcccf1d6",
-      "classDate": "2026-11-03",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
-        "courseName": "Gales of Creative Destruction - Managing Innovation",
-        "courseCode": "GCD"
-      },
-      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
-      "courseOfferCode": "GCDBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
-        "prefix": "Dr",
-        "userId": "122fe1ed-2585-40aa-9825-908760882057",
-        "firstName": "Faisal Mohammad",
-        "middleName": null,
-        "lastName": "Ahsan"
       },
       "sectionKind": "elective",
       "section": {
@@ -5354,6 +5354,108 @@
         "capacity": 276
       },
       "classDate": "2026-10-31"
+    },
+    {
+      "id": "bd0b1116-29b6-44c6-af04-b9cb63963477",
+      "name": "GCD Quiz",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-02",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-27T07:02:29.365Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-27T07:02:29.365Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-02"
+    },
+    {
+      "id": "dc80aec1-8320-4039-860d-9196bf6863cc",
+      "name": "PCGM Mid term ",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-03",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-27T07:01:07.147Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-27T07:01:07.147Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-03"
+    },
+    {
+      "id": "26c232fd-3d8f-4d20-9545-4a33003f985c",
+      "name": "PCGM Quiz",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-18",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-27T07:01:45.344Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-27T07:01:45.344Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-18"
     },
     {
       "id": "6c54589c-1c49-4cdc-8698-b1937ef339c8",
@@ -8610,6 +8712,108 @@
       "classDate": "2026-10-31"
     },
     {
+      "id": "f8d72573-027e-4e3e-a0d9-f30c72a481d1",
+      "name": "GCD Quiz",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-02",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-27T07:02:29.365Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-27T07:02:29.365Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-02"
+    },
+    {
+      "id": "d9236bf6-1514-400e-8a8b-ed7292db2fde",
+      "name": "PCGM Mid term ",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-03",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-27T07:01:07.147Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-27T07:01:07.147Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-03"
+    },
+    {
+      "id": "1cce7cc5-9992-4281-832b-6be3fa170aaf",
+      "name": "PCGM Quiz",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-18",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-10-27T07:01:45.344Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-10-27T07:01:45.344Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-18"
+    },
+    {
       "id": "fab97739-6b02-4cc2-8ed7-70e6515bd9ce",
       "name": "DBF Quiz 3",
       "description": null,
@@ -10412,58 +10616,6 @@
       ]
     },
     {
-      "sessionId": "7b1fd113-6c26-4c5b-b47e-75342fc80658",
-      "classDate": "2026-10-27",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
-        "courseName": "Brand Management",
-        "courseCode": "BDM"
-      },
-      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
-      "courseOfferCode": "BDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
-        "prefix": "Dr",
-        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
-        "firstName": "Madhu",
-        "middleName": null,
-        "lastName": "Mandal"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "d6348819-fdd8-4602-8474-cfe668a01e29",
       "classDate": "2026-10-27",
       "status": "scheduled",
@@ -10512,6 +10664,110 @@
           "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
           "sectionName": "EF",
           "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "7b1fd113-6c26-4c5b-b47e-75342fc80658",
+      "classDate": "2026-10-27",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-10-27",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
+        "courseName": "Brand Management",
+        "courseCode": "BDM"
+      },
+      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
+      "courseOfferCode": "BDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
+        "prefix": "Dr",
+        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
+        "firstName": "Madhu",
+        "middleName": null,
+        "lastName": "Mandal"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "3b222a2e-bd51-43d7-9ffd-cc044f46597e",
+      "classDate": "2026-10-29",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-03",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
+        "courseName": "Gales of Creative Destruction - Managing Innovation",
+        "courseCode": "GCD"
+      },
+      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
+      "courseOfferCode": "GCDBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
+        "prefix": "Dr",
+        "userId": "122fe1ed-2585-40aa-9825-908760882057",
+        "firstName": "Faisal Mohammad",
+        "middleName": null,
+        "lastName": "Ahsan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+        "sectionName": "F",
+        "sectionCode": "BD25-5-F"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+          "sectionName": "F",
+          "sectionCode": "BD25-5-F"
         }
       ]
     },
@@ -10720,58 +10976,6 @@
           "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
           "sectionName": "EF",
           "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "3b222a2e-bd51-43d7-9ffd-cc044f46597e",
-      "classDate": "2026-11-03",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
-        "courseName": "Gales of Creative Destruction - Managing Innovation",
-        "courseCode": "GCD"
-      },
-      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
-      "courseOfferCode": "GCDBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
-        "prefix": "Dr",
-        "userId": "122fe1ed-2585-40aa-9825-908760882057",
-        "firstName": "Faisal Mohammad",
-        "middleName": null,
-        "lastName": "Ahsan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
         }
       ]
     },
