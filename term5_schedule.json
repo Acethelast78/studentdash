@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "01:09 AM",
-  "last_synced_full": "30-Oct-2026 01:09 AM IST",
+  "last_synced_time": "12:33 PM",
+  "last_synced_full": "30-Oct-2026 12:33 PM IST",
   "total_sessions": 331,
   "data": [
     {
@@ -2500,58 +2500,6 @@
       ]
     },
     {
-      "sessionId": "9c9f8eeb-a8b8-45ed-912d-39a727d6de83",
-      "classDate": "2026-10-30",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "3e35edd2-f4dc-4ebf-8298-020e48b71242",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
-        "courseName": "International Business Models for the Circular Economy",
-        "courseCode": "IMCE"
-      },
-      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
-      "courseOfferCode": "IMCEBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
-        "prefix": "Dr.",
-        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
-        "firstName": "Sanchayan",
-        "middleName": null,
-        "lastName": "Nath"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
       "sessionId": "3082c3e0-f59e-476c-ad09-b7453ec237cd",
       "classDate": "2026-10-30",
       "status": "scheduled",
@@ -2604,7 +2552,7 @@
       ]
     },
     {
-      "sessionId": "5e6f17b9-227a-46ab-9b59-98d996acc4b0",
+      "sessionId": "973e019f-e960-47dc-8ed1-c10ba4f095df",
       "classDate": "2026-10-30",
       "status": "scheduled",
       "isCancelled": false,
@@ -2615,12 +2563,12 @@
       "originalEndTime": null,
       "remarks": null,
       "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
       "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
         "building": "Academic Building"
       },
       "course": {
@@ -2638,6 +2586,58 @@
         "firstName": "Faisal Mohammad",
         "middleName": null,
         "lastName": "Ahsan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
+      "sessionId": "9c9f8eeb-a8b8-45ed-912d-39a727d6de83",
+      "classDate": "2026-10-30",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-10-30",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "3e35edd2-f4dc-4ebf-8298-020e48b71242",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
+        "courseName": "International Business Models for the Circular Economy",
+        "courseCode": "IMCE"
+      },
+      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
+      "courseOfferCode": "IMCEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
+        "prefix": "Dr.",
+        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
+        "firstName": "Sanchayan",
+        "middleName": null,
+        "lastName": "Nath"
       },
       "sectionKind": "elective",
       "section": {
@@ -2846,6 +2846,58 @@
         "firstName": "Mohit",
         "middleName": null,
         "lastName": "Malhan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
+      "sessionId": "f54b7252-93e2-4b5e-9c1b-20a6928fac32",
+      "classDate": "2026-11-03",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-09",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "3e35edd2-f4dc-4ebf-8298-020e48b71242",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
+        "courseName": "International Business Models for the Circular Economy",
+        "courseCode": "IMCE"
+      },
+      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
+      "courseOfferCode": "IMCEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
+        "prefix": "Dr.",
+        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
+        "firstName": "Sanchayan",
+        "middleName": null,
+        "lastName": "Nath"
       },
       "sectionKind": "elective",
       "section": {
@@ -3314,58 +3366,6 @@
         "firstName": "Faisal Mohammad",
         "middleName": null,
         "lastName": "Ahsan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "f54b7252-93e2-4b5e-9c1b-20a6928fac32",
-      "classDate": "2026-11-09",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-09",
-      "originalStartTime": "10:20:00",
-      "originalEndTime": "11:50:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "3e35edd2-f4dc-4ebf-8298-020e48b71242",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
-        "courseName": "International Business Models for the Circular Economy",
-        "courseCode": "IMCE"
-      },
-      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
-      "courseOfferCode": "IMCEBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
-        "prefix": "Dr.",
-        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
-        "firstName": "Sanchayan",
-        "middleName": null,
-        "lastName": "Nath"
       },
       "sectionKind": "elective",
       "section": {
@@ -5394,7 +5394,7 @@
       "name": "PCGM Mid term ",
       "description": null,
       "type": "Academic",
-      "date": "2026-11-03",
+      "date": "2026-11-04",
       "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
       "startTime": "08:30:00",
       "endTime": "10:00:00",
@@ -5403,8 +5403,8 @@
       "isDeleted": false,
       "createdAt": "2026-10-27T07:01:07.147Z",
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-10-27T07:01:07.147Z",
-      "updatedBy": null,
+      "updatedAt": "2026-10-30T04:32:07.238Z",
+      "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "batchSection": {
         "sectionName": "E",
         "sectionCode": "BD25-E",
@@ -5421,7 +5421,7 @@
         "floor": "2nd",
         "capacity": 276
       },
-      "classDate": "2026-11-03"
+      "classDate": "2026-11-04"
     },
     {
       "id": "26c232fd-3d8f-4d20-9545-4a33003f985c",
@@ -7520,6 +7520,58 @@
       ]
     },
     {
+      "sessionId": "5a84b998-30d7-4f2c-8528-3765e66e43a7",
+      "classDate": "2026-11-03",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-09",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "5bb1a774-9834-4049-976a-3d4398b4cf2b",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
+        "courseName": "International Business Models for the Circular Economy",
+        "courseCode": "IMCE"
+      },
+      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
+      "courseOfferCode": "IMCEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
+        "prefix": "Dr.",
+        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
+        "firstName": "Sanchayan",
+        "middleName": null,
+        "lastName": "Nath"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+        "sectionName": "F",
+        "sectionCode": "BD25-5-F"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+          "sectionName": "F",
+          "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
       "sessionId": "0adff15c-5660-45dc-b3db-7c347a1afecc",
       "classDate": "2026-11-04",
       "status": "scheduled",
@@ -7932,58 +7984,6 @@
           "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
           "sectionName": "EF",
           "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "5a84b998-30d7-4f2c-8528-3765e66e43a7",
-      "classDate": "2026-11-09",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-09",
-      "originalStartTime": "12:10:00",
-      "originalEndTime": "13:40:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "5bb1a774-9834-4049-976a-3d4398b4cf2b",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
-        "courseName": "International Business Models for the Circular Economy",
-        "courseCode": "IMCE"
-      },
-      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
-      "courseOfferCode": "IMCEBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
-        "prefix": "Dr.",
-        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
-        "firstName": "Sanchayan",
-        "middleName": null,
-        "lastName": "Nath"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
         }
       ]
     },
@@ -8750,7 +8750,7 @@
       "name": "PCGM Mid term ",
       "description": null,
       "type": "Academic",
-      "date": "2026-11-03",
+      "date": "2026-11-04",
       "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
       "startTime": "08:30:00",
       "endTime": "10:00:00",
@@ -8759,8 +8759,8 @@
       "isDeleted": false,
       "createdAt": "2026-10-27T07:01:07.147Z",
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-10-27T07:01:07.147Z",
-      "updatedBy": null,
+      "updatedAt": "2026-10-30T04:32:21.743Z",
+      "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "batchSection": {
         "sectionName": "F",
         "sectionCode": "BD25-F",
@@ -8777,7 +8777,7 @@
         "floor": "2nd",
         "capacity": 276
       },
-      "classDate": "2026-11-03"
+      "classDate": "2026-11-04"
     },
     {
       "id": "1cce7cc5-9992-4281-832b-6be3fa170aaf",
@@ -10876,7 +10876,7 @@
       ]
     },
     {
-      "sessionId": "53459edf-afd2-45af-9b1e-60a61e7b28f8",
+      "sessionId": "0cbed531-c1a0-4580-8ddd-9c39fe48c1b9",
       "classDate": "2026-10-30",
       "status": "scheduled",
       "isCancelled": false,
@@ -10887,8 +10887,8 @@
       "originalEndTime": null,
       "remarks": null,
       "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
       "venue": {
         "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
         "name": "MCR 08",
