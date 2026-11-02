@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "01:08 PM",
-  "last_synced_full": "02-Nov-2026 01:08 PM IST",
+  "last_synced_time": "11:47 PM",
+  "last_synced_full": "02-Nov-2026 11:47 PM IST",
   "total_sessions": 333,
   "data": [
     {
@@ -3020,58 +3020,6 @@
       ]
     },
     {
-      "sessionId": "30813dd5-5358-456c-93cd-f5d0a9b17859",
-      "classDate": "2026-11-04",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "0ce62641-08ae-4f02-99fb-bf3857b2c9e1",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
-        "courseName": "Sales and Distribution Management",
-        "courseCode": "SDM"
-      },
-      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
-      "courseOfferCode": "SDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
-        "prefix": "Dr.",
-        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
-        "firstName": "Sanjeev",
-        "middleName": null,
-        "lastName": "Varshney"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
       "sessionId": "dd50c3d8-7b46-48a0-8527-7ccf070e1ac5",
       "classDate": "2026-11-05",
       "status": "scheduled",
@@ -3470,6 +3418,58 @@
         "firstName": "Faisal Mohammad",
         "middleName": null,
         "lastName": "Ahsan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
+      "sessionId": "30813dd5-5358-456c-93cd-f5d0a9b17859",
+      "classDate": "2026-11-10",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-04",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "0ce62641-08ae-4f02-99fb-bf3857b2c9e1",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
+        "courseName": "Sales and Distribution Management",
+        "courseCode": "SDM"
+      },
+      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
+      "courseOfferCode": "SDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
+        "prefix": "Dr.",
+        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
+        "firstName": "Sanjeev",
+        "middleName": null,
+        "lastName": "Varshney"
       },
       "sectionKind": "elective",
       "section": {
@@ -7606,58 +7606,6 @@
       ]
     },
     {
-      "sessionId": "0adff15c-5660-45dc-b3db-7c347a1afecc",
-      "classDate": "2026-11-04",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "e7a7d4c8-9041-4f17-997b-ed1b73bbadf8",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
-        "courseName": "Sales and Distribution Management",
-        "courseCode": "SDM"
-      },
-      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
-      "courseOfferCode": "SDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
-        "prefix": "Dr.",
-        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
-        "firstName": "Sanjeev",
-        "middleName": null,
-        "lastName": "Varshney"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
-        }
-      ]
-    },
-    {
       "sessionId": "43d4343e-47c2-4b0c-a62e-a9b314e2491e",
       "classDate": "2026-11-04",
       "status": "scheduled",
@@ -8056,6 +8004,58 @@
         "firstName": "Sanchayan",
         "middleName": null,
         "lastName": "Nath"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+        "sectionName": "F",
+        "sectionCode": "BD25-5-F"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+          "sectionName": "F",
+          "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
+      "sessionId": "0adff15c-5660-45dc-b3db-7c347a1afecc",
+      "classDate": "2026-11-10",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-04",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "e7a7d4c8-9041-4f17-997b-ed1b73bbadf8",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "070ca947-5526-4f0e-b3ea-027b57d029a8",
+        "courseName": "Sales and Distribution Management",
+        "courseCode": "SDM"
+      },
+      "courseOfferId": "56813ab4-97da-4a20-8070-708410e276a7",
+      "courseOfferCode": "SDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "f0cbc735-8daa-48b3-9c40-76baeff3e4bf",
+        "prefix": "Dr.",
+        "userId": "00155104-966d-42b2-823d-128aa19fa0ed",
+        "firstName": "Sanjeev",
+        "middleName": null,
+        "lastName": "Varshney"
       },
       "sectionKind": "elective",
       "section": {
