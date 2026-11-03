@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "01:23 PM",
-  "last_synced_full": "03-Nov-2026 01:23 PM IST",
+  "last_synced_time": "09:42 PM",
+  "last_synced_full": "03-Nov-2026 09:42 PM IST",
   "total_sessions": 333,
   "data": [
     {
@@ -11308,110 +11308,6 @@
       ]
     },
     {
-      "sessionId": "cfd31f0a-d5c5-4cb8-9c95-ad8321db7715",
-      "classDate": "2026-11-12",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
-        "courseName": "Brand Management",
-        "courseCode": "BDM"
-      },
-      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
-      "courseOfferCode": "BDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
-        "prefix": "Dr",
-        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
-        "firstName": "Madhu",
-        "middleName": null,
-        "lastName": "Mandal"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "5e597337-799c-41f3-bec1-582ee66695d2",
-      "classDate": "2026-11-12",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
-      "startTime": "18:15:00",
-      "endTime": "19:45:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
-        "courseName": "Brand Management",
-        "courseCode": "BDM"
-      },
-      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
-      "courseOfferCode": "BDMBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
-        "prefix": "Dr",
-        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
-        "firstName": "Madhu",
-        "middleName": null,
-        "lastName": "Mandal"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "e2dc5892-d0bd-411c-84a6-776ac4649401",
       "classDate": "2026-11-13",
       "status": "scheduled",
@@ -11529,6 +11425,110 @@
       "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
       "startTime": "16:30:00",
       "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
+        "courseName": "Brand Management",
+        "courseCode": "BDM"
+      },
+      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
+      "courseOfferCode": "BDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
+        "prefix": "Dr",
+        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
+        "firstName": "Madhu",
+        "middleName": null,
+        "lastName": "Mandal"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "5e597337-799c-41f3-bec1-582ee66695d2",
+      "classDate": "2026-11-17",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-12",
+      "originalStartTime": "18:15:00",
+      "originalEndTime": "19:45:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
+      "startTime": "18:15:00",
+      "endTime": "19:45:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "16527577-9d8d-41dc-992f-15a172d9d827",
+        "courseName": "Brand Management",
+        "courseCode": "BDM"
+      },
+      "courseOfferId": "12b13012-6276-4e02-9c85-db14c0834978",
+      "courseOfferCode": "BDMBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "7b75faa5-a1ba-4c73-abc4-f5a778d999b0",
+        "prefix": "Dr",
+        "userId": "c3b9a2d2-61c5-4d65-aa62-160b65de5a7c",
+        "firstName": "Madhu",
+        "middleName": null,
+        "lastName": "Mandal"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "cfd31f0a-d5c5-4cb8-9c95-ad8321db7715",
+      "classDate": "2026-11-18",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-12",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "0aacc1da-978d-4b7b-8401-d89ec00c057f",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
       "venue": {
         "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
         "name": "MCR 07",
