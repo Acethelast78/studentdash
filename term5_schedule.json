@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "09:42 PM",
-  "last_synced_full": "03-Nov-2026 09:42 PM IST",
-  "total_sessions": 333,
+  "last_synced_time": "12:58 PM",
+  "last_synced_full": "04-Nov-2026 12:58 PM IST",
+  "total_sessions": 335,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -5426,7 +5426,7 @@
     {
       "id": "68304e3b-1f7b-4723-a479-85cb5ebf94fb",
       "name": "MST Quiz 1",
-      "description": null,
+      "description": "9:30 am",
       "type": "Academic",
       "date": "2026-11-05",
       "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
@@ -5437,7 +5437,7 @@
       "isDeleted": false,
       "createdAt": "2026-10-31T03:24:32.469Z",
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-11-02T06:15:19.862Z",
+      "updatedAt": "2026-11-04T06:36:07.210Z",
       "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "batchSection": {
         "sectionName": "E",
@@ -5456,6 +5456,40 @@
         "capacity": 276
       },
       "classDate": "2026-11-05"
+    },
+    {
+      "id": "9523a5ca-761f-425c-94c0-38ec30b65393",
+      "name": "B2B Quiz 1",
+      "description": "10:30 am",
+      "type": "Academic",
+      "date": "2026-11-16",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "10:20:00",
+      "endTime": "11:50:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-04T03:42:59.269Z",
+      "createdBy": "4a184733-f4f8-435d-a460-b140b51af385",
+      "updatedAt": "2026-11-04T03:42:59.269Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-16"
     },
     {
       "id": "26c232fd-3d8f-4d20-9545-4a33003f985c",
@@ -8816,7 +8850,7 @@
     {
       "id": "bf546af7-5a20-4596-ac97-261b21d34ccd",
       "name": "MST Quiz 1",
-      "description": null,
+      "description": "9:30 am",
       "type": "Academic",
       "date": "2026-11-05",
       "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
@@ -8827,7 +8861,7 @@
       "isDeleted": false,
       "createdAt": "2026-10-31T03:24:32.469Z",
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-11-02T06:15:04.281Z",
+      "updatedAt": "2026-11-04T06:36:30.689Z",
       "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "batchSection": {
         "sectionName": "F",
@@ -8846,6 +8880,40 @@
         "capacity": 276
       },
       "classDate": "2026-11-05"
+    },
+    {
+      "id": "500d6216-1fa5-4922-b1d8-2e31d1cb1711",
+      "name": "B2B Quiz 1",
+      "description": "10:30 am",
+      "type": "Academic",
+      "date": "2026-11-16",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "10:20:00",
+      "endTime": "11:50:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-04T03:42:59.269Z",
+      "createdBy": "4a184733-f4f8-435d-a460-b140b51af385",
+      "updatedAt": "2026-11-04T03:42:59.269Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-16"
     },
     {
       "id": "1cce7cc5-9992-4281-832b-6be3fa170aaf",
