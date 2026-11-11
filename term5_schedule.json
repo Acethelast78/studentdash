@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "01:13 PM",
-  "last_synced_full": "11-Nov-2026 01:13 PM IST",
-  "total_sessions": 341,
+  "last_synced_time": "09:37 PM",
+  "last_synced_full": "11-Nov-2026 09:37 PM IST",
+  "total_sessions": 345,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -13069,6 +13069,214 @@
       "courseOfferFacultySectionId": "9c60a5bc-35ad-4a65-ba07-478943f36fa2",
       "startTime": "08:30:00",
       "endTime": "10:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "7d3ca16a-5b3e-4a57-9917-2bb609ca346c",
+        "courseName": "Venture Capital & Private Equity",
+        "courseCode": "VCPE"
+      },
+      "courseOfferId": "990b232d-73c5-4e07-91f6-4fc216bfddf9",
+      "courseOfferCode": "VCPEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "eaaf12fa-dca6-45db-9031-224e88927baa",
+        "prefix": "Mr",
+        "userId": "30cccc28-36cc-4d31-b3b7-641ee68ada52",
+        "firstName": "Venkatesh",
+        "middleName": null,
+        "lastName": "Bangaruswamy"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "021767e8-4e53-4288-ac65-5fc99649c3c7",
+      "classDate": "2026-11-25",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "9c60a5bc-35ad-4a65-ba07-478943f36fa2",
+      "startTime": "18:15:00",
+      "endTime": "19:45:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "7d3ca16a-5b3e-4a57-9917-2bb609ca346c",
+        "courseName": "Venture Capital & Private Equity",
+        "courseCode": "VCPE"
+      },
+      "courseOfferId": "990b232d-73c5-4e07-91f6-4fc216bfddf9",
+      "courseOfferCode": "VCPEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "eaaf12fa-dca6-45db-9031-224e88927baa",
+        "prefix": "Mr",
+        "userId": "30cccc28-36cc-4d31-b3b7-641ee68ada52",
+        "firstName": "Venkatesh",
+        "middleName": null,
+        "lastName": "Bangaruswamy"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "7cfbdabe-9eb7-4a81-b36c-9ac73687204f",
+      "classDate": "2026-11-25",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "9c60a5bc-35ad-4a65-ba07-478943f36fa2",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "7d3ca16a-5b3e-4a57-9917-2bb609ca346c",
+        "courseName": "Venture Capital & Private Equity",
+        "courseCode": "VCPE"
+      },
+      "courseOfferId": "990b232d-73c5-4e07-91f6-4fc216bfddf9",
+      "courseOfferCode": "VCPEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "eaaf12fa-dca6-45db-9031-224e88927baa",
+        "prefix": "Mr",
+        "userId": "30cccc28-36cc-4d31-b3b7-641ee68ada52",
+        "firstName": "Venkatesh",
+        "middleName": null,
+        "lastName": "Bangaruswamy"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "37725384-39ca-41d1-b0d8-a6f83ed9833f",
+      "classDate": "2026-11-26",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "9c60a5bc-35ad-4a65-ba07-478943f36fa2",
+      "startTime": "10:20:00",
+      "endTime": "11:50:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "7d3ca16a-5b3e-4a57-9917-2bb609ca346c",
+        "courseName": "Venture Capital & Private Equity",
+        "courseCode": "VCPE"
+      },
+      "courseOfferId": "990b232d-73c5-4e07-91f6-4fc216bfddf9",
+      "courseOfferCode": "VCPEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "eaaf12fa-dca6-45db-9031-224e88927baa",
+        "prefix": "Mr",
+        "userId": "30cccc28-36cc-4d31-b3b7-641ee68ada52",
+        "firstName": "Venkatesh",
+        "middleName": null,
+        "lastName": "Bangaruswamy"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "851a4909-4604-4cdc-b51b-fa88f03e83e0",
+      "classDate": "2026-11-26",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "9c60a5bc-35ad-4a65-ba07-478943f36fa2",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
       "venue": {
         "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
         "name": "MCR 07",
