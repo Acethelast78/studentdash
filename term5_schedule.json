@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "09:46 PM",
-  "last_synced_full": "13-Nov-2026 09:46 PM IST",
-  "total_sessions": 347,
+  "last_synced_time": "01:05 PM",
+  "last_synced_full": "14-Nov-2026 01:05 PM IST",
+  "total_sessions": 349,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -5578,6 +5578,40 @@
       "classDate": "2026-11-16"
     },
     {
+      "id": "7bc211e3-32cf-4412-85f4-6c2fb53bed2a",
+      "name": "FME Quiz ",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-17",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-14T03:30:59.171Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-11-14T03:30:59.171Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-17"
+    },
+    {
       "id": "26c232fd-3d8f-4d20-9545-4a33003f985c",
       "name": "PCGM Quiz",
       "description": null,
@@ -9172,6 +9206,40 @@
         "capacity": 276
       },
       "classDate": "2026-11-16"
+    },
+    {
+      "id": "e2eaa363-76e7-4561-bac4-e6b81ea7c1df",
+      "name": "FME Quiz ",
+      "description": null,
+      "type": "Academic",
+      "date": "2026-11-17",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-14T03:30:59.171Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-11-14T03:30:59.171Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-17"
     },
     {
       "id": "1cce7cc5-9992-4281-832b-6be3fa170aaf",
