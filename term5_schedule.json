@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "12:01 AM",
-  "last_synced_full": "18-Nov-2026 12:01 AM IST",
-  "total_sessions": 350,
+  "last_synced_time": "10:48 AM",
+  "last_synced_full": "18-Nov-2026 10:48 AM IST",
+  "total_sessions": 352,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -5680,6 +5680,40 @@
       "classDate": "2026-11-20"
     },
     {
+      "id": "ce543285-7f35-4192-9a83-b92ee2ffc366",
+      "name": "GCD Quiz",
+      "description": "9:30 onwards",
+      "type": "Academic",
+      "date": "2026-11-20",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-18T03:12:46.525Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-11-18T03:12:46.525Z",
+      "updatedBy": null,
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-20"
+    },
+    {
       "id": "2b88d640-0800-4cac-b614-67ab44a712c5",
       "name": "BDM Quiz 3",
       "description": null,
@@ -9291,6 +9325,40 @@
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "updatedAt": "2026-11-17T05:13:15.745Z",
       "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-20"
+    },
+    {
+      "id": "1d3f86fa-44d3-4d23-a044-13fbb8e09f7c",
+      "name": "GCD Quiz",
+      "description": "9:30 onwards",
+      "type": "Academic",
+      "date": "2026-11-20",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:30:00",
+      "endTime": "10:00:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-18T03:12:46.525Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-11-18T03:12:46.525Z",
+      "updatedBy": null,
       "batchSection": {
         "sectionName": "F",
         "sectionCode": "BD25-F",
