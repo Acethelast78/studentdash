@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "02:00 PM",
-  "last_synced_full": "18-Nov-2026 02:00 PM IST",
+  "last_synced_time": "11:30 PM",
+  "last_synced_full": "18-Nov-2026 11:30 PM IST",
   "total_sessions": 352,
   "data": [
     {
@@ -4632,6 +4632,58 @@
       ]
     },
     {
+      "sessionId": "39898491-f3f3-4917-a1db-d6729f94248a",
+      "classDate": "2026-11-23",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-26",
+      "originalStartTime": "14:45:00",
+      "originalEndTime": "16:15:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
+        "courseName": "Gales of Creative Destruction - Managing Innovation",
+        "courseCode": "GCD"
+      },
+      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
+      "courseOfferCode": "GCDBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
+        "prefix": "Dr",
+        "userId": "122fe1ed-2585-40aa-9825-908760882057",
+        "firstName": "Faisal Mohammad",
+        "middleName": null,
+        "lastName": "Ahsan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
       "sessionId": "0dc2dbb3-4f2e-460e-b7bf-c972fa571937",
       "classDate": "2026-11-24",
       "status": "scheduled",
@@ -4978,58 +5030,6 @@
         "firstName": "Mohit",
         "middleName": null,
         "lastName": "Malhan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "39898491-f3f3-4917-a1db-d6729f94248a",
-      "classDate": "2026-11-26",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
-        "courseName": "Gales of Creative Destruction - Managing Innovation",
-        "courseCode": "GCD"
-      },
-      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
-      "courseOfferCode": "GCDBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
-        "prefix": "Dr",
-        "userId": "122fe1ed-2585-40aa-9825-908760882057",
-        "firstName": "Faisal Mohammad",
-        "middleName": null,
-        "lastName": "Ahsan"
       },
       "sectionKind": "elective",
       "section": {
@@ -12324,19 +12324,19 @@
       ]
     },
     {
-      "sessionId": "f73c912d-0fad-4a18-806a-bcc6e28dbb66",
-      "classDate": "2026-11-24",
-      "status": "scheduled",
+      "sessionId": "53eebe3e-7ab2-4153-82d4-d3b89d2028f3",
+      "classDate": "2026-11-23",
+      "status": "rescheduled",
       "isCancelled": false,
       "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-26",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
       "remarks": null,
       "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
       "venue": {
         "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
         "name": "MCR 08",
@@ -12376,8 +12376,8 @@
       ]
     },
     {
-      "sessionId": "53eebe3e-7ab2-4153-82d4-d3b89d2028f3",
-      "classDate": "2026-11-26",
+      "sessionId": "f73c912d-0fad-4a18-806a-bcc6e28dbb66",
+      "classDate": "2026-11-24",
       "status": "scheduled",
       "isCancelled": false,
       "cancelReason": null,
@@ -12387,8 +12387,8 @@
       "originalEndTime": null,
       "remarks": null,
       "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
+      "startTime": "10:20:00",
+      "endTime": "11:50:00",
       "venue": {
         "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
         "name": "MCR 08",
@@ -17316,6 +17316,58 @@
       ]
     },
     {
+      "sessionId": "cc5089f8-8721-465a-8b71-e2c1c3a56064",
+      "classDate": "2026-11-21",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-24",
+      "originalStartTime": "14:45:00",
+      "originalEndTime": "16:15:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "b69da9c4-20ee-4e78-86eb-745c395443b9",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "12000e87-f934-4d03-bfb3-801aa2f51702",
+        "courseName": "Managing Strategic Transformation",
+        "courseCode": "MST"
+      },
+      "courseOfferId": "9992cd02-e564-406e-b6b6-27c3d32a025d",
+      "courseOfferCode": "MSTBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "4a7851ce-e6f3-473a-8884-8f155acaeb3d",
+        "prefix": "Dr.",
+        "userId": "b7e93eea-860e-4c0a-8d9a-029916c2bc29",
+        "firstName": "Indrajit",
+        "middleName": null,
+        "lastName": "Mukherjee"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
       "sessionId": "69f22400-f617-46b0-8200-5a222652be85",
       "classDate": "2026-11-23",
       "status": "scheduled",
@@ -17420,6 +17472,58 @@
       ]
     },
     {
+      "sessionId": "394fb75b-4ecd-4a67-9571-98b8a8da15d6",
+      "classDate": "2026-11-23",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-24",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "b69da9c4-20ee-4e78-86eb-745c395443b9",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "12000e87-f934-4d03-bfb3-801aa2f51702",
+        "courseName": "Managing Strategic Transformation",
+        "courseCode": "MST"
+      },
+      "courseOfferId": "9992cd02-e564-406e-b6b6-27c3d32a025d",
+      "courseOfferCode": "MSTBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "4a7851ce-e6f3-473a-8884-8f155acaeb3d",
+        "prefix": "Dr.",
+        "userId": "b7e93eea-860e-4c0a-8d9a-029916c2bc29",
+        "firstName": "Indrajit",
+        "middleName": null,
+        "lastName": "Mukherjee"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
       "sessionId": "e9c92078-444c-4228-a725-f13a8d7dc568",
       "classDate": "2026-11-23",
       "status": "scheduled",
@@ -17454,110 +17558,6 @@
         "firstName": "Narasimhan",
         "middleName": null,
         "lastName": "Rajkumar"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "cc5089f8-8721-465a-8b71-e2c1c3a56064",
-      "classDate": "2026-11-24",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "b69da9c4-20ee-4e78-86eb-745c395443b9",
-      "startTime": "14:45:00",
-      "endTime": "16:15:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "12000e87-f934-4d03-bfb3-801aa2f51702",
-        "courseName": "Managing Strategic Transformation",
-        "courseCode": "MST"
-      },
-      "courseOfferId": "9992cd02-e564-406e-b6b6-27c3d32a025d",
-      "courseOfferCode": "MSTBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "4a7851ce-e6f3-473a-8884-8f155acaeb3d",
-        "prefix": "Dr.",
-        "userId": "b7e93eea-860e-4c0a-8d9a-029916c2bc29",
-        "firstName": "Indrajit",
-        "middleName": null,
-        "lastName": "Mukherjee"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "394fb75b-4ecd-4a67-9571-98b8a8da15d6",
-      "classDate": "2026-11-24",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "b69da9c4-20ee-4e78-86eb-745c395443b9",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "12000e87-f934-4d03-bfb3-801aa2f51702",
-        "courseName": "Managing Strategic Transformation",
-        "courseCode": "MST"
-      },
-      "courseOfferId": "9992cd02-e564-406e-b6b6-27c3d32a025d",
-      "courseOfferCode": "MSTBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "4a7851ce-e6f3-473a-8884-8f155acaeb3d",
-        "prefix": "Dr.",
-        "userId": "b7e93eea-860e-4c0a-8d9a-029916c2bc29",
-        "firstName": "Indrajit",
-        "middleName": null,
-        "lastName": "Mukherjee"
       },
       "sectionKind": "elective",
       "section": {
