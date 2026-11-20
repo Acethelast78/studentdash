@@ -1,6 +1,6 @@
 {
-  "last_synced_time": "02:00 PM",
-  "last_synced_full": "20-Nov-2026 02:00 PM IST",
+  "last_synced_time": "11:15 PM",
+  "last_synced_full": "20-Nov-2026 11:15 PM IST",
   "total_sessions": 354,
   "data": [
     {
@@ -4424,58 +4424,6 @@
       ]
     },
     {
-      "sessionId": "ed92767e-9ab1-434d-b9ad-71f37d03d437",
-      "classDate": "2026-11-21",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "048b026d-1f40-4efe-846a-506791cdccc9",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "ec3c8888-245a-47d3-899a-72c750a047de",
-        "courseName": "Business to Business Marketing",
-        "courseCode": "B2B"
-      },
-      "courseOfferId": "12c92e98-4744-429c-b915-adb77d94c4e7",
-      "courseOfferCode": "B2BBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "a4f1b9d9-99f8-4c9c-a72e-a40e90c8a606",
-        "prefix": "Dr",
-        "userId": "4a9dc1ad-f98c-46cf-9db1-2fcd052a5021",
-        "firstName": "Mohit",
-        "middleName": null,
-        "lastName": "Malhan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
       "sessionId": "eb030f6e-bcdd-4e50-9fba-22847581550a",
       "classDate": "2026-11-23",
       "status": "scheduled",
@@ -4926,6 +4874,58 @@
         "firstName": "Sanjeev",
         "middleName": null,
         "lastName": "Varshney"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
+      "sessionId": "ed92767e-9ab1-434d-b9ad-71f37d03d437",
+      "classDate": "2026-11-25",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-21",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "048b026d-1f40-4efe-846a-506791cdccc9",
+      "startTime": "16:30:00",
+      "endTime": "18:00:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "ec3c8888-245a-47d3-899a-72c750a047de",
+        "courseName": "Business to Business Marketing",
+        "courseCode": "B2B"
+      },
+      "courseOfferId": "12c92e98-4744-429c-b915-adb77d94c4e7",
+      "courseOfferCode": "B2BBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "a4f1b9d9-99f8-4c9c-a72e-a40e90c8a606",
+        "prefix": "Dr",
+        "userId": "4a9dc1ad-f98c-46cf-9db1-2fcd052a5021",
+        "firstName": "Mohit",
+        "middleName": null,
+        "lastName": "Malhan"
       },
       "sectionKind": "elective",
       "section": {
@@ -5752,7 +5752,7 @@
       "name": "B2b Quiz",
       "description": null,
       "type": "Academic",
-      "date": "2026-11-28",
+      "date": "2026-11-27",
       "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
       "startTime": "08:30:00",
       "endTime": "10:00:00",
@@ -5761,8 +5761,8 @@
       "isDeleted": false,
       "createdAt": "2026-11-20T06:51:49.750Z",
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-11-20T06:51:49.750Z",
-      "updatedBy": null,
+      "updatedAt": "2026-11-20T10:49:07.594Z",
+      "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "batchSection": {
         "sectionName": "E",
         "sectionCode": "BD25-E",
@@ -5773,7 +5773,7 @@
         }
       },
       "venue": null,
-      "classDate": "2026-11-28"
+      "classDate": "2026-11-27"
     },
     {
       "sessionId": "10ef26fb-f8c0-498d-aa0b-1f402af89d1f",
@@ -9444,7 +9444,7 @@
       "name": "B2b Quiz",
       "description": null,
       "type": "Academic",
-      "date": "2026-11-28",
+      "date": "2026-11-27",
       "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
       "startTime": "08:30:00",
       "endTime": "10:00:00",
@@ -9453,8 +9453,8 @@
       "isDeleted": false,
       "createdAt": "2026-11-20T06:51:49.750Z",
       "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-11-20T06:51:49.750Z",
-      "updatedBy": null,
+      "updatedAt": "2026-11-20T10:49:02.015Z",
+      "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
       "batchSection": {
         "sectionName": "F",
         "sectionCode": "BD25-F",
@@ -9465,7 +9465,7 @@
         }
       },
       "venue": null,
-      "classDate": "2026-11-28"
+      "classDate": "2026-11-27"
     },
     {
       "sessionId": "4ba879c0-d7a2-44a5-8a0a-b27f6247a32a",
@@ -17320,58 +17320,6 @@
       ]
     },
     {
-      "sessionId": "ef41ed2f-2c12-4286-8adb-f81bb104274d",
-      "classDate": "2026-11-21",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-21",
-      "originalStartTime": "10:20:00",
-      "originalEndTime": "11:50:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "e0fc63ff-ef40-4515-8781-6a28cb15e481",
-      "startTime": "10:20:00",
-      "endTime": "11:50:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "ec3c8888-245a-47d3-899a-72c750a047de",
-        "courseName": "Business to Business Marketing",
-        "courseCode": "B2B"
-      },
-      "courseOfferId": "12c92e98-4744-429c-b915-adb77d94c4e7",
-      "courseOfferCode": "B2BBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "a4f1b9d9-99f8-4c9c-a72e-a40e90c8a606",
-        "prefix": "Dr",
-        "userId": "4a9dc1ad-f98c-46cf-9db1-2fcd052a5021",
-        "firstName": "Mohit",
-        "middleName": null,
-        "lastName": "Malhan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
-        }
-      ]
-    },
-    {
       "sessionId": "cc5089f8-8721-465a-8b71-e2c1c3a56064",
       "classDate": "2026-11-21",
       "status": "rescheduled",
@@ -17528,58 +17476,6 @@
       ]
     },
     {
-      "sessionId": "394fb75b-4ecd-4a67-9571-98b8a8da15d6",
-      "classDate": "2026-11-23",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-24",
-      "originalStartTime": "16:30:00",
-      "originalEndTime": "18:00:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "b69da9c4-20ee-4e78-86eb-745c395443b9",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "12000e87-f934-4d03-bfb3-801aa2f51702",
-        "courseName": "Managing Strategic Transformation",
-        "courseCode": "MST"
-      },
-      "courseOfferId": "9992cd02-e564-406e-b6b6-27c3d32a025d",
-      "courseOfferCode": "MSTBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "4a7851ce-e6f3-473a-8884-8f155acaeb3d",
-        "prefix": "Dr.",
-        "userId": "b7e93eea-860e-4c0a-8d9a-029916c2bc29",
-        "firstName": "Indrajit",
-        "middleName": null,
-        "lastName": "Mukherjee"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
       "sessionId": "e9c92078-444c-4228-a725-f13a8d7dc568",
       "classDate": "2026-11-23",
       "status": "scheduled",
@@ -17628,6 +17524,110 @@
           "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
           "sectionName": "EF",
           "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "394fb75b-4ecd-4a67-9571-98b8a8da15d6",
+      "classDate": "2026-11-23",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-24",
+      "originalStartTime": "16:30:00",
+      "originalEndTime": "18:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "b69da9c4-20ee-4e78-86eb-745c395443b9",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "12000e87-f934-4d03-bfb3-801aa2f51702",
+        "courseName": "Managing Strategic Transformation",
+        "courseCode": "MST"
+      },
+      "courseOfferId": "9992cd02-e564-406e-b6b6-27c3d32a025d",
+      "courseOfferCode": "MSTBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "4a7851ce-e6f3-473a-8884-8f155acaeb3d",
+        "prefix": "Dr.",
+        "userId": "b7e93eea-860e-4c0a-8d9a-029916c2bc29",
+        "firstName": "Indrajit",
+        "middleName": null,
+        "lastName": "Mukherjee"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
+        }
+      ]
+    },
+    {
+      "sessionId": "ef41ed2f-2c12-4286-8adb-f81bb104274d",
+      "classDate": "2026-11-25",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-21",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "e0fc63ff-ef40-4515-8781-6a28cb15e481",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "ec3c8888-245a-47d3-899a-72c750a047de",
+        "courseName": "Business to Business Marketing",
+        "courseCode": "B2B"
+      },
+      "courseOfferId": "12c92e98-4744-429c-b915-adb77d94c4e7",
+      "courseOfferCode": "B2BBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "a4f1b9d9-99f8-4c9c-a72e-a40e90c8a606",
+        "prefix": "Dr",
+        "userId": "4a9dc1ad-f98c-46cf-9db1-2fcd052a5021",
+        "firstName": "Mohit",
+        "middleName": null,
+        "lastName": "Malhan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+        "sectionName": "F",
+        "sectionCode": "BD25-5-F"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+          "sectionName": "F",
+          "sectionCode": "BD25-5-F"
         }
       ]
     },
