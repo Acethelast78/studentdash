@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "09:43 PM",
-  "last_synced_full": "22-Nov-2026 09:43 PM IST",
-  "total_sessions": 354,
+  "last_synced_time": "02:28 PM",
+  "last_synced_full": "23-Nov-2026 02:28 PM IST",
+  "total_sessions": 353,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -4580,110 +4580,6 @@
       ]
     },
     {
-      "sessionId": "0dc2dbb3-4f2e-460e-b7bf-c972fa571937",
-      "classDate": "2026-11-24",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "c5ee3106-504a-4af7-9c43-7fcb0786984e",
-      "startTime": "08:30:00",
-      "endTime": "10:00:00",
-      "venue": {
-        "id": "21d934cd-15d0-4331-9ea9-4335058114fd",
-        "name": "LCR 1",
-        "code": "LCR-01",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "e9c6324a-f69e-4c4f-8bdd-8b9817f4f430",
-        "courseName": "Financial Modeling using Excel",
-        "courseCode": "FME"
-      },
-      "courseOfferId": "9478894a-faed-4c9d-a64a-ebbcda2eb7f2",
-      "courseOfferCode": "FMEBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "0743cba8-d54d-49e4-81e5-521e8e514741",
-        "prefix": "Prof.",
-        "userId": "ba27ff0b-61cf-47a7-a1f1-c33ed7482534",
-        "firstName": "Pitabas",
-        "middleName": null,
-        "lastName": "Mohanty"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-        "sectionName": "EF",
-        "sectionCode": "BD25-5-EF"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
-          "sectionName": "EF",
-          "sectionCode": "BD25-5-EF"
-        }
-      ]
-    },
-    {
-      "sessionId": "e414f5c5-0fc2-4b05-bd41-124fda38804e",
-      "classDate": "2026-11-24",
-      "status": "scheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
-      "remarks": null,
-      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
-      "startTime": "12:10:00",
-      "endTime": "13:40:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
-        "courseName": "Gales of Creative Destruction - Managing Innovation",
-        "courseCode": "GCD"
-      },
-      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
-      "courseOfferCode": "GCDBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
-        "prefix": "Dr",
-        "userId": "122fe1ed-2585-40aa-9825-908760882057",
-        "firstName": "Faisal Mohammad",
-        "middleName": null,
-        "lastName": "Ahsan"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
       "sessionId": "51e1824f-4b63-4973-bf20-8aa81a86870b",
       "classDate": "2026-11-25",
       "status": "scheduled",
@@ -4788,6 +4684,58 @@
       ]
     },
     {
+      "sessionId": "e414f5c5-0fc2-4b05-bd41-124fda38804e",
+      "classDate": "2026-11-25",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-24",
+      "originalStartTime": "12:10:00",
+      "originalEndTime": "13:40:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "fc9de1fb-0dc8-47cc-ac0a-01ec297bafb6",
+      "startTime": "12:10:00",
+      "endTime": "13:40:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "6a673778-ae3e-4a80-a9d5-791863325b72",
+        "courseName": "Gales of Creative Destruction - Managing Innovation",
+        "courseCode": "GCD"
+      },
+      "courseOfferId": "11f8c68c-e706-4cdb-9f8f-625d79a5cb05",
+      "courseOfferCode": "GCDBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "d19339cb-3cbd-4595-a5ac-9f0acc71084a",
+        "prefix": "Dr",
+        "userId": "122fe1ed-2585-40aa-9825-908760882057",
+        "firstName": "Faisal Mohammad",
+        "middleName": null,
+        "lastName": "Ahsan"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
       "sessionId": "e0c46655-8498-4256-87a3-6225584d1893",
       "classDate": "2026-11-25",
       "status": "rescheduled",
@@ -4822,58 +4770,6 @@
         "firstName": "Sanchayan",
         "middleName": null,
         "lastName": "Nath"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "ed92767e-9ab1-434d-b9ad-71f37d03d437",
-      "classDate": "2026-11-25",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-21",
-      "originalStartTime": "12:10:00",
-      "originalEndTime": "13:40:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "048b026d-1f40-4efe-846a-506791cdccc9",
-      "startTime": "16:30:00",
-      "endTime": "18:00:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "ec3c8888-245a-47d3-899a-72c750a047de",
-        "courseName": "Business to Business Marketing",
-        "courseCode": "B2B"
-      },
-      "courseOfferId": "12c92e98-4744-429c-b915-adb77d94c4e7",
-      "courseOfferCode": "B2BBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "a4f1b9d9-99f8-4c9c-a72e-a40e90c8a606",
-        "prefix": "Dr",
-        "userId": "4a9dc1ad-f98c-46cf-9db1-2fcd052a5021",
-        "firstName": "Mohit",
-        "middleName": null,
-        "lastName": "Malhan"
       },
       "sectionKind": "elective",
       "section": {
@@ -4992,6 +4888,110 @@
           "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
           "sectionName": "E",
           "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
+      "sessionId": "9c8d7749-22b3-4d22-887a-5f119e40946c",
+      "classDate": "2026-11-26",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "3e35edd2-f4dc-4ebf-8298-020e48b71242",
+      "startTime": "14:45:00",
+      "endTime": "16:15:00",
+      "venue": {
+        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
+        "name": "MCR 07",
+        "code": "MCR-07",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
+        "courseName": "International Business Models for the Circular Economy",
+        "courseCode": "IMCE"
+      },
+      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
+      "courseOfferCode": "IMCEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
+        "prefix": "Dr.",
+        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
+        "firstName": "Sanchayan",
+        "middleName": null,
+        "lastName": "Nath"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+        "sectionName": "E",
+        "sectionCode": "BD25-5-E"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
+          "sectionName": "E",
+          "sectionCode": "BD25-5-E"
+        }
+      ]
+    },
+    {
+      "sessionId": "0dc2dbb3-4f2e-460e-b7bf-c972fa571937",
+      "classDate": "2026-11-26",
+      "status": "rescheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-24",
+      "originalStartTime": "08:30:00",
+      "originalEndTime": "10:00:00",
+      "remarks": null,
+      "courseOfferFacultySectionId": "c5ee3106-504a-4af7-9c43-7fcb0786984e",
+      "startTime": "20:00:00",
+      "endTime": "21:30:00",
+      "venue": {
+        "id": "21d934cd-15d0-4331-9ea9-4335058114fd",
+        "name": "LCR 1",
+        "code": "LCR-01",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "e9c6324a-f69e-4c4f-8bdd-8b9817f4f430",
+        "courseName": "Financial Modeling using Excel",
+        "courseCode": "FME"
+      },
+      "courseOfferId": "9478894a-faed-4c9d-a64a-ebbcda2eb7f2",
+      "courseOfferCode": "FMEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "0743cba8-d54d-49e4-81e5-521e8e514741",
+        "prefix": "Prof.",
+        "userId": "ba27ff0b-61cf-47a7-a1f1-c33ed7482534",
+        "firstName": "Pitabas",
+        "middleName": null,
+        "lastName": "Mohanty"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+        "sectionName": "EF",
+        "sectionCode": "BD25-5-EF"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "2e224214-2f58-4b10-8daa-875594c84cc0",
+          "sectionName": "EF",
+          "sectionCode": "BD25-5-EF"
         }
       ]
     },
@@ -5134,58 +5134,6 @@
         "firstName": "Sanjeev",
         "middleName": null,
         "lastName": "Varshney"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-        "sectionName": "E",
-        "sectionCode": "BD25-5-E"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "47657cea-c0b3-426d-bfa9-4cf6626ab72d",
-          "sectionName": "E",
-          "sectionCode": "BD25-5-E"
-        }
-      ]
-    },
-    {
-      "sessionId": "ea973257-1b59-4afb-8eb6-6fb1e77e63f1",
-      "classDate": "2026-11-27",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-24",
-      "originalStartTime": "10:20:00",
-      "originalEndTime": "11:50:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "3e35edd2-f4dc-4ebf-8298-020e48b71242",
-      "startTime": "18:15:00",
-      "endTime": "19:45:00",
-      "venue": {
-        "id": "f8ed9228-87b2-40ba-be48-182d5a04ba5f",
-        "name": "MCR 07",
-        "code": "MCR-07",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
-        "courseName": "International Business Models for the Circular Economy",
-        "courseCode": "IMCE"
-      },
-      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
-      "courseOfferCode": "IMCEBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
-        "prefix": "Dr.",
-        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
-        "firstName": "Sanchayan",
-        "middleName": null,
-        "lastName": "Nath"
       },
       "sectionKind": "elective",
       "section": {
@@ -8792,6 +8740,58 @@
       ]
     },
     {
+      "sessionId": "6e6bafb1-ccb8-4d6b-a775-b007cc265db6",
+      "classDate": "2026-11-26",
+      "status": "scheduled",
+      "isCancelled": false,
+      "cancelReason": null,
+      "isRescheduled": false,
+      "originalDate": null,
+      "originalStartTime": null,
+      "originalEndTime": null,
+      "remarks": null,
+      "courseOfferFacultySectionId": "5bb1a774-9834-4049-976a-3d4398b4cf2b",
+      "startTime": "12:10:00",
+      "endTime": "13:40:00",
+      "venue": {
+        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
+        "name": "MCR 08",
+        "code": "MCR-08",
+        "building": "Academic Building"
+      },
+      "course": {
+        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
+        "courseName": "International Business Models for the Circular Economy",
+        "courseCode": "IMCE"
+      },
+      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
+      "courseOfferCode": "IMCEBD25-5",
+      "courseOfferType": "Elective",
+      "faculty": {
+        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
+        "prefix": "Dr.",
+        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
+        "firstName": "Sanchayan",
+        "middleName": null,
+        "lastName": "Nath"
+      },
+      "sectionKind": "elective",
+      "section": {
+        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+        "sectionName": "F",
+        "sectionCode": "BD25-5-F"
+      },
+      "batch": null,
+      "program": null,
+      "attendingSections": [
+        {
+          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
+          "sectionName": "F",
+          "sectionCode": "BD25-5-F"
+        }
+      ]
+    },
+    {
       "sessionId": "4c76b356-cff2-4576-a6b7-8b8783ab221a",
       "classDate": "2026-11-27",
       "status": "rescheduled",
@@ -8826,58 +8826,6 @@
         "firstName": "Sanjeev",
         "middleName": null,
         "lastName": "Varshney"
-      },
-      "sectionKind": "elective",
-      "section": {
-        "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-        "sectionName": "F",
-        "sectionCode": "BD25-5-F"
-      },
-      "batch": null,
-      "program": null,
-      "attendingSections": [
-        {
-          "id": "f2cccad4-ae35-4232-a666-2ec91c74559f",
-          "sectionName": "F",
-          "sectionCode": "BD25-5-F"
-        }
-      ]
-    },
-    {
-      "sessionId": "24c742e8-7030-4b6b-bcff-163fefc8564b",
-      "classDate": "2026-11-27",
-      "status": "rescheduled",
-      "isCancelled": false,
-      "cancelReason": null,
-      "isRescheduled": true,
-      "originalDate": "2026-11-24",
-      "originalStartTime": "12:10:00",
-      "originalEndTime": "13:40:00",
-      "remarks": null,
-      "courseOfferFacultySectionId": "5bb1a774-9834-4049-976a-3d4398b4cf2b",
-      "startTime": "20:00:00",
-      "endTime": "21:30:00",
-      "venue": {
-        "id": "8bab36d7-77ef-4b77-bf96-9d4e351fa854",
-        "name": "MCR 08",
-        "code": "MCR-08",
-        "building": "Academic Building"
-      },
-      "course": {
-        "id": "59a37ccb-fa77-4d9d-8aa9-f0937482fcc9",
-        "courseName": "International Business Models for the Circular Economy",
-        "courseCode": "IMCE"
-      },
-      "courseOfferId": "1816cbed-adac-4205-ae1c-83d139a12d90",
-      "courseOfferCode": "IMCEBD25-5",
-      "courseOfferType": "Elective",
-      "faculty": {
-        "id": "e2b3d014-1d38-4b1b-b3e1-d9a73aa98ca5",
-        "prefix": "Dr.",
-        "userId": "5c8c5118-50d6-408d-b833-8f25f352e3e2",
-        "firstName": "Sanchayan",
-        "middleName": null,
-        "lastName": "Nath"
       },
       "sectionKind": "elective",
       "section": {
@@ -12433,14 +12381,14 @@
     },
     {
       "sessionId": "f73c912d-0fad-4a18-806a-bcc6e28dbb66",
-      "classDate": "2026-11-24",
-      "status": "scheduled",
+      "classDate": "2026-11-25",
+      "status": "rescheduled",
       "isCancelled": false,
       "cancelReason": null,
-      "isRescheduled": false,
-      "originalDate": null,
-      "originalStartTime": null,
-      "originalEndTime": null,
+      "isRescheduled": true,
+      "originalDate": "2026-11-24",
+      "originalStartTime": "10:20:00",
+      "originalEndTime": "11:50:00",
       "remarks": null,
       "courseOfferFacultySectionId": "6c379c21-31ef-41d6-9dff-71416a1511b6",
       "startTime": "10:20:00",
