@@ -1,7 +1,7 @@
 {
-  "last_synced_time": "02:39 AM",
-  "last_synced_full": "25-Nov-2026 02:39 AM IST",
-  "total_sessions": 353,
+  "last_synced_time": "03:18 PM",
+  "last_synced_full": "25-Nov-2026 03:18 PM IST",
+  "total_sessions": 355,
   "data": [
     {
       "sessionId": "3139b71e-9f37-4d90-b18b-1cd3e52aa58a",
@@ -5696,21 +5696,21 @@
       "classDate": "2026-11-21"
     },
     {
-      "id": "d7bad6e9-27e6-40c7-8800-98c7087af36e",
-      "name": "B2b Quiz",
+      "id": "371251e3-ba80-4525-98d2-cec633ce49d1",
+      "name": "FME QUIZ",
       "description": null,
       "type": "Academic",
-      "date": "2026-11-27",
+      "date": "2026-11-26",
       "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
-      "startTime": "08:30:00",
-      "endTime": "10:00:00",
-      "venueId": null,
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
       "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
       "isDeleted": false,
-      "createdAt": "2026-11-20T06:51:49.750Z",
-      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-11-20T10:49:07.594Z",
-      "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "createdAt": "2026-11-25T06:45:52.208Z",
+      "createdBy": "5015a83c-a2e1-4583-96a9-1d99e1e99d9b",
+      "updatedAt": "2026-11-25T06:45:52.208Z",
+      "updatedBy": null,
       "batchSection": {
         "sectionName": "E",
         "sectionCode": "BD25-E",
@@ -5720,7 +5720,47 @@
           "batchName": "PGDM-BMD (2025-2027)"
         }
       },
-      "venue": null,
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-26"
+    },
+    {
+      "id": "d7bad6e9-27e6-40c7-8800-98c7087af36e",
+      "name": "B2b Quiz",
+      "description": "7:45 am",
+      "type": "Academic",
+      "date": "2026-11-27",
+      "batchSectionId": "ed9a39d5-39fe-47d2-a17c-6a2ab3f4001c",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-20T06:51:49.750Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-11-25T08:51:21.671Z",
+      "updatedBy": "4a184733-f4f8-435d-a460-b140b51af385",
+      "batchSection": {
+        "sectionName": "E",
+        "sectionCode": "BD25-E",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
       "classDate": "2026-11-27"
     },
     {
@@ -9388,21 +9428,21 @@
       "classDate": "2026-11-21"
     },
     {
-      "id": "b1b266e2-165c-44a2-8fd6-3931e15abc71",
-      "name": "B2b Quiz",
+      "id": "97e28529-87c9-44ab-b852-dd2bfaa76b9e",
+      "name": "FME QUIZ",
       "description": null,
       "type": "Academic",
-      "date": "2026-11-27",
+      "date": "2026-11-26",
       "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
-      "startTime": "08:30:00",
-      "endTime": "10:00:00",
-      "venueId": null,
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
       "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
       "isDeleted": false,
-      "createdAt": "2026-11-20T06:51:49.750Z",
-      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
-      "updatedAt": "2026-11-20T10:49:02.015Z",
-      "updatedBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "createdAt": "2026-11-25T06:45:52.208Z",
+      "createdBy": "5015a83c-a2e1-4583-96a9-1d99e1e99d9b",
+      "updatedAt": "2026-11-25T06:45:52.208Z",
+      "updatedBy": null,
       "batchSection": {
         "sectionName": "F",
         "sectionCode": "BD25-F",
@@ -9412,7 +9452,47 @@
           "batchName": "PGDM-BMD (2025-2027)"
         }
       },
-      "venue": null,
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
+      "classDate": "2026-11-26"
+    },
+    {
+      "id": "b1b266e2-165c-44a2-8fd6-3931e15abc71",
+      "name": "B2b Quiz",
+      "description": "7:45 am",
+      "type": "Academic",
+      "date": "2026-11-27",
+      "batchSectionId": "97fc771c-3ec8-4688-a359-18c1ec5ecc78",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "venueId": "47968a0f-7f8b-4fd4-ad1a-1e3c93462da6",
+      "instituteId": "a38fe8cf-fa68-406a-b62d-bd0721d9dbee",
+      "isDeleted": false,
+      "createdAt": "2026-11-20T06:51:49.750Z",
+      "createdBy": "d35076aa-11ea-40c4-9112-baf1bd80c010",
+      "updatedAt": "2026-11-25T08:51:48.712Z",
+      "updatedBy": "4a184733-f4f8-435d-a460-b140b51af385",
+      "batchSection": {
+        "sectionName": "F",
+        "sectionCode": "BD25-F",
+        "batch": {
+          "id": "c5b6fec4-ebc6-4a49-b6ff-c52856e327f9",
+          "batchId": "BD25",
+          "batchName": "PGDM-BMD (2025-2027)"
+        }
+      },
+      "venue": {
+        "name": "Exam Hall",
+        "code": "EXAM_HALL",
+        "building": "Academic Building",
+        "floor": "2nd",
+        "capacity": 276
+      },
       "classDate": "2026-11-27"
     },
     {
